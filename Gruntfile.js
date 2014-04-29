@@ -70,7 +70,7 @@ module.exports = function (grunt) {
             server:{
                 hostname:'dev.bobox.ma',
                 port:'8080',
-                base:'./',
+                base:'./src/app/',
                 open:true
             }
         }
