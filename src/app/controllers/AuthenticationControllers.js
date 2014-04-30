@@ -31,7 +31,7 @@ controllers.controller('LoginController',
                             function (response) {
                                 //Kinvey login finished with success
                                 $scope.submittedError = false;
-                                $location.path('/templates/logged_in');
+                                $location.path('/main/logged_in');
                             },
                             function (error) {
                                 //Kinvey login finished with error
@@ -51,7 +51,7 @@ controllers.controller('LoginController',
 		            function () {
                         //Kinvey Facebook login finished with success
 		                console.log("social login Facebook success");
-		                $location.path('/templates/logged_in');
+		                $location.path('/main/logged_in');
                         $scope.submittedFacebookError = false;
 		            },
 		            function (error) {
@@ -73,7 +73,7 @@ controllers.controller('LoginController',
                         //Kinvey Twitter login finished with success
                         $scope.submittedTwitterError = false;
 		                console.log("social login Twitter success");
-		                $location.path('/templates/logged_in');
+		                $location.path('/main/logged_in');
 		            },
 		            function (error) {
                         //Kinvey Twitter login finished with error
@@ -85,11 +85,11 @@ controllers.controller('LoginController',
 		    }
 		    $scope.forgetPassword = function () {
 		        console.log("forgetPassword");
-		        $location.path("templates/password_reset");
+		        $location.path("main/password_reset");
 		    }
 		    $scope.signUp = function () {
 		        console.log("signUp");
-		        $location.path("templates/sign_up");
+		        $location.path("main/sign_up");
 		    }
 		}]);
 controllers.controller('ResetPasswordController', 
@@ -108,13 +108,13 @@ controllers.controller('ResetPasswordController',
                     function () {
                         //Kinvey reset password finished with success
                         console.log("resetPassword");
-                        $location.path("templates/login");
+                        $location.path("main/login");
                     });
             }
 
             $scope.logIn = function () {
                 console.log("logIn");
-                $location.path("templates/login");
+                $location.path("main/login");
             }
 		}]);
 controllers.controller('SignUpController', 
@@ -152,7 +152,7 @@ controllers.controller('SignUpController',
                             //Kinvey signup finished with success
                             $scope.submittedError = false;
 							console.log("signup success");
-							$location.path("templates/logged_in");
+							$location.path("main/logged_in");
 						}, 
 						function(error) {
                             //Kinvey signup finished with error
@@ -175,7 +175,7 @@ controllers.controller('LoggedInController',
                         //Kinvey logout finished with success
                         console.log("user logout");
                         $kinvey.setActiveUser(null);
-                        $location.path("templates/login");
+                        $location.path("main/login");
                     },
                     function (error) {
                         //Kinvey logout finished with error
