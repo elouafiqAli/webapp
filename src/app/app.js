@@ -2,24 +2,24 @@ var app = angular.module('SignIn-Angular', [ 'kinvey', 'ngRoute', 'controllers' 
  //inject Providers into config block
 app.config(['$routeProvider', function($routeProvider) {
 	$routeProvider.
-	when('/templates/login', {
-		templateUrl: 'templates/login.html',
+	when('/main/login', {
+		templateUrl: 'main/login.html',
 		controller: 'LoginController'
 	}).
-	when('/templates/password_reset', {
-		templateUrl: 'templates/password_reset.html',
+	when('/main/password_reset', {
+		templateUrl: 'main/password_reset.html',
 		controller: 'ResetPasswordController'
 	}).
-	when('/templates/sign_up', {
-		templateUrl: 'templates/sign_up.html',
+	when('/main/sign_up', {
+		templateUrl: 'main/sign_up.html',
 		controller: 'SignUpController'
 	}).
-	when('/templates/logged_in', {
-		templateUrl: 'templates/logged_in.html',
+	when('/main/logged_in', {
+		templateUrl: 'main/dashboard.html',
 		controller: 'LoggedInController'
 	}).
 	otherwise({
-		 redirectTo: '/templates/login'
+		 redirectTo: '/main/login'
 	});
 }]);
 //inject instances (not Providers) into run blocks
@@ -27,8 +27,9 @@ app.run(['$location', '$kinvey', '$rootScope', function($location, $kinvey, $roo
 
     // Kinvey initialization starts
 	var promise = $kinvey.init({
-		appKey : 'kid_TP-o2paIWO',
-		appSecret : '6df2f442765741aa833f922ff548ec8b',
+		appKey : 'kid_TeM8TGI1oq',
+		appSecret : '828527a891af4953adad8b14087976e6',
+        sync      : { enable: true }
 	});
 	promise.then(function() {
         // Kinvey initialization finished with success
@@ -48,13 +49,13 @@ function determineBehavior($kinvey, $location, $rootScope) {
 	console.log("$location.$$url: " + $location.$$url);
 	if (activeUser != null) {
 		console.log("activeUser not null determine behavior");
-		if ($location.$$url != '/templates/logged_in') {
-			$location.path('/templates/logged_in');
+		if ($location.$$url != '/main/logged_in') {
+			$location.path('/main/logged_in');
 		}
 	} else {
 		console.log("activeUser null redirecting");
-		if ($location.$$url != '/templates/login') {
-			$location.path('/templates/login');
+		if ($location.$$url != '/main/login') {
+			$location.path('/main/login');
 		}
 	}
 }
