@@ -1,5 +1,6 @@
 var controllers = angular.module('controllers', []);
-controllers.controller('LoginController', 
+
+controllers.controller('LoginController',
 		['$scope', '$kinvey', "$location", function($scope, $kinvey, $location) {
 			$scope.login = function () {
                 var isFormInvalid = false;
@@ -212,3 +213,60 @@ controllers.controller('LoggedInController',
                 }
             }
         }]);
+controllers.controller('addBooks',['$scope','$kinvey','$location',function($scope,$kinvey,$location){
+    $scope.searchInput ='';
+    $scope.book ={};
+    $scope.bookFound = false;
+    $scope.fetchBook = function(SearchInput){
+        /*
+        Add before Search input checking to see if its an ISBN or a Book title to retrieve the right ID
+        if its length is between 12,10 and 13 and 10 and by removing X at the end
+         */
+        var inputISBN = SearchInput;
+
+        $kinvey.execute(':bookSearch',{ISBN: inputISBN}).then(function(response){
+                if(response.success){
+                    var book = response.book;
+
+                    $scope.book = book;
+                    $scope.bookFound=true;
+                }else{
+                    /*
+                     Call a service for error handeling and showing errors
+                     that the book was not found
+                     */
+                    $scope.bookFound=false;
+                }
+            },function(error){
+                /*
+                Call a service for error handeling and showing errors
+                that the book was not found
+                 */
+                //alert("book not found");
+            }
+
+        );
+    }
+    $scope.addBook =  function(ISBN){
+        if($scope.bookFound){
+            var Book = $scope.book;
+            var ObjectOfBook = {
+                book: Book,
+                owner: $kinvey.getActiveUser()
+            };
+            $kinvey.Datastore.save('objects',ObjectOfBook, {
+                exclude : ['owner'],
+                relations: {
+                    book: 'books',
+                    owner: 'user'
+                }
+            }).then(function(response){
+                var shelve = $kinvey.getActiveUser().shelve;
+                shelve.books.push(book);
+                $kinvey.Datastore.save('shelves',shelve);
+            },function(error){
+                //show some error
+            });
+        }
+    }
+}]);

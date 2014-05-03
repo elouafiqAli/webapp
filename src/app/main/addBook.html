@@ -1,0 +1,14 @@
+<div ng-controller="addBooks">
+    <div id="book-to-add" ng-hide="bookFound">
+        <!-- adding the awesome book information -->
+        <!-- button to remove from the list -->
+        <strong>{{ book.Title }}</strong>
+        ISBN:{{ book.ISBN }}
+        <img src="{{book.ImageLinks.thumbnail}}" />
+        <button ng-click="addBook">+</button>
+    </div>
+    <div id="search-book">
+        <input ng-model="searchInput" name="search input" placeholder="ISBN..."/>
+        <button ng-click="fetchBook()" name="search" id="search-button">Search</button>
+    </div>
+</div>
