@@ -216,39 +216,42 @@ controllers.controller('LoggedInController',
 controllers.controller('addBooks',['$scope','$kinvey','$location',function($scope,$kinvey,$location){
     $scope.searchInput ='';
     $scope.book ={};
-    $scope.bookFound = false;
-    $scope.fetchBook = function(SearchInput){
+    $scope.bookNotFound = true;
+    $scope.searchInput ='';
+    $scope.fetchBook = function(){
         /*
         Add before Search input checking to see if its an ISBN or a Book title to retrieve the right ID
         if its length is between 12,10 and 13 and 10 and by removing X at the end
          */
-        var inputISBN = SearchInput;
+        var inputISBN = $scope.searchInput;
 
-        $kinvey.execute(':bookSearch',{ISBN: inputISBN}).then(function(response){
+        $kinvey.execute('bookSearch',{ISBN: inputISBN}).then(function(response){
                 if(response.success){
                     var book = response.book;
-
                     $scope.book = book;
-                    $scope.bookFound=true;
+                    //alert("book not found"+JSON.stringify(book));
+                    $scope.bookNotFound=false;
                 }else{
                     /*
-                     Call a service for error handeling and showing errors
+                     Call a service for error handling and showing errors
                      that the book was not found
                      */
-                    $scope.bookFound=false;
+                    $scope.submittedError = true;
+                    $scope.errorDescription = "Couldn't find the book with the ISBN "+inputISBN;
                 }
             },function(error){
                 /*
                 Call a service for error handeling and showing errors
                 that the book was not found
                  */
-                //alert("book not found");
+                $scope.submittedError = true;
+                $scope.errorDescription = "Couldn't find the book with the ISBN "+inputISBN;
             }
 
         );
     }
     $scope.addBook =  function(ISBN){
-        if($scope.bookFound){
+        if($scope.bookNotFound){
             var Book = $scope.book;
             var ObjectOfBook = {
                 book: Book,

@@ -2,6 +2,10 @@ var app = angular.module('SignIn-Angular', [ 'kinvey', 'ngRoute', 'controllers' 
  //inject Providers into config block
 app.config(['$routeProvider', function($routeProvider) {
 	$routeProvider.
+    when('/main/addBook',{
+            templateUrl:'main/addBook.html',
+            controller:'addBooks'
+        }).
 	when('/main/login', {
 		templateUrl: 'main/login.html',
 		controller: 'LoginController'

@@ -1,14 +1,18 @@
 <div ng-controller="addBooks">
-    <div id="book-to-add" ng-hide="bookFound">
+    <center>
+    <div id="book-to-add" ng-hide="bookNotFound">
         <!-- adding the awesome book information -->
         <!-- button to remove from the list -->
-        <strong>{{ book.Title }}</strong>
-        ISBN:{{ book.ISBN }}
-        <img src="{{book.ImageLinks.thumbnail}}" />
-        <button ng-click="addBook">+</button>
+        <strong>{{ book.title }}</strong><br>
+        ISBN:{{ book.ISBN_13 }}<br>
+        <img src="{{book.imageLinks.thumbnail}}" /><br>
+        <button ng-click="addBook">+</button><br>
     </div>
+
     <div id="search-book">
         <input ng-model="searchInput" name="search input" placeholder="ISBN..."/>
         <button ng-click="fetchBook()" name="search" id="search-button">Search</button>
+        <span class="error" ng-show="submittedError">{{errorDescription}}</span>
     </div>
+    </center>
 </div>
