@@ -274,7 +274,6 @@ controllers.controller('addBooks',
                     shelve: shelve_name,
                     owner: $kinvey.getActiveUser()
                 }
-
                 $kinvey.DataStore.save('objects', bookObject, {
                     exclude: ['owner'],
                     relations: {
@@ -282,8 +281,7 @@ controllers.controller('addBooks',
                         owner: 'user'
                     }
                 }).then(function(response){
-                    $scope.shelve_books.unshift({book: _book});
-                    $scope.removeBook(i);
+
 
                      var _user =$kinvey.getActiveUser();
                      var shelve = _user.shelve || {} ;
@@ -303,7 +301,10 @@ controllers.controller('addBooks',
                  //show some error
                  });
             }
-
+            for(i in $scope.books){ var _book = $scope.books[i];
+                $scope.shelve_books.unshift({book: _book});
+            }
+            $scope.books = [];
         }
     }
     function onLoad(){
