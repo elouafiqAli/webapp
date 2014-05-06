@@ -247,7 +247,7 @@ controllers.controller('addBooks',
                     }
                     $scope.books.push(_book);
                     if ($scope.emptyList) $scope.emptyList = false;
-                    
+
                 }else{
                     handleError("Couldn't find the book with the ISBN "+inputISBN);
                 }
@@ -263,27 +263,31 @@ controllers.controller('addBooks',
 
         if(!$scope.emptyList){
             var bookList;
-
-            $kinvey.DataStore.save('books',$scope.books);
-            /*
-            var ObjectOfBook = {
-                book: Book,
-                owner: $kinvey.getActiveUser()
-            };
-            $kinvey.Datastore.save('objects',ObjectOfBook, {
-                exclude : ['owner'],
-                relations: {
-                    book: 'books',
-                    owner: 'user'
+            var shelve_name = "myCollection";
+            for(i in $scope.books) { var _book = $scope.books[i];
+                delete _book.$$hashKey;
+                var bookObject = {
+                    book: _book,
+                    shelve: shelve_name,
+                    owner: $kinvey.getActiveUser()
                 }
-            }).then(function(response){
-                var shelve = $kinvey.getActiveUser().shelve;
-                shelve.books.push(book);
-                $kinvey.Datastore.save('shelves',shelve);
-            },function(error){
-                //show some error
-            });
-            */
+                $kinvey.DataStore.save('objects', bookObject, {
+                    exclude: ['owner'],
+                    relations: {
+                        book: 'books',
+                        owner: 'user'
+                    }
+                })
+                /*.then(function(response){
+                 var shelve = $kinvey.getActiveUser().shelve;
+                 shelve.books = [] || shelve.books;
+                 shelve.books.push(book);
+                 $kinvey.Datastore.save('shelves',shelve);
+                 },function(error){
+                 //show some error
+                 });;*/
+            }
+
         }
     }
 }]);
