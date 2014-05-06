@@ -220,6 +220,9 @@ controllers.controller('addBooks',
     $scope.emptyList = true;
     $scope.searchInput ='';
     $scope.shelve = [];
+    $scope.shelve_books =[];
+
+
     function handleError(Description){
         $scope.submittedError = true;
         $scope.errorDescription = Description;
@@ -247,7 +250,7 @@ controllers.controller('addBooks',
                     }
                     $scope.books.push(_book);
                     if ($scope.emptyList) $scope.emptyList = false;
-                    
+
                 }else{
                     handleError("Couldn't find the book with the ISBN "+inputISBN);
                 }
@@ -263,27 +266,56 @@ controllers.controller('addBooks',
 
         if(!$scope.emptyList){
             var bookList;
-
-            $kinvey.DataStore.save('books',$scope.books);
-            /*
-            var ObjectOfBook = {
-                book: Book,
-                owner: $kinvey.getActiveUser()
-            };
-            $kinvey.Datastore.save('objects',ObjectOfBook, {
-                exclude : ['owner'],
-                relations: {
-                    book: 'books',
-                    owner: 'user'
+            var shelve_name = "myCollection";
+            for(i in $scope.books) { var _book = $scope.books[i];
+                delete _book.$$hashKey; //remove angular ng-repeat added attribute
+                var bookObject = {
+                    book: _book,
+                    shelve: shelve_name,
+                    owner: $kinvey.getActiveUser()
                 }
-            }).then(function(response){
-                var shelve = $kinvey.getActiveUser().shelve;
-                shelve.books.push(book);
-                $kinvey.Datastore.save('shelves',shelve);
-            },function(error){
-                //show some error
-            });
-            */
+
+                $kinvey.DataStore.save('objects', bookObject, {
+                    exclude: ['owner'],
+                    relations: {
+                        book: 'books',
+                        owner: 'user'
+                    }
+                }).then(function(response){
+                    $scope.shelve_books.unshift({book: _book});
+                    $scope.removeBook(i);
+
+                     var _user =$kinvey.getActiveUser();
+                     var shelve = _user.shelve || {} ;
+                         shelve.books = shelve.books  || [] ;
+                         shelve.owner = $kinvey.getActiveUser();
+                         shelve.name = "myCollection" || shelve.name;
+                         _book.ISBN_13 == undefined ? shelve.books.push(_book.ISBN_10) : shelve.books.push(_book.ISBN_13);
+                     _user.shelve = shelve;
+                     $kinvey.User.update(_user);
+                     $kinvey.DataStore.save('shelves',shelve,{
+                         exclude: ['owner'],
+                         relations: {
+                             owner: 'user'
+                         }
+                     });
+                 },function(error){
+                 //show some error
+                 });
+            }
+
         }
     }
+    function onLoad(){
+        var shelve_query= new $kinvey.Query();
+
+        shelve_query.equalTo("owner._id",$kinvey.getActiveUser()._id).equalTo("shelve","myCollection");
+        $kinvey.DataStore.find('objects',shelve_query,{
+            relations: { owner:'user',book:'books'},
+            success: function(response){
+                $scope.shelve_books =response;
+            }
+        });
+    }
+    onLoad();
 }]);
