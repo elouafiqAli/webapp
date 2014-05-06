@@ -265,7 +265,7 @@ controllers.controller('addBooks',
             var bookList;
             var shelve_name = "myCollection";
             for(i in $scope.books) { var _book = $scope.books[i];
-                delete _book.$$hashKey;
+                delete _book.$$hashKey; //remove angular ng-repeat added attribute
                 var bookObject = {
                     book: _book,
                     shelve: shelve_name,
@@ -277,15 +277,22 @@ controllers.controller('addBooks',
                         book: 'books',
                         owner: 'user'
                     }
-                })
-                /*.then(function(response){
-                 var shelve = $kinvey.getActiveUser().shelve;
-                 shelve.books = [] || shelve.books;
-                 shelve.books.push(book);
-                 $kinvey.Datastore.save('shelves',shelve);
+                }).then(function(response){
+                     console.log("getting to this aread");
+                     var shelve = {} || $kinvey.getActiveUser().shelve;
+                     shelve.books = [] || shelve.books;
+                     shelve.owner = $kinvey.getActiveUser();
+                     shelve.name = "myCollection" || shelve.name;
+                     _book.ISBN_13 == undefined ? shelve.books.push(_book.ISBN_10) : shelve.books.push(_book.ISBN_13);
+                     $kinvey.DataStore.save('shelves',shelve,{
+                         exclude: ['owner'],
+                         relations: {
+                             owner: 'user'
+                         }
+                     });
                  },function(error){
                  //show some error
-                 });;*/
+                 });
             }
 
         }
