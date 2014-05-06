@@ -274,6 +274,7 @@ controllers.controller('addBooks',
                     shelve: shelve_name,
                     owner: $kinvey.getActiveUser()
                 }
+
                 $kinvey.DataStore.save('objects', bookObject, {
                     exclude: ['owner'],
                     relations: {
@@ -281,7 +282,9 @@ controllers.controller('addBooks',
                         owner: 'user'
                     }
                 }).then(function(response){
-                     console.log("getting to this aread");
+                    $scope.shelve_books.unshift({book: _book});
+                    $scope.removeBook(i);
+
                      var _user =$kinvey.getActiveUser();
                      var shelve = _user.shelve || {} ;
                          shelve.books = shelve.books  || [] ;
@@ -308,7 +311,7 @@ controllers.controller('addBooks',
 
         shelve_query.equalTo("owner._id",$kinvey.getActiveUser()._id).equalTo("shelve","myCollection");
         $kinvey.DataStore.find('objects',shelve_query,{
-            relations: { owner:'user'},
+            relations: { owner:'user',book:'books'},
             success: function(response){
                 $scope.shelve_books =response;
             }

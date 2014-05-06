@@ -15,5 +15,12 @@
         <button ng-click="fetchBook()" name="search" id="search-button">Search</button>
         <span class="error" ng-show="submittedError">{{errorDescription}}</span>
     </div>
+    <h1>Shelve Books</h1>
+    <div id="shelve-books" ng-hide="!shelve_books.length">
+        <div ng-repeat="item in shelve_books">
+            <strong>{{ item.book.title }}</strong><br>
+            <img src="{{ item.book.imageLinks.thumbnail}}" /><br>
+        </div>
+    </div>
     </center>
 </div>
