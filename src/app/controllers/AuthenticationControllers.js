@@ -213,43 +213,59 @@ controllers.controller('LoggedInController',
                 }
             }
         }]);
-controllers.controller('addBooks',['$scope','$kinvey','$location',function($scope,$kinvey,$location){
+controllers.controller('addBooks',
+    ['$scope','$kinvey','$location',function($scope,$kinvey,$location){
     $scope.searchInput ='';
-    $scope.book ={};
-    $scope.bookFound = false;
-    $scope.fetchBook = function(SearchInput){
-        /*
-        Add before Search input checking to see if its an ISBN or a Book title to retrieve the right ID
-        if its length is between 12,10 and 13 and 10 and by removing X at the end
-         */
-        var inputISBN = SearchInput;
-
-        $kinvey.execute(':bookSearch',{ISBN: inputISBN}).then(function(response){
+    $scope.books = [];
+    $scope.emptyList = true;
+    $scope.searchInput ='';
+    $scope.shelve = [];
+    function handleError(Description){
+        $scope.submittedError = true;
+        $scope.errorDescription = Description;
+    }
+    $scope.fetchBook = function(){
+        //Check Validity of input
+        var inputISBN = $scope.searchInput;
+        for(i in $scope.books){var book = $scope.books[i];
+            if(book.ISBN_10 == inputISBN || book.ISBN_13 == inputISBN){
+                handleError("Book already added");
+                return;
+            }
+        }
+        $kinvey.execute('bookSearch',{ISBN: inputISBN}).then(function(response){
                 if(response.success){
-                    var book = response.book;
+                    var _book = response.book;
 
-                    $scope.book = book;
-                    $scope.bookFound=true;
+                    // check if book already added to the list
+                    for(i in $scope.books){var book = $scope.books[i];
+                        console.log(book.ISBN_10+' '+inputISBN);
+                        if(book.ISBN_10 == _book.ISBN_10 || book.ISBN_13 == _book.ISBN_13){
+                            handleError("Book already added to the list");
+                            return;
+                        }
+                    }
+                    $scope.books.push(_book);
+                    if ($scope.emptyList) $scope.emptyList = false;
+                    
                 }else{
-                    /*
-                     Call a service for error handeling and showing errors
-                     that the book was not found
-                     */
-                    $scope.bookFound=false;
+                    handleError("Couldn't find the book with the ISBN "+inputISBN);
                 }
             },function(error){
-                /*
-                Call a service for error handeling and showing errors
-                that the book was not found
-                 */
-                //alert("book not found");
+                handleError("Couldn't find the book with the ISBN "+inputISBN);
             }
-
         );
     }
+    $scope.removeBook = function(index){
+        $scope.books.splice(index,1);
+    }
     $scope.addBook =  function(ISBN){
-        if($scope.bookFound){
-            var Book = $scope.book;
+
+        if(!$scope.emptyList){
+            var bookList;
+
+            $kinvey.DataStore.save('books',$scope.books);
+            /*
             var ObjectOfBook = {
                 book: Book,
                 owner: $kinvey.getActiveUser()
@@ -267,6 +283,7 @@ controllers.controller('addBooks',['$scope','$kinvey','$location',function($scop
             },function(error){
                 //show some error
             });
+            */
         }
     }
 }]);

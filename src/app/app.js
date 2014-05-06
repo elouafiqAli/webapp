@@ -2,6 +2,10 @@ var app = angular.module('SignIn-Angular', [ 'kinvey', 'ngRoute', 'controllers' 
  //inject Providers into config block
 app.config(['$routeProvider', function($routeProvider) {
 	$routeProvider.
+    when('/main/addBook',{
+            templateUrl:'main/addBook.html',
+            controller:'addBooks'
+        }).
 	when('/main/login', {
 		templateUrl: 'main/login.html',
 		controller: 'LoginController'
@@ -15,11 +19,11 @@ app.config(['$routeProvider', function($routeProvider) {
 		controller: 'SignUpController'
 	}).
 	when('/main/logged_in', {
-		templateUrl: 'main/dashboard.html',
-		controller: 'LoggedInController'
+		templateUrl: 'main/addBook.html',
+		controller: 'addBooks'
 	}).
 	otherwise({
-		 redirectTo: '/main/login'
+		 redirectTo: '/main/addBook'
 	});
 }]);
 //inject instances (not Providers) into run blocks
