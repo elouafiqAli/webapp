@@ -1,12 +1,13 @@
 <div ng-controller="addBooks">
     <center>
     <div id="book-to-add" ng-hide="bookNotFound">
-        <!-- adding the awesome book information -->
-        <!-- button to remove from the list -->
-        <strong>{{ book.title }}</strong><br>
-        ISBN:{{ book.ISBN_13 }}<br>
-        <img src="{{book.imageLinks.thumbnail}}" /><br>
-        <button ng-click="addBook">+</button><br>
+        <div ng-repeat="book in books">
+            <strong>{{ book.title }}</strong><br>
+            ISBN:{{ book.ISBN_13 }}<br>
+            <img src="{{book.imageLinks.thumbnail}}" /><br>
+            <button id="remove-book" ng-click="removeBook($index)">X</button><br>
+        </div>
+        <button id="add-books" ng-click="addBook()">+</button><br>
     </div>
 
     <div id="search-book">

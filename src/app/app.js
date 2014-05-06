@@ -19,11 +19,11 @@ app.config(['$routeProvider', function($routeProvider) {
 		controller: 'SignUpController'
 	}).
 	when('/main/logged_in', {
-		templateUrl: 'main/dashboard.html',
-		controller: 'LoggedInController'
+		templateUrl: 'main/addBook.html',
+		controller: 'addBooks'
 	}).
 	otherwise({
-		 redirectTo: '/main/login'
+		 redirectTo: '/main/addBook'
 	});
 }]);
 //inject instances (not Providers) into run blocks
