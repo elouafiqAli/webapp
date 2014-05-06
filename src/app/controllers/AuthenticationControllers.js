@@ -220,6 +220,9 @@ controllers.controller('addBooks',
     $scope.emptyList = true;
     $scope.searchInput ='';
     $scope.shelve = [];
+    $scope.shelve_books =[];
+
+
     function handleError(Description){
         $scope.submittedError = true;
         $scope.errorDescription = Description;
@@ -279,11 +282,14 @@ controllers.controller('addBooks',
                     }
                 }).then(function(response){
                      console.log("getting to this aread");
-                     var shelve = {} || $kinvey.getActiveUser().shelve;
-                     shelve.books = [] || shelve.books;
-                     shelve.owner = $kinvey.getActiveUser();
-                     shelve.name = "myCollection" || shelve.name;
-                     _book.ISBN_13 == undefined ? shelve.books.push(_book.ISBN_10) : shelve.books.push(_book.ISBN_13);
+                     var _user =$kinvey.getActiveUser();
+                     var shelve = _user.shelve || {} ;
+                         shelve.books = shelve.books  || [] ;
+                         shelve.owner = $kinvey.getActiveUser();
+                         shelve.name = "myCollection" || shelve.name;
+                         _book.ISBN_13 == undefined ? shelve.books.push(_book.ISBN_10) : shelve.books.push(_book.ISBN_13);
+                     _user.shelve = shelve;
+                     $kinvey.User.update(_user);
                      $kinvey.DataStore.save('shelves',shelve,{
                          exclude: ['owner'],
                          relations: {
@@ -297,4 +303,16 @@ controllers.controller('addBooks',
 
         }
     }
+    function onLoad(){
+        var shelve_query= new $kinvey.Query();
+
+        shelve_query.equalTo("owner._id",$kinvey.getActiveUser()._id).equalTo("shelve","myCollection");
+        $kinvey.DataStore.find('objects',shelve_query,{
+            relations: { owner:'user'},
+            success: function(response){
+                $scope.shelve_books =response;
+            }
+        });
+    }
+    onLoad();
 }]);
