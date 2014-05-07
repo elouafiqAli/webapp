@@ -1,5 +1,6 @@
 var controllers = angular.module('controllers', []);
 
+
 controllers.controller('LoginController',
 		['$scope', '$kinvey', "$location", function($scope, $kinvey, $location) {
 			$scope.login = function () {
@@ -214,7 +215,8 @@ controllers.controller('LoggedInController',
             }
         }]);
 controllers.controller('addBooks',
-    ['$scope','$kinvey','$location',function($scope,$kinvey,$location){
+    ['$scope', '$kinvey', "$location","sharedBooks", function($scope, $kinvey, $location, sharedBooks) {
+    $scope.sharedBooks = sharedBooks;
     $scope.searchInput ='';
     $scope.books = [];
     $scope.emptyList = true;
@@ -222,7 +224,11 @@ controllers.controller('addBooks',
     $scope.shelve = [];
     $scope.shelve_books =[];
 
-
+    $scope.searchInsideBook = function(book){
+        delete book.$$hashKey;
+        $scope.sharedBooks.setBook(book);
+        $location.path("main/searchInside");
+    }
     function handleError(Description){
         $scope.submittedError = true;
         $scope.errorDescription = Description;
@@ -236,6 +242,12 @@ controllers.controller('addBooks',
                 return;
             }
         }
+        /*for(i in $scope.shelve_books){var book = $scope.shelve_books[i].book;
+            if(book.ISBN_10 == inputISBN || book.ISBN_13 == inputISBN){
+                handleError("Book already added");
+                return;
+            }
+        }*/
         $kinvey.execute('bookSearch',{ISBN: inputISBN}).then(function(response){
                 if(response.success){
                     var _book = response.book;
@@ -320,3 +332,9 @@ controllers.controller('addBooks',
     }
     onLoad();
 }]);
+controllers.controller('searchInside',
+    ['$scope', '$kinvey', "$location","sharedBooks", function($scope, $kinvey, $location, sharedBooks){
+        $scope.book = sharedBooks.getBook();
+        $scope.submittedError = false;
+        $scope.errorDescription = '';
+    }]);

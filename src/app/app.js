@@ -1,7 +1,33 @@
 var app = angular.module('SignIn-Angular', [ 'kinvey', 'ngRoute', 'controllers' ]);
+app.factory("sharedBooks", function(){
+    var books = [];
+    var mySharedBooks = {};
+    var singleBook;
+    mySharedBooks.setBook = function(book){
+        singleBook = book;
+    }
+    mySharedBooks.getBook = function(){
+        return singleBook;
+    }
+    mySharedBooks.addBook = function(book) {
+        books.push(book);
+    };
+    mySharedBooks.removeBook = function(book) {
+        var index = items.indexOf(book);
+        books.splice(index, 1);
+    };
+    mySharedBooks.books = function() {
+        return books;
+    };
+    return mySharedBooks;
+
+});
  //inject Providers into config block
 app.config(['$routeProvider', function($routeProvider) {
-	$routeProvider.
+	$routeProvider.when('/main/searchInside',{
+        templateUrl:'main/searchInside.html',
+        controller:'searchInside'
+    }).
     when('/main/addBook',{
             templateUrl:'main/addBook.html',
             controller:'addBooks'
@@ -23,7 +49,7 @@ app.config(['$routeProvider', function($routeProvider) {
 		controller: 'addBooks'
 	}).
 	otherwise({
-		 redirectTo: '/main/addBook'
+		 redirectTo: '/main/login'
 	});
 }]);
 //inject instances (not Providers) into run blocks
