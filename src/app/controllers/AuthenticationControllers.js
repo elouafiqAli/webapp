@@ -337,4 +337,20 @@ controllers.controller('searchInside',
         $scope.book = sharedBooks.getBook();
         $scope.submittedError = false;
         $scope.errorDescription = '';
+        $scope.searchResults =null;
+
+        $scope.searchInsideBook = function(){
+            var _query = $scope.searchInput;
+            var _identifier = $scope.book.ISBN_13;
+
+            var search_request = $kinvey.execute("insearch",{query:_query,id:_identifier});
+            search_request.then(function(response){
+                if(response.error){
+                    $scope.submittedError = true;
+                    $scope.errorDescription =response.error;
+                }else{
+                    $scope.searchResults = response;
+                }
+            });
+        }
     }]);

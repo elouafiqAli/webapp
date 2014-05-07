@@ -10,16 +10,16 @@
         <button ng-click="searchInsideBook()" name="search" id="search-button">Search</button>
         <span class="error" ng-show="submittedError">{{errorDescription}}</span>
     </div>
-    <!--
-    <h2>Search Results</h1>
-    <h4>Number of occurences : {{searchResults.number_of_results}}</h4>
-    <div id="search-results" ng-hide="!shelve_books.length">
+
+    <div id="nothing" ng-hide="!searchResults.number_of_results">NOTHING FOUND</div>
+    <div id="search-results" ng-hide="!searchResults">
+        <h2>Search Results</h2>
+        <h4>Number of occurences : {{searchResults.number_of_results}}</h4>
         <div ng-repeat="page in searchResults.search_results">
-            <h3>{{ page.page_number }}</h3><br>
+            <h3>Page {{ page.page_number }}</h3><br>
             <p> {{ page.snippet_text}}" <p><br>
-            --------------------------------
+            --------------------------------<br>
         </div>
     </div>
-    -->
     </center>
 </div>
