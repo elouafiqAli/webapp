@@ -45,8 +45,8 @@ app.config(['$routeProvider', function($routeProvider) {
 		controller: 'SignUpController'
 	}).
 	when('/main/first_time', {
-		templateUrl: 'main/addBook.html',
-		controller: 'addBooks'
+		templateUrl: 'main/firstTimeWizard.html',
+		controller: 'firstTimeWizard'
 	}).
 	otherwise({
 		 redirectTo: '/main/dashboard'

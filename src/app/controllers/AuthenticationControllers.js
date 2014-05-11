@@ -215,6 +215,7 @@ controllers.controller('LoggedInController',
                 }
             }
         }]);
+
 controllers.controller('addBooks',
     ['$scope', '$kinvey', "$location","sharedBooks", function($scope, $kinvey, $location, sharedBooks) {
     $scope.sharedBooks = sharedBooks;
@@ -333,6 +334,69 @@ controllers.controller('addBooks',
     }
     onLoad();
 }]);
+controllers.controller('firstTimeWizard',
+    ['$scope', '$kinvey', "$location", function($scope, $kinvey, $location) {
+        var _wizard = {
+            steps: [true,false],
+            index : 0,
+            next : function(call){
+                if( this.index <  this.steps.length-1){
+                    this.steps[this.index]= false;
+                    this.steps[++this.index] = true;
+                    if(call) call();
+                    return true;
+                }else{
+                    return false;
+                }
+            },
+            back : function(call){
+                if( this.index > 0){
+                    this.steps[this.index]= false;
+                    this.steps[--this.index] = true;
+                    if(call) call();
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+        };
+        $scope.r = {
+            books : 0,
+            communities: 1
+        };
+        $scope.wizard = _wizard;
+
+    }]);
+controllers.controller('communitySubscription',
+    ['$scope', '$kinvey', "$location", function($scope, $kinvey, $location) {
+    /*
+    $scope.wizard = wizard;
+    $scope.wizard.showBooks = true;
+    $scope.wizard.showGroups = false;
+    */
+
+
+}]);/*
+app.factory("wizard", function(){
+    var states = {};
+    var sharedData = {};
+    var commonAction;
+    var myWizard;
+    myWizard.setState= function(stateID, stateValue){
+        states[state]=stateID;
+    }
+    myWizard.getState   = function(state){
+        return states[state];
+    }
+    myWizard.addData = function(dataName, data) {
+        sharedData[dataName]=data;
+    };
+    myWizard.getData  = function(dataName){
+        return sharedData[dataName];
+    }
+    return myWizard;
+
+});*/
 controllers.controller('searchInside',
     ['$scope', '$kinvey', "$location","sharedBooks", function($scope, $kinvey, $location, sharedBooks){
         $scope.book = sharedBooks.getBook();
