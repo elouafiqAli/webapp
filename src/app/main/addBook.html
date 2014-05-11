@@ -4,8 +4,9 @@
         <div ng-repeat="book in books">
             <strong>{{ book.title }}</strong><br>
             ISBN:{{ book.ISBN_13 }}<br>
-            <img src="{{book.imageLinks.thumbnail}}" /><br>
-            <button id="remove-book" ng-click="removeBook($index)">X</button><br>
+            <img src="{{book.imageLinks.thumbnail}}" />
+            <button id="remove-book" ng-click="removeBook($index)">X</button>
+            <button id="search-inside-book-{{book.id}}" ng-click="searchInsideBook(book)">Search Inside</button>
         </div>
         <button id="add-books" ng-click="addBook()">+</button><br>
     </div>
@@ -19,7 +20,8 @@
     <div id="shelve-books" ng-hide="!shelve_books.length">
         <div ng-repeat="item in shelve_books">
             <strong>{{ item.book.title }}</strong><br>
-            <img src="{{ item.book.imageLinks.thumbnail}}" /><br>
+            <img src="{{ item.book.imageLinks.thumbnail}}" />
+            <button id="search-inside-book" ng-click="searchInsideBook(item.book)">Search Inside</button><br>
         </div>
     </div>
     </center>

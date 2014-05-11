@@ -1,0 +1,25 @@
+<div ng-controller="searchInside">
+    <center>
+
+    <strong>{{ book.title }}</strong><br>
+    <img src="{{book.imageLinks.thumbnail}}" /><br>
+
+
+    <div id="search-inside-book">
+        <input ng-model="searchInput" name="search input" placeholder="keyword..."/>
+        <button ng-click="searchInsideBook()" name="search" id="search-button">Search</button>
+        <span class="error" ng-show="submittedError">{{errorDescription}}</span>
+    </div>
+
+    <div id="nothing" ng-hide="!searchResults.number_of_results">NOTHING FOUND</div>
+    <div id="search-results" ng-hide="!searchResults">
+        <h2>Search Results</h2>
+        <h4>Number of occurences : {{searchResults.number_of_results}}</h4>
+        <div ng-repeat="page in searchResults.search_results">
+            <h3>Page {{ page.page_number }}</h3><br>
+            <p> {{ page.snippet_text}}" <p><br>
+            --------------------------------<br>
+        </div>
+    </div>
+    </center>
+</div>

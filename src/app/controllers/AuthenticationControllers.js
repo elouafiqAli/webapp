@@ -1,5 +1,6 @@
 var controllers = angular.module('controllers', []);
 
+
 controllers.controller('LoginController',
 		['$scope', '$kinvey', "$location", function($scope, $kinvey, $location) {
 			$scope.login = function () {
@@ -143,6 +144,7 @@ controllers.controller('SignUpController',
 
                 //Kinvey signup starts
 				var promise = $kinvey.User.signup({
+                     fullname: $scope.fullname,
 		             username: $scope.email,
 		             password: $scope.password,
 		             email: $scope.email
@@ -153,7 +155,7 @@ controllers.controller('SignUpController',
                             //Kinvey signup finished with success
                             $scope.submittedError = false;
 							console.log("signup success");
-							$location.path("main/logged_in");
+							$location.path("main/first_time");
 						}, 
 						function(error) {
                             //Kinvey signup finished with error
@@ -213,8 +215,10 @@ controllers.controller('LoggedInController',
                 }
             }
         }]);
+
 controllers.controller('addBooks',
-    ['$scope','$kinvey','$location',function($scope,$kinvey,$location){
+    ['$scope', '$kinvey', "$location","sharedBooks", function($scope, $kinvey, $location, sharedBooks) {
+    $scope.sharedBooks = sharedBooks;
     $scope.searchInput ='';
     $scope.books = [];
     $scope.emptyList = true;
@@ -222,7 +226,11 @@ controllers.controller('addBooks',
     $scope.shelve = [];
     $scope.shelve_books =[];
 
-
+    $scope.searchInsideBook = function(book){
+        delete book.$$hashKey;
+        $scope.sharedBooks.setBook(book);
+        $location.path("main/searchInside");
+    }
     function handleError(Description){
         $scope.submittedError = true;
         $scope.errorDescription = Description;
@@ -236,6 +244,12 @@ controllers.controller('addBooks',
                 return;
             }
         }
+        /*for(i in $scope.shelve_books){var book = $scope.shelve_books[i].book;
+            if(book.ISBN_10 == inputISBN || book.ISBN_13 == inputISBN){
+                handleError("Book already added");
+                return;
+            }
+        }*/
         $kinvey.execute('bookSearch',{ISBN: inputISBN}).then(function(response){
                 if(response.success){
                     var _book = response.book;
@@ -274,7 +288,6 @@ controllers.controller('addBooks',
                     shelve: shelve_name,
                     owner: $kinvey.getActiveUser()
                 }
-
                 $kinvey.DataStore.save('objects', bookObject, {
                     exclude: ['owner'],
                     relations: {
@@ -282,8 +295,7 @@ controllers.controller('addBooks',
                         owner: 'user'
                     }
                 }).then(function(response){
-                    $scope.shelve_books.unshift({book: _book});
-                    $scope.removeBook(i);
+
 
                      var _user =$kinvey.getActiveUser();
                      var shelve = _user.shelve || {} ;
@@ -303,7 +315,10 @@ controllers.controller('addBooks',
                  //show some error
                  });
             }
-
+            for(i in $scope.books){ var _book = $scope.books[i];
+                $scope.shelve_books.unshift({book: _book});
+            }
+            $scope.books = [];
         }
     }
     function onLoad(){
@@ -319,3 +334,88 @@ controllers.controller('addBooks',
     }
     onLoad();
 }]);
+controllers.controller('firstTimeWizard',
+    ['$scope', '$kinvey', "$location", function($scope, $kinvey, $location) {
+        var _wizard = {
+            steps: [true,false],
+            index : 0,
+            next : function(call){
+                if( this.index <  this.steps.length-1){
+                    this.steps[this.index]= false;
+                    this.steps[++this.index] = true;
+                    if(call) call();
+                    return true;
+                }else{
+                    return false;
+                }
+            },
+            back : function(call){
+                if( this.index > 0){
+                    this.steps[this.index]= false;
+                    this.steps[--this.index] = true;
+                    if(call) call();
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+        };
+        $scope.r = {
+            books : 0,
+            communities: 1
+        };
+        $scope.wizard = _wizard;
+
+    }]);
+controllers.controller('communitySubscription',
+    ['$scope', '$kinvey', "$location", function($scope, $kinvey, $location) {
+    /*
+    $scope.wizard = wizard;
+    $scope.wizard.showBooks = true;
+    $scope.wizard.showGroups = false;
+    */
+
+
+}]);/*
+app.factory("wizard", function(){
+    var states = {};
+    var sharedData = {};
+    var commonAction;
+    var myWizard;
+    myWizard.setState= function(stateID, stateValue){
+        states[state]=stateID;
+    }
+    myWizard.getState   = function(state){
+        return states[state];
+    }
+    myWizard.addData = function(dataName, data) {
+        sharedData[dataName]=data;
+    };
+    myWizard.getData  = function(dataName){
+        return sharedData[dataName];
+    }
+    return myWizard;
+
+});*/
+controllers.controller('searchInside',
+    ['$scope', '$kinvey', "$location","sharedBooks", function($scope, $kinvey, $location, sharedBooks){
+        $scope.book = sharedBooks.getBook();
+        $scope.submittedError = false;
+        $scope.errorDescription = '';
+        $scope.searchResults =null;
+
+        $scope.searchInsideBook = function(){
+            var _query = $scope.searchInput;
+            var _identifier = $scope.book.ISBN_13;
+
+            var search_request = $kinvey.execute("insearch",{query:_query,id:_identifier});
+            search_request.then(function(response){
+                if(response.error){
+                    $scope.submittedError = true;
+                    $scope.errorDescription =response.error;
+                }else{
+                    $scope.searchResults = response;
+                }
+            });
+        }
+    }]);

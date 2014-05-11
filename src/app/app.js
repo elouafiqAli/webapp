@@ -1,7 +1,33 @@
 var app = angular.module('SignIn-Angular', [ 'kinvey', 'ngRoute', 'controllers' ]);
+app.factory("sharedBooks", function(){
+    var books = [];
+    var mySharedBooks = {};
+    var singleBook;
+    mySharedBooks.setBook = function(book){
+        singleBook = book;
+    }
+    mySharedBooks.getBook = function(){
+        return singleBook;
+    }
+    mySharedBooks.addBook = function(book) {
+        books.push(book);
+    };
+    mySharedBooks.removeBook = function(book) {
+        var index = items.indexOf(book);
+        books.splice(index, 1);
+    };
+    mySharedBooks.books = function() {
+        return books;
+    };
+    return mySharedBooks;
+
+});
  //inject Providers into config block
 app.config(['$routeProvider', function($routeProvider) {
-	$routeProvider.
+	$routeProvider.when('/main/searchInside',{
+        templateUrl:'main/searchInside.html',
+        controller:'searchInside'
+    }).
     when('/main/addBook',{
             templateUrl:'main/addBook.html',
             controller:'addBooks'
@@ -15,15 +41,15 @@ app.config(['$routeProvider', function($routeProvider) {
 		controller: 'ResetPasswordController'
 	}).
 	when('/main/sign_up', {
-		templateUrl: 'main/sign_up.html',
+		templateUrl: 'main/Signup.html',
 		controller: 'SignUpController'
 	}).
-	when('/main/logged_in', {
-		templateUrl: 'main/addBook.html',
-		controller: 'addBooks'
+	when('/main/first_time', {
+		templateUrl: 'main/firstTimeWizard.html',
+		controller: 'firstTimeWizard'
 	}).
 	otherwise({
-		 redirectTo: '/main/addBook'
+		 redirectTo: '/main/dashboard'
 	});
 }]);
 //inject instances (not Providers) into run blocks
@@ -53,13 +79,13 @@ function determineBehavior($kinvey, $location, $rootScope) {
 	console.log("$location.$$url: " + $location.$$url);
 	if (activeUser != null) {
 		console.log("activeUser not null determine behavior");
-		if ($location.$$url != '/main/logged_in') {
-			$location.path('/main/logged_in');
+		if ($location.$$url != '/main/dashboard') {
+			$location.path('/main/dashboard');
 		}
 	} else {
 		console.log("activeUser null redirecting");
-		if ($location.$$url != '/main/login') {
-			$location.path('/main/login');
+		if ($location.$$url != '/main/sign_up') {
+			$location.path('/main/sign_up');
 		}
 	}
 }
