@@ -1,0 +1,41 @@
+
+<div class="center-align-div" xmlns="http://www.w3.org/1999/html">
+    <div id="main-login-div" >
+
+        <hr>
+        <div ng-controller="SignUpController">
+            <h4>Signup</h4>
+
+            <form name="registrationForm" novalidate>
+                <div class="block-input-label">
+                    <label id="fullname-label" ng-class="{'error-style': submittedEmail}" for="fullname">Full Name:</label>
+                    <input id="fullname" name="email" ng-class="{'error-style': submittedEmail}" ng-model="fullname" placeholder="maati@gmail.com"
+                           required/>
+                    <span class="login" id="signup-fullname-span"  ng-show="submittedEmail">Please enter your fullname</span>
+                </div>
+                <div class="block-input-label">
+                    <label id="signup-email-label" ng-class="{'error-style': submittedEmail}" for="signup-email">Email:</label>
+                    <input id="signup-email" type="email" name="email" ng-class="{'error-style': submittedEmail}" ng-model="email" placeholder="john@example.com"
+                           required/>
+                    <span class="login" id="signup-email-span"  ng-show="submittedEmail">A valid email address is required.</span>
+                </div>
+
+                <div>
+                    <label class="password-label" for="signup-password" ng-class="{'error-style': submittedPassword}">Password:</label>
+                    <input id="signup-password" class="password-input" type="password" ng-model="password" name="password" ng-class="{'error-style': submittedPassword}"
+                           placeholder="********"
+                           ng-change="checkPassword()" required/>
+                    <span class="login"  ng-show="submittedPassword">A password is required.</span>
+                </div>
+
+
+                <div id="signup_button-div">
+                    <button type="submit" ng-click="signUp()">
+                        Sign up
+                    </button>
+                    <span class="error" ng-show="submittedError">{{errorDescription}}</span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

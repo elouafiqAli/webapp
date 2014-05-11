@@ -41,15 +41,15 @@ app.config(['$routeProvider', function($routeProvider) {
 		controller: 'ResetPasswordController'
 	}).
 	when('/main/sign_up', {
-		templateUrl: 'main/sign_up.html',
+		templateUrl: 'main/Signup.html',
 		controller: 'SignUpController'
 	}).
-	when('/main/logged_in', {
+	when('/main/first_time', {
 		templateUrl: 'main/addBook.html',
 		controller: 'addBooks'
 	}).
 	otherwise({
-		 redirectTo: '/main/login'
+		 redirectTo: '/main/dashboard'
 	});
 }]);
 //inject instances (not Providers) into run blocks
@@ -79,13 +79,13 @@ function determineBehavior($kinvey, $location, $rootScope) {
 	console.log("$location.$$url: " + $location.$$url);
 	if (activeUser != null) {
 		console.log("activeUser not null determine behavior");
-		if ($location.$$url != '/main/logged_in') {
-			$location.path('/main/logged_in');
+		if ($location.$$url != '/main/dashboard') {
+			$location.path('/main/dashboard');
 		}
 	} else {
 		console.log("activeUser null redirecting");
-		if ($location.$$url != '/main/login') {
-			$location.path('/main/login');
+		if ($location.$$url != '/main/sign_up') {
+			$location.path('/main/sign_up');
 		}
 	}
 }

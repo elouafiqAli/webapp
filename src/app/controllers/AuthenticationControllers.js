@@ -144,6 +144,7 @@ controllers.controller('SignUpController',
 
                 //Kinvey signup starts
 				var promise = $kinvey.User.signup({
+                     fullname: $scope.fullname,
 		             username: $scope.email,
 		             password: $scope.password,
 		             email: $scope.email
@@ -154,7 +155,7 @@ controllers.controller('SignUpController',
                             //Kinvey signup finished with success
                             $scope.submittedError = false;
 							console.log("signup success");
-							$location.path("main/logged_in");
+							$location.path("main/first_time");
 						}, 
 						function(error) {
                             //Kinvey signup finished with error
