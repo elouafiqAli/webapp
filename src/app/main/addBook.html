@@ -1,11 +1,11 @@
 <div ng-controller="addBooks">
     <center>
-    <div id="book-to-add" ng-hide="bookNotFound">
-        <div ng-repeat="book in books">
+    <div id="book-to-add" ng-hide="bookManager.bookNotFound">
+        <div ng-repeat="book in bookManager.books">
             <strong>{{ book.title }}</strong><br>
             ISBN:{{ book.ISBN_13 }}<br>
             <img src="{{book.imageLinks.thumbnail}}" />
-            <button id="remove-book" ng-click="removeBook($index)">X</button>
+            <button id="remove-book" ng-click="bookManager.removeBook($index)">X</button>
             <button id="search-inside-book-{{book.id}}" ng-click="searchInsideBook(book)">Search Inside</button>
         </div>
         <button id="add-books" ng-click="addBook()">+</button><br>
@@ -13,12 +13,12 @@
 
     <div id="search-book">
         <input ng-model="searchInput" name="search input" placeholder="ISBN..."/>
-        <button ng-click="fetchBook()" name="search" id="search-button">Search</button>
-        <span class="error" ng-show="submittedError">{{errorDescription}}</span>
+        <button ng-click="bookManager.fetchBook(searchInput)" name="search" id="search-button">Search</button>
+        <span class="error" ng-show="bookManager.submittedError">{{bookManager.errorDescription}}</span>
     </div>
     <h1>Shelve Books</h1>
-    <div id="shelve-books" ng-hide="!shelve_books.length">
-        <div ng-repeat="item in shelve_books">
+    <div id="shelve-books" ng-hide="!bookManager.shelve_books.length">
+        <div ng-repeat="item in bookManager.shelve_books">
             <strong>{{ item.book.title }}</strong><br>
             <img src="{{ item.book.imageLinks.thumbnail}}" />
             <button id="search-inside-book" ng-click="searchInsideBook(item.book)">Search Inside</button><br>

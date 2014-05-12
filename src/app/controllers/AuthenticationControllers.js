@@ -217,123 +217,18 @@ controllers.controller('LoggedInController',
         }]);
 
 controllers.controller('addBooks',
-    ['$scope', '$kinvey', "$location","sharedBooks", function($scope, $kinvey, $location, sharedBooks) {
-    $scope.sharedBooks = sharedBooks;
-    $scope.searchInput ='';
-    $scope.books = [];
-    $scope.emptyList = true;
-    $scope.searchInput ='';
-    $scope.shelve = [];
-    $scope.shelve_books =[];
+    ['$scope', '$kinvey', "$location","sharedBooks","bookManager", function($scope, $kinvey, $location, sharedBooks,bookManager) {
 
-    $scope.searchInsideBook = function(book){
-        delete book.$$hashKey;
-        $scope.sharedBooks.setBook(book);
-        $location.path("main/searchInside");
-    }
-    function handleError(Description){
-        $scope.submittedError = true;
-        $scope.errorDescription = Description;
-    }
-    $scope.fetchBook = function(){
-        //Check Validity of input
-        var inputISBN = $scope.searchInput;
-        for(i in $scope.books){var book = $scope.books[i];
-            if(book.ISBN_10 == inputISBN || book.ISBN_13 == inputISBN){
-                handleError("Book already added");
-                return;
-            }
+        $scope.shardBooks = sharedBooks;
+        $scope.bookManager = bookManager;
+        $scope.searchInput = '';
+        $scope.bookManager.init();
+        $scope.searchInsideBook = function (book) {
+            delete book.$$hashKey;
+            this.sharedBooks.setBook(book);
+            $location.path("main/searchInside");
         }
-        /*for(i in $scope.shelve_books){var book = $scope.shelve_books[i].book;
-            if(book.ISBN_10 == inputISBN || book.ISBN_13 == inputISBN){
-                handleError("Book already added");
-                return;
-            }
-        }*/
-        $kinvey.execute('bookSearch',{ISBN: inputISBN}).then(function(response){
-                if(response.success){
-                    var _book = response.book;
-
-                    // check if book already added to the list
-                    for(i in $scope.books){var book = $scope.books[i];
-                        console.log(book.ISBN_10+' '+inputISBN);
-                        if(book.ISBN_10 == _book.ISBN_10 || book.ISBN_13 == _book.ISBN_13){
-                            handleError("Book already added to the list");
-                            return;
-                        }
-                    }
-                    $scope.books.push(_book);
-                    if ($scope.emptyList) $scope.emptyList = false;
-
-                }else{
-                    handleError("Couldn't find the book with the ISBN "+inputISBN);
-                }
-            },function(error){
-                handleError("Couldn't find the book with the ISBN "+inputISBN);
-            }
-        );
-    }
-    $scope.removeBook = function(index){
-        $scope.books.splice(index,1);
-    }
-    $scope.addBook =  function(ISBN){
-
-        if(!$scope.emptyList){
-            var bookList;
-            var shelve_name = "myCollection";
-            for(i in $scope.books) { var _book = $scope.books[i];
-                delete _book.$$hashKey; //remove angular ng-repeat added attribute
-                var bookObject = {
-                    book: _book,
-                    shelve: shelve_name,
-                    owner: $kinvey.getActiveUser()
-                }
-                $kinvey.DataStore.save('objects', bookObject, {
-                    exclude: ['owner'],
-                    relations: {
-                        book: 'books',
-                        owner: 'user'
-                    }
-                }).then(function(response){
-
-
-                     var _user =$kinvey.getActiveUser();
-                     var shelve = _user.shelve || {} ;
-                         shelve.books = shelve.books  || [] ;
-                         shelve.owner = $kinvey.getActiveUser();
-                         shelve.name = "myCollection" || shelve.name;
-                         _book.ISBN_13 == undefined ? shelve.books.push(_book.ISBN_10) : shelve.books.push(_book.ISBN_13);
-                     _user.shelve = shelve;
-                     $kinvey.User.update(_user);
-                     $kinvey.DataStore.save('shelves',shelve,{
-                         exclude: ['owner'],
-                         relations: {
-                             owner: 'user'
-                         }
-                     });
-                 },function(error){
-                 //show some error
-                 });
-            }
-            for(i in $scope.books){ var _book = $scope.books[i];
-                $scope.shelve_books.unshift({book: _book});
-            }
-            $scope.books = [];
-        }
-    }
-    function onLoad(){
-        var shelve_query= new $kinvey.Query();
-
-        shelve_query.equalTo("owner._id",$kinvey.getActiveUser()._id).equalTo("shelve","myCollection");
-        $kinvey.DataStore.find('objects',shelve_query,{
-            relations: { owner:'user',book:'books'},
-            success: function(response){
-                $scope.shelve_books =response;
-            }
-        });
-    }
-    onLoad();
-}]);
+    }]);
 controllers.controller('firstTimeWizard',
     ['$scope', '$kinvey', "$location", function($scope, $kinvey, $location) {
         var _wizard = {
