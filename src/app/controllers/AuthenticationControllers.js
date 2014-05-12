@@ -367,16 +367,107 @@ controllers.controller('firstTimeWizard',
         $scope.wizard = _wizard;
 
     }]);
+
 controllers.controller('communitySubscription',
     ['$scope', '$kinvey', "$location", function($scope, $kinvey, $location) {
-    /*
-    $scope.wizard = wizard;
-    $scope.wizard.showBooks = true;
-    $scope.wizard.showGroups = false;
-    */
 
+    var _communities = {
+        selected_community: 0,
+        current_user : {},
+        list_of_communities : [],
+        myCommunities : [],
+        onLoad : function() {
+            this.current_user = $kinvey.getActiveUser();
+            var _this = this;
+            var promise = $kinvey.DataStore.find("communities",null);
+            promise.then(function (response) {
 
-}]);/*
+                _this.list_of_communities = response;
+
+                }, function (error) {
+
+                });
+
+            var query= new $kinvey.Query();
+            query.equalTo('username',_this.current_user.username);
+            var fetchingMyCommunities = $kinvey.DataStore.find("comuns",query);
+            fetchingMyCommunities.then(function(response){
+                console.log("we got in here at least");
+                for(i in response) {
+                    delete response[i].member;
+                    _this.myCommunities.push(response[i]);
+                }
+                _this.watch();
+            });
+
+        },
+        watch:  function(){
+            for(i in this.myCommunities){
+                for(j in this.list_of_communities) {
+                    if(this.myCommunities[i].name == this.list_of_communities[j].name) {
+                        this.list_of_communities.splice(j,1);
+                    }
+                }
+            }
+        },
+        joinCommunity: function(secretCode,_index){
+           var index = _index || this.selected_community;
+           var community = this.list_of_communities[index];
+           if(secretCode == community.code){
+
+               var _comun = {
+                   username: this.current_user.username,
+                   member: this.current_user,
+                   name: community.name,
+                   icon: community.icon,
+                   type: community.type,
+                   description: community.description
+               }
+               var _this = this;
+               var joinRequest= $kinvey.DataStore.save('comuns',_comun,{
+                   success:function(response){
+                       _this.myCommunities.push(_this.list_of_communities.splice(index,1)[0]);
+                       return true;
+                   },error:function(error){
+                       return false;
+                   }
+               });
+               return joinRequest;
+
+           }else{
+               return false;
+           }
+        }
+    };
+    $scope.communities = _communities;
+    $scope.communities.onLoad();
+    $scope.secretcode = '';
+    $scope.status = {
+        secret_code: {
+            error: false,
+            description: ''
+        }
+    };
+    $scope.chose = function(index){
+        $scope.communities.selected_community = index;
+    }
+    $scope.validate = function() {
+        var validated = $scope.communities.joinCommunity($scope.secretcode);
+        //this
+        // $scope.status.secret_code.description = (($scope.status.secret_code.error=!validated)? "invalid secret code":"Congratulations you just joined the Group");
+        // is the same as this
+        if (validated != true) {
+            $scope.status.secret_code.error = true;
+            $scope.status.secret_code.description = "invalid secret code";
+        } else {
+            $scope.status.secret_code.error = false;
+            $scope.status.secret_code.description = "Congratulations you just joined the Group";
+        }
+        alert($scope.status.secret_code.description);
+    }
+
+}]);
+/*
 app.factory("wizard", function(){
     var states = {};
     var sharedData = {};
