@@ -49,7 +49,7 @@ app.config(['$routeProvider', function($routeProvider) {
 		controller: 'firstTimeWizard'
 	}).
 	otherwise({
-		 redirectTo: '/main/dashboard'
+		 redirectTo: '/main/first_time'
 	});
 }]);
 //inject instances (not Providers) into run blocks

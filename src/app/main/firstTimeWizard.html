@@ -28,6 +28,21 @@
         <div id="subscribing-to-communities" ng-show="wizard.steps[r.communities]">
             <div>
                 <h3> Chose the community you belong to </h3>
+                <div id="existing-communities" ng-repeat="community in communities.list_of_communities">
+                    <strong>{{ community.name}}</strong><br>
+                    <img src="{{community.icon}}" ng-click="chose($index)"/>
+                    {{community.Description}}
+                </div>
+                <h4>Type Code: </h4>
+                <input ng-model="secretcode" ng-click="validate()" placeholder="enter secret code.."/>
+                <div ng-show="communities.myCommunities.length">
+                    <h3> My communities </h3>
+                    <div id="my-communities" ng-repeat="community in communities.myCommunities">
+                        <strong>{{ community.name}}</strong><br>
+                        <img src="{{community.icon}}" ng-click="chose($index)"/>
+                        {{community.Description}}
+                    </div>
+                </div>
                 <!-- show all available communities, except the ones already enrolled in--->
                 <!-- on action selected return the index of the community and do other stuff-->
                 <!-- enter code for the community -->
