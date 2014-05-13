@@ -1,4 +1,19 @@
 var app = angular.module('SignIn-Angular', [ 'kinvey', 'ngRoute', 'controllers' ]);
+app.factory("redriss", function(){
+    var keyValueStore = {};
+    var _redriss = {};
+    _redriss.set = function(key,value){
+        keyValueStore[key]=value;
+    };
+    _redriss.get = function() {
+        return keyValueStore[key];
+    };
+    _redriss.remove= function(key) {
+        delete keyValueStore[key];
+    };
+    return _redriss;
+
+});
 app.factory("sharedBooks", function(){
     var books = [];
     var mySharedBooks = {};
@@ -48,6 +63,10 @@ app.config(['$routeProvider', function($routeProvider) {
 		templateUrl: 'main/firstTimeWizard.html',
 		controller: 'firstTimeWizard'
 	}).
+    when('/main/community/:community_name', {
+            templateUrl: 'main/community.html',
+            controller: 'community'
+        }).
 	otherwise({
 		 redirectTo: '/main/first_time'
 	});
