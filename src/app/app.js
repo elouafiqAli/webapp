@@ -5,7 +5,7 @@ app.factory("redriss", function(){
     _redriss.set = function(key,value){
         keyValueStore[key]=value;
     };
-    _redriss.get = function() {
+    _redriss.get = function(key) {
         return keyValueStore[key];
     };
     _redriss.remove= function(key) {

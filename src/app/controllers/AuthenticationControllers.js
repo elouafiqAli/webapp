@@ -288,6 +288,22 @@ controllers.controller('addBooks',
                     shelve: shelve_name,
                     owner: $kinvey.getActiveUser()
                 }
+                //Storing book information into object for future retrieval
+                        /**for (var key in _book) {
+                            //logger.info(key);
+                            if (_book.volumeInfo.hasOwnProperty(key)) {
+                                if (key == "industryIdentifiers") {
+                                    //logger.info(_book.volumeInfo[key]);
+                                    for (i in _book[key]) {
+                                        var ISBN = _book[key][i];
+                                        //logger.info(ISBN);
+                                        bookObject[ISBN["type"]] = ISBN["identifier"];
+                                    }
+                                } else {
+                                    bookObject[key] = _book[key];
+                                }
+                            }
+                        }**/
                 $kinvey.DataStore.save('objects', bookObject, {
                     exclude: ['owner'],
                     relations: {
@@ -335,7 +351,7 @@ controllers.controller('addBooks',
     onLoad();
 }]);
 controllers.controller('firstTimeWizard',
-    ['$scope', '$kinvey', "$location", function($scope, $kinvey, $location) {
+    ['$scope', '$kinvey', "$location","redriss", function($scope, $kinvey, $location,redriss) {
         var _wizard = {
             steps: [true,false],
             index : 0,
@@ -358,7 +374,19 @@ controllers.controller('firstTimeWizard',
                 }else{
                     return false;
                 }
+            },
+            final : function(call){
+                if(this.index == this.steps.length-1){
+                    $scope.finalAction();
+                }else{
+                    return false;
+                }
             }
+        };
+        $scope.finalAction =function(_communities){
+            var com = redriss.get('_communities',_communities);
+            //redriss.set('current_community',com.myCommunities[0]);
+            $location.path('/main/community/'+com.myCommunities[0].name);
         };
         $scope.r = {
             books : 0,
@@ -369,7 +397,7 @@ controllers.controller('firstTimeWizard',
     }]);
 
 controllers.controller('communitySubscription',
-    ['$scope', '$kinvey', "$location", function($scope, $kinvey, $location) {
+    ['$scope', '$kinvey', "$location",'redriss', function($scope, $kinvey, $location, redriss) {
 
     var _communities = {
         selected_community: 0,
@@ -422,9 +450,13 @@ controllers.controller('communitySubscription',
                    icon: community.icon,
                    type: community.type,
                    description: community.description
-               }
+               };
                var _this = this;
                var joinRequest= $kinvey.DataStore.save('comuns',_comun,{
+                   /*
+                   relations:{
+                        member: 'user'
+                   },*/
                    success:function(response){
                        _this.myCommunities.push(_this.list_of_communities.splice(index,1)[0]);
                        return true;
@@ -439,7 +471,8 @@ controllers.controller('communitySubscription',
            }
         }
     };
-    $scope.communities = _communities;
+    redriss.set('_communities',_communities);
+    $scope.communities = redriss.get('_communities',_communities);
     $scope.communities.onLoad();
     $scope.secretcode = '';
     $scope.status = {
@@ -467,27 +500,6 @@ controllers.controller('communitySubscription',
     }
 
 }]);
-/*
-app.factory("wizard", function(){
-    var states = {};
-    var sharedData = {};
-    var commonAction;
-    var myWizard;
-    myWizard.setState= function(stateID, stateValue){
-        states[state]=stateID;
-    }
-    myWizard.getState   = function(state){
-        return states[state];
-    }
-    myWizard.addData = function(dataName, data) {
-        sharedData[dataName]=data;
-    };
-    myWizard.getData  = function(dataName){
-        return sharedData[dataName];
-    }
-    return myWizard;
-
-});*/
 controllers.controller('searchInside',
     ['$scope', '$kinvey', "$location","sharedBooks", function($scope, $kinvey, $location, sharedBooks){
         $scope.book = sharedBooks.getBook();
@@ -510,3 +522,74 @@ controllers.controller('searchInside',
             });
         }
     }]);
+controllers.controller('community',
+    ['$scope', '$kinvey', '$location','redriss','$routeParams', function($scope, $kinvey, $location, redriss,$routeParams) {
+
+    var _community = {
+        members:[],
+        library : [],
+        searchResults : {},
+        initFromName: function(name){
+
+        },
+        init : function(name){
+            var _this= this;
+            var _promiseStack = [];
+
+            var findCommunityByName = new $kinvey.Query();
+            findCommunityByName.equalTo('name',name);
+
+            $kinvey.DataStore.find('communities',findCommunityByName).then(function(response){
+                if(response.length == 0 ){
+
+                }else{ _this.information = response[0];
+
+                    var findCommunityMembers = new $kinvey.Query();
+                    findCommunityMembers.equalTo('name',name);
+                    var promise= $kinvey.DataStore.find('comuns',findCommunityMembers,{relations:{member:'users'}});
+                    var __this = _this;
+                    promise.then(function(response){
+                        if(response.length == 0){
+
+                        }else{
+                            for(i in response){
+                                _this.members.push(response[i].member);
+                            }
+                        }
+                    }, function(error){
+
+                    }).then(function(res) {
+
+                            for (i in _this.members) {
+                                var member = _this.members[i];
+                                var findCommunityBooks = new $kinvey.Query();
+                                findCommunityBooks.equalTo('owner._id', member._id);
+                                var promise = $kinvey.DataStore.find('objects', findCommunityBooks, {relations: {book: 'books'}}).then(function (response) {
+                                    if (response.length == 0) {
+                                        // throw some error or warning message
+                                    } else {
+
+                                        for (i in response) {
+                                            var _book = response[i]; __this.library.push(_book);
+                                        }
+                                    }
+                                }, function (error) {
+                                    // throw some error that the books collection was difficult to fetch
+                                });
+                                _promiseStack.push(promise);
+                            }
+                        }
+                    );
+                    //LOOL
+                }
+            }).then(function(){
+
+            });
+
+
+
+        }
+    };
+    $scope.community = _community;
+    $scope.community.init($routeParams.community_name);
+}]);

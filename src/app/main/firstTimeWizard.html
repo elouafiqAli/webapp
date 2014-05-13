@@ -43,6 +43,7 @@
                         {{community.Description}}
                     </div>
                 </div>
+                <button ng-click="wizard.final(communities)" name ="final" id="final-button">FINAL</button>
                 <!-- show all available communities, except the ones already enrolled in--->
                 <!-- on action selected return the index of the community and do other stuff-->
                 <!-- enter code for the community -->
@@ -51,6 +52,7 @@
         </div>
     </div>
     <button ng-click="wizard.next()" name="next" id="next-button">NEXT</button>
-    <button ng-click="wizard.back()" name="next" id="back-button">BACK</button>
+    <button ng-click="wizard.back()" name="back" id="back-button">BACK</button>
+
 </div>
 </center>
