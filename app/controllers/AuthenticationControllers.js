@@ -375,7 +375,7 @@ controllers.controller('firstTimeWizard',
                     return false;
                 }
             },
-            final : function(call){
+            test : function(call){
                 if(this.index == this.steps.length-1){
                     $scope.finalAction();
                 }else{
@@ -384,9 +384,11 @@ controllers.controller('firstTimeWizard',
             }
         };
         $scope.finalAction =function(_communities){
-            var com = redriss.get('_communities',_communities);
-            //redriss.set('current_community',com.myCommunities[0]);
-            $location.path('/main/community/'+com.myCommunities[0].name);
+          var promise = $kinvey.Social.connect(null, 'twitter', {
+                success: function(response) {
+                    console.log(response);
+                }
+            });
         };
         $scope.r = {
             books : 0,

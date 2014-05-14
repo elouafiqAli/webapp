@@ -1,0 +1,3 @@
+[submodule "design"]
+	path = design
+	url = git@bitbucket.org:bobox/bobox.git
