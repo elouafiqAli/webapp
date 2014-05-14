@@ -1,4 +1,4 @@
-var app = angular.module('SignIn-Angular', [ 'kinvey', 'ngRoute', 'controllers' ]);
+var app = angular.module('bobox-webapp', [ 'kinvey', 'ngRoute', 'controllers' ,]);
 app.factory("redriss", function(){
     var keyValueStore = {};
     var _redriss = {};
