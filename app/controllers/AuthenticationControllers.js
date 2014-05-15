@@ -595,3 +595,32 @@ controllers.controller('community',
     $scope.community = _community;
     $scope.community.init($routeParams.community_name);
 }]);
+controllers.controller('test', function ($scope, $facebook,moment, $kinvey) {
+        $scope.isLoggedIn = false;
+        $scope.login = function() {
+            $facebook.login().then(function(fbResponse) {
+                var user = $kinvey.getActiveUser();
+                user._socialIdentity = {
+                    facebook:{
+                        access_token: fbResponse.authResponse.accessToken,
+                        expires: (moment().second() + fbResponse.authResponse.expiresIn)
+                    }
+                };
+                $kinvey.User.update(user);
+                refresh();
+            });
+        };
+        function refresh() {
+            $facebook.api("/me").then(
+                function(response) {
+                    $scope.welcomeMsg = "Welcome " + response.name;
+                    $scope.isLoggedIn = true;
+                },
+                function(err) {
+                    $scope.welcomeMsg = "Please log in";
+                });
+        }
+
+        refresh();
+}
+);

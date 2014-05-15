@@ -15,10 +15,28 @@
 </head>
 
 <body>
+    <div ng-controller='test'>
+        <div class="container">
+            <h4>
+                {{welcomeMsg}}
+            </h4>
+            <button type="button" ng-click="login()" ng-hide="isLoggedIn" class="btn btn-default navbar-btn">
+                Login
+            </button>
+            <button type="button" ng-lick="bind()" ng-hide="!isLoggedIn"  class="btn btn-default navbar-btn">BIND</button>
+        </div>
+        <div id="fb-root">
+        </div>
+    </div>
 	<div ng-view></div>
 	<script src="app.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angular-moment/angular-moment.js"></script>
 	<script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/ng-facebook/ngFacebook.js"></script>
 	<script src="controllers/AuthenticationControllers.js"></script>
+
+
 </body>
 
 </html>
