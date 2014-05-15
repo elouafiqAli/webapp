@@ -26,16 +26,20 @@ app.config(['$routeProvider','$facebookProvider', function($routeProvider,$faceb
 		templateUrl: 'main/Signup.html',
 		controller: 'SignUpController'
 	}).
+    when('/main/signin',{
+            templateUrl: 'main/login.html',
+            controller: 'LoginController'
+    }).
 	when('/main/first_time', {
-		templateUrl: 'main/firstTimeWizard.html',
-		controller: 'firstTimeWizard'
+		templateUrl: 'main/addBook.html',
+		controller: 'addBooks'
 	}).
     when('/main/community/:community_name', {
             templateUrl: 'main/community.html',
             controller: 'community'
         }).
 	otherwise({
-		 redirectTo: '/main/first_time'
+		 redirectTo: '/main/signin'
 	});
 
     $facebookProvider.setAppId('600246116738644');

@@ -1,15 +1,41 @@
 <div ng-controller="searchInside">
     <center>
+        <div class="search" id="search-inside-book">
+            <div class="container">
+                <div class="row">
+                    <img src="{{book.imageLinks.thumbnail}}" />
+                    <h1><strong>{{ book.title }}</strong></h1><br>
+                    <div class="col-xs-8 col-xs-offset-2">
+                        <div class="input-group">
+                            <div class="input-group-btn search-panel">
+                                <!--
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    <span id="search_concept">Filter by</span> <span class="caret"></span>
+                              </button> -->
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#contains">Book</a></li>
+                                    <li><a href="#its_equal">Paragraph chunk</a></li>
+                                    <li><a href="#greather_than">Page number</a></li>
+                                </ul>
+                            </div>
+                            <input type="hidden" name="search_param" value="all" id="search_param">
+                            <input ng-model="searchInput" name="search input" type="text" class="form-control" placeholder="Search inside the book">
+            <span class="input-group-btn">
+                <button ng-click="searchInsideBook()" name="search" id="search-button"class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-search"></span></button><span class="error" ng-show="submittedError">{{errorDescription}}</span>
+            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <strong>{{ book.title }}</strong><br>
-    <img src="{{book.imageLinks.thumbnail}}" /><br>
-
-
+    <!--
     <div id="search-inside-book">
         <input ng-model="searchInput" name="search input" placeholder="keyword..."/>
         <button ng-click="searchInsideBook()" name="search" id="search-button">Search</button>
         <span class="error" ng-show="submittedError">{{errorDescription}}</span>
     </div>
+    -->
 
     <div id="nothing" ng-hide="!searchResults.number_of_results">NOTHING FOUND</div>
     <div id="search-results" ng-hide="!searchResults">

@@ -33,7 +33,7 @@ controllers.controller('LoginController',
                             function (response) {
                                 //Kinvey login finished with success
                                 $scope.submittedError = false;
-                                $location.path('/main/logged_in');
+                                $location.path('/main/addBook');
                             },
                             function (error) {
                                 //Kinvey login finished with error
@@ -339,8 +339,9 @@ controllers.controller('addBooks',
     }
     function onLoad(){
         var shelve_query= new $kinvey.Query();
-
-        shelve_query.equalTo("owner._id",$kinvey.getActiveUser()._id).equalTo("shelve","myCollection");
+        var user = $kinvey.getActiveUser();
+        console.log(user);
+        shelve_query.equalTo("owner._id",user._id).equalTo("shelve","myCollection");
         $kinvey.DataStore.find('objects',shelve_query,{
             relations: { owner:'user',book:'books'},
             success: function(response){
