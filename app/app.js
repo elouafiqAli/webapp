@@ -22,7 +22,7 @@ app.config(['$routeProvider','$facebookProvider', function($routeProvider,$faceb
 		templateUrl: 'main/password_reset.html',
 		controller: 'ResetPasswordController'
 	}).
-	when('/main/sign_up', {
+	when('/main/signup', {
 		templateUrl: 'main/Signup.html',
 		controller: 'SignUpController'
 	}).

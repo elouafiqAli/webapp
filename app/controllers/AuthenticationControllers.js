@@ -10,22 +10,23 @@ controllers.controller('LoginController',
                 var isFormInvalid = false;
 
                 //check is form valid
-                if ($scope.loginForm.email.$error.email || $scope.loginForm.email.$error.required) {
-                    $scope.submittedEmail = true;
-                    isFormInvalid = true;
-                } else {
-                    $scope.submittedEmail = false;
-                }
-                if ($scope.loginForm.password.$error.required) {
-                    $scope.submittedPassword = true;
-                    isFormInvalid = true;
-                } else {
-                    $scope.submittedPassword = false;
-                }
-                if (isFormInvalid) {
-                    return;
-                }
-
+                        /*
+                        if ($scope.loginForm.email.$error.email || $scope.loginForm.email.$error.required) {
+                            $scope.submittedEmail = true;
+                            isFormInvalid = true;
+                        } else {
+                            $scope.submittedEmail = false;
+                        }
+                        if ($scope.loginForm.password.$error.required) {
+                            $scope.submittedPassword = true;
+                            isFormInvalid = true;
+                        } else {
+                            $scope.submittedPassword = false;
+                        }
+                        if (isFormInvalid) {
+                            return;
+                        }*/
+                /*
                 console.log("call login");
                 //Kinvey login starts
                         var promise = $kinvey.User.login({
@@ -45,49 +46,8 @@ controllers.controller('LoginController',
                                 console.log("Error login " + error.description);//
                             }
                         );
+                        */
 			}
-			$scope.loginFacebook = function () {
-
-                //Kinvey Facebook login starts
-		        var promise = $kinvey.Social.connect(null, 'facebook', {
-		            create: 'true'
-		        });
-		        promise.then(
-		            function () {
-                        //Kinvey Facebook login finished with success
-		                console.log("social login Facebook success");
-		                $location.path('/main/logged_in');
-                        $scope.submittedFacebookError = false;
-		            },
-		            function (error) {
-                        //Kinvey Facebook login finished with error
-                        $scope.submittedFacebookError = true;
-                        $scope.errorDescription = error.description;
-		                console.log("social login Facebook error: " + error.description + " json: " + JSON.stringify(error));
-		            }
-		        );
-		    }
-
-            //Kinvey Twitter login starts
-		    $scope.loginTwitter = function () {
-		        var promise = $kinvey.Social.connect(null, 'twitter', {
-		            create: 'true'
-		        });
-		        promise.then(
-		            function () {
-                        //Kinvey Twitter login finished with success
-                        $scope.submittedTwitterError = false;
-		                console.log("social login Twitter success");
-		                $location.path('/main/logged_in');
-		            },
-		            function (error) {
-                        //Kinvey Twitter login finished with error
-                        $scope.submittedTwitterError = true;
-                        $scope.errorDescription = error.description;
-		                console.log("social login Twitter error: " + error.description + " json: " + JSON.stringify(error));
-		            }
-		        );
-		    }
 		    $scope.forgetPassword = function () {
 		        console.log("forgetPassword");
 		        $location.path("main/password_reset");
@@ -127,7 +87,7 @@ controllers.controller('SignUpController',
 			$scope.signUp = function () {
 				console.log("signup");
                 var isFormInvalid = false;
-
+                /*
                 //check is form valid
                 if ($scope.registrationForm.email.$error.email || $scope.registrationForm.email.$error.required) {
                     $scope.submittedEmail = true;
@@ -143,7 +103,7 @@ controllers.controller('SignUpController',
                 }
                 if (isFormInvalid) {
                     return;
-                }
+                }*/
 
                 //Kinvey signup starts
 				var promise = $kinvey.User.signup({
