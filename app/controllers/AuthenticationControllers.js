@@ -225,7 +225,11 @@ controllers.controller('addBooks',
     $scope.searchInput ='';
     $scope.shelve = [];
     $scope.shelve_books =[];
+    $scope.imageResizer = function(imageLink){
+        var _image = imageLink.split('zoom=1');
+        return _image[0].concat('zoom=2').concat(_image[1]);
 
+    };
     $scope.searchInsideBook = function(book){
         delete book.$$hashKey;
         $scope.sharedBooks.setBook(book);
@@ -239,6 +243,8 @@ controllers.controller('addBooks',
         //Check Validity of input
         var inputISBN = $scope.searchInput;
         for(i in $scope.books){var book = $scope.books[i];
+            //book.imageLinks.thumbnail=$scope.imageResizer(book.imageLinks.thumbnail);
+            $scope.books[i] = book;
             if(book.ISBN_10 == inputISBN || book.ISBN_13 == inputISBN){
                 handleError("Book already added");
                 return;
@@ -345,7 +351,20 @@ controllers.controller('addBooks',
         $kinvey.DataStore.find('objects',shelve_query,{
             relations: { owner:'user',book:'books'},
             success: function(response){
-                $scope.shelve_books =response;
+                if(response.length > 0){
+                    for(i in response){var object = response[i];
+                        console.log(response[i]);
+
+                        if(object.book.imageLinks!=undefined){
+                            console.log(object.book.imageLinks != undefined);
+                           // book.imageLinks.thumbnail=$scope.imageResizer(book.imageLinks.thumbnail);
+                            //console.log(book.imageLinks.thumbnail);
+                            $scope.shelve_books.push(object);
+                        }
+
+                    }
+                }
+
             }
         });
     }

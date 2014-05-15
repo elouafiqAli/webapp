@@ -4,11 +4,18 @@
         <div ng-repeat="book in books">
             <strong>{{ book.title }}</strong><br>
             ISBN:{{ book.ISBN_13 }}<br>
-            <img src="{{book.imageLinks.thumbnail}}" />
-            <button id="remove-book" ng-click="removeBook($index)">X</button>
-            <button id="search-inside-book-{{book.id}}" ng-click="searchInsideBook(book)">Search Inside</button>
-        </div>
-        <button id="add-books" ng-click="addBook()" ng-show="books.length">+</button><br>
+            <div class="col-md-3 col-sm-4 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive"  width='200' height="300"  src="{{book.imageLinks.thumbnail}}"  />
+                    <span>
+                        <button id="remove-book" ng-click="removeBook($index)">x</button><br/>
+                        <p>{{ book.title }}</p>
+                        </br></br><p>ISBN:{{ book.ISBN_13 }}</p>
+                    </span>
+                </a>
+             </div>
+            </div>
+        <button id="add-books" ng-click="addBook()" ng-show="books.length" class="btn btn-default" type="button">+</button><br>
     </div>
         <div class="col-xs-8 col-xs-offset-2" id="search-book">
             <div class="input-group">
@@ -34,12 +41,27 @@
         </div>
         <br>
     <h1>Shelve Books</h1>
+        <div class="library" id="shelve-books" ng-hide="!shelve_books.length">
+            <div ng-repeat="item in shelve_books">
+                <div class="col-md-3 col-sm-4 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive" width='200' height="300" src="{{ item.book.imageLinks.thumbnail}}" />
+                                <span>
+                                    <button id="search-inside-book" ng-click="searchInsideBook(item.book)">+</button><br/>
+                                    <p>{{ item.book.title }}</p>
+                                </span>
+                </a>
+                </div>
+
+            </div>
+        </div>
+        <!--
     <div id="shelve-books" ng-hide="!shelve_books.length">
         <div ng-repeat="item in shelve_books">
             <strong>{{ item.book.title }}</strong><br>
             <img src="{{ item.book.imageLinks.thumbnail}}" />
             <button id="search-inside-book" ng-click="searchInsideBook(item.book)">Search Inside</button><br>
         </div>
-    </div>
+    </div> -->
     </center>
 </div>

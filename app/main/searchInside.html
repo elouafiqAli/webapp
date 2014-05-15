@@ -44,9 +44,10 @@
         <h2>Search Results</h2>
         <h4>Number of occurences : {{searchResults.number_of_results}}
         </h4></div>
+        <div ng-repeat="page in searchResults.search_results">
     <div class="wrap-table" ng-show="searchResults.search_results.length">
 
-        <div ng-repeat="page in searchResults.search_results">
+
             <div class="table">
                 <h3>Page: <span>{{ page.page_number}}</span></h3>
                 <!-- <h1>{{book.title }}</h1>
