@@ -1,0 +1,172 @@
+/*
+* For the brave souls who get this far: You are the chosen ones,
+* the valiant knights of programming who toil away, without rest,
+* fixing our most awful code. To you, true saviors, kings of men,
+* I say this: never gonna give you up, never gonna let you down,
+* never gonna run around and desert you. Never gonna make you cry,
+* never gonna say goodbye. Never gonna tell a lie and hurt you.
+*/
+* {
+  margin: 0;
+  padding: 0; }
+
+@font-face {
+  font-family: 'adam';
+  src: url("fonts/adam-webfont.eot");
+  src: url("fonts/adam-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/adam-webfont.woff") format("woff"), url("fonts/adam-webfont.ttf") format("truetype"), url("fonts/adam-webfont.svg#adamregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+.wrap {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+  width: 100%;
+  height: 100%; }
+
+body {
+  background: url("../img/library_big_gauss.jpg") fixed;
+  background-size: cover;
+  padding: 0;
+  margin: 0; }
+
+header h1 {
+  text-align: left;
+  color: #f5821d;
+  font-family: "Source Sans Pro", sans-serif;
+  margin-top: 20px;
+  font-weight: 600;
+  margin-top: 30px;
+  margin-left: 60px; }
+header .nav {
+  text-align: right;
+  margin-right: 60px;
+  margin-top: -35px;
+  color: #ffffff;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 600; }
+  header .nav ul li {
+    list-style: none;
+    display: inline;
+    margin-left: 1%;
+    color: #ffffff; }
+  header .nav ul a {
+    text-decoration: none;
+    color: #ffffff; }
+  header .nav ul button {
+    background-color: #F08D10;
+    -webkit-transition: .5s ease;
+    -moz-transition: .5s ease;
+    -o-transition: .5s ease;
+    transition: .5s ease;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-family: "Source Sans Pro", sans-serif;
+    text-transform: uppercase;
+    width: 150px;
+    height: 45px;
+    font-weight: 600;
+    border: 0;
+    outline: none;
+    color: #ffffff;
+    font-size: 1.2em;
+    text-align: center;
+    margin-left: 30px;
+    margin-right: 20px; }
+  header .nav ul button:hover {
+    -webkit-transition: .5s ease;
+    -moz-transition: .5s ease;
+    -o-transition: .5s ease;
+    transition: .5s ease;
+    opacity: 0.8;
+    cursor: pointer; }
+
+.presentation {
+  font-family: "adam";
+  margin-top: 13%; }
+  .presentation h1 {
+    text-align: center;
+    font-family: "adam";
+    color: #ffffff;
+    font-size: 2em;
+    text-transform: uppercase;
+    margin-bottom: 10px; }
+  .presentation h2 {
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 600italic;
+    font-family: "Source Sans Pro", sans-serif;
+    opacity: .8;
+    color: #ffffff;
+    margin-bottom: 30px; }
+
+/* get started button styling 
+call to action button that will take to another page
+containing further informations */
+.start {
+  text-align: center; }
+  .start button {
+    background-color: #F08D10;
+    -webkit-transition: .5s ease;
+    -moz-transition: .5s ease;
+    -o-transition: .5s ease;
+    transition: .5s ease;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-family: "Source Sans Pro", sans-serif;
+    text-transform: uppercase;
+    width: 200px;
+    height: 50px;
+    font-weight: 600;
+    border: 0;
+    outline: none;
+    color: #ffffff;
+    font-size: 1.2em;
+    text-align: center; }
+  .start button:hover {
+    -webkit-transition: .5s ease;
+    -moz-transition: .5s ease;
+    -o-transition: .5s ease;
+    transition: .5s ease;
+    opacity: 0.8;
+    cursor: pointer; }
+
+.container {
+  font-family: "Source Sans Pro", sans-serif;
+  color: #ffffff;
+  margin-top: 15%;
+  text-align: center; }
+  .container .books {
+    text-align: center;
+    display: inline-block; }
+    .container .books h1 {
+      font-weight: 600; }
+    .container .books h2 {
+      font-weight: 400;
+      font-size: 1.1em;
+      opacity: .9; }
+  .container .location {
+    text-align: center;
+    margin-left: 470px;
+    display: inline-block;
+    margin: 0 75px;
+    border-left: 1px solid #CFCFCF;
+    border-right: 1px solid #CFCFCF;
+    padding: 0 40px; }
+    .container .location h1 {
+      font-weight: 600; }
+    .container .location h2 {
+      font-weight: 400;
+      font-size: 1.1em;
+      opacity: .9; }
+  .container .users {
+    display: inline-block; }
+    .container .users h1 {
+      font-weight: 600; }
+    .container .users h2 {
+      font-weight: 400;
+      font-size: 1.1em;
+      opacity: .9; }

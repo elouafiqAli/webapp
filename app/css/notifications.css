@@ -1,0 +1,69 @@
+/*
+* For the brave souls who get this far: You are the chosen ones,
+* the valiant knights of programming who toil away, without rest,
+* fixing our most awful code. To you, true saviors, kings of men,
+* I say this: never gonna give you up, never gonna let you down,
+* never gonna run around and desert you. Never gonna make you cry,
+* never gonna say goodbye. Never gonna tell a lie and hurt you.
+*/
+* {
+  margin: 0;
+  padding: 0; }
+
+@font-face {
+  font-family: 'adam';
+  src: url("fonts/adam-webfont.eot");
+  src: url("fonts/adam-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/adam-webfont.woff") format("woff"), url("fonts/adam-webfont.ttf") format("truetype"), url("fonts/adam-webfont.svg#adamregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+body {
+  font-family: "Source Sans Pro", sans-serif; }
+
+header {
+  background-color: #353d45;
+  width: 100%;
+  height: 80px;
+  padding: 0;
+  margin: 0; }
+  header button {
+    -webkit-transition: .5s ease;
+    -moz-transition: .5s ease;
+    -o-transition: .5s ease;
+    transition: .5s ease;
+    background: #282B2F;
+    border: 0;
+    outline: none;
+    height: 100%;
+    width: 80px;
+    color: #ffffff;
+    font-size: 30px;
+    font-family: 'Bitter', serif;
+    font-weight: 400; }
+  header button:hover {
+    background: #1C1E1F;
+    -webkit-transition: .5s ease;
+    -moz-transition: .5s ease;
+    -o-transition: .5s ease;
+    transition: .5s ease; }
+
+.notifications {
+  margin-top: 30px; }
+  .notifications h1 {
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #D4D4D4;
+    font-size: 1.5em; }
+  .notifications .actions {
+    font-size: 1.2em; }
+    .notifications .actions span {
+      width: 30px; }
+    .notifications .actions #approve {
+      margin-right: 30px;
+      color: #43BF37; }
+    .notifications .actions #decline {
+      color: #E32222; }
+    .notifications .actions hr {
+      color: #D4D4D4; }
