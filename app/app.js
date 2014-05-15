@@ -6,7 +6,7 @@ app.constant('angularMomentConfig', {
     timezone: 'Europe/London' // optional
 });
 app.config(['$routeProvider','$facebookProvider', function($routeProvider,$facebookProvider) {
-	$routeProvider.when('/main/searchInside',{
+	$routeProvider.when('/main/searchInside/:ISBN',{
         templateUrl:'main/searchInside.html',
         controller:'searchInside'
     }).
@@ -39,7 +39,7 @@ app.config(['$routeProvider','$facebookProvider', function($routeProvider,$faceb
             controller: 'community'
         }).
 	otherwise({
-		 redirectTo: '/main/signin'
+		 //redirectTo: '/main/signin'
 	});
 
     $facebookProvider.setAppId('600246116738644');
@@ -88,9 +88,10 @@ function determineBehavior($kinvey, $location, $rootScope) {
 	console.log("$location.$$url: " + $location.$$url);
 	if (activeUser != null) {
 		console.log("activeUser not null determine behavior");
-		if ($location.$$url != '/main/addBook') {
+		/*if ($location.$$url != '/main/addBook') {
 			$location.path('/main/addBook');
-		}
+		}*/
+        $location.path($location.$$url);
 	} else {
 		console.log("activeUser null redirecting");
 		if ($location.$$url != '/main/signin') {

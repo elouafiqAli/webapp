@@ -1,5 +1,8 @@
 var controllers = angular.module('controllers', []);
-
+function handleError(Description){
+    $scope.submittedError = true;
+    $scope.errorDescription = Description;
+}
 
 controllers.controller('LoginController',
 		['$scope', '$kinvey', "$location", function($scope, $kinvey, $location) {
@@ -233,7 +236,7 @@ controllers.controller('addBooks',
     $scope.searchInsideBook = function(book){
         delete book.$$hashKey;
         $scope.sharedBooks.setBook(book);
-        $location.path("main/searchInside");
+        $location.path("main/searchInside/"+book.ISBN_13);
     }
     function handleError(Description){
         $scope.submittedError = true;
@@ -523,13 +526,31 @@ controllers.controller('communitySubscription',
 
 }]);
 controllers.controller('searchInside',
-    ['$scope', '$kinvey', "$location","sharedBooks", function($scope, $kinvey, $location, sharedBooks){
+    ['$scope', '$kinvey', "$location","sharedBooks","$routeParams", function($scope, $kinvey, $location, sharedBooks, $routeParams){
+        $scope.ISBN = $routeParams.ISBN_13;
         $scope.book = sharedBooks.getBook();
         $scope.submittedError = false;
         $scope.errorDescription = '';
         $scope.searchResults =null;
+        $scope.fetchBook = function(ISBN){
+            //Check Validity of input
+            var inputISBN = ISBN;
+
+            $kinvey.execute('bookSearch',{ISBN: inputISBN}).then(function(response){
+                    console.log(response);
+                    if(response){
+                        $scope.book = response.book;
+                    }else{
+                        console.log("Couldn't find the book with the ISBN "+inputISBN);
+                    }
+                },function(error){
+                    console.log("Couldn't find the book with the ISBN "+inputISBN);
+                }
+            );
+        };
 
         $scope.searchInsideBook = function(){
+
             var _query = $scope.searchInput;
             var _identifier = $scope.book.ISBN_13;
 
@@ -545,7 +566,8 @@ controllers.controller('searchInside',
                     $scope.searchResults = response;
                 }
             });
-        }
+        };
+        $scope.fetchBook($routeParams.ISBN);
     }]);
 controllers.controller('community',
     ['$scope', '$kinvey', '$location','redriss','$routeParams', function($scope, $kinvey, $location, redriss,$routeParams) {
