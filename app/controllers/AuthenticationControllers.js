@@ -516,10 +516,13 @@ controllers.controller('searchInside',
 
             var search_request = $kinvey.execute("insearch",{query:_query,id:_identifier});
             search_request.then(function(response){
-                if(response.error){
-                    $scope.submittedError = true;
-                    $scope.errorDescription =response.error;
+
+                if(response.results){
+                    console.log('in here '+response.results);
+                    $scope.submittedError = false;
+                    $scope.searchResults =response.results;
                 }else{
+                    console.log(response);
                     $scope.searchResults = response;
                 }
             });

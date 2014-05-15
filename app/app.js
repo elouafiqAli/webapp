@@ -88,13 +88,13 @@ function determineBehavior($kinvey, $location, $rootScope) {
 	console.log("$location.$$url: " + $location.$$url);
 	if (activeUser != null) {
 		console.log("activeUser not null determine behavior");
-		if ($location.$$url != '/main/dashboard') {
-			$location.path('/main/dashboard');
+		if ($location.$$url != '/main/addBook') {
+			$location.path('/main/addBook');
 		}
 	} else {
 		console.log("activeUser null redirecting");
-		if ($location.$$url != '/main/sign_up') {
-			$location.path('/main/sign_up');
+		if ($location.$$url != '/main/signin') {
+			$location.path('/main/signin');
 		}
 	}
 }

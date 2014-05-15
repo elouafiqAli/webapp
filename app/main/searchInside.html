@@ -28,6 +28,7 @@
                     </div>
                 </div>
             </div>
+            </div>
 
     <!--
     <div id="search-inside-book">
@@ -37,15 +38,35 @@
     </div>
     -->
 
-    <div id="nothing" ng-hide="!searchResults.number_of_results">NOTHING FOUND</div>
+
+    <div id="nothing" ng-show="searchResults.number_of_results">NOTHING FOUND WITH THIS KEYWORD</div>
+    <div id="searchinfo" ng-hide="searchResults == null">
+        <h2>Search Results</h2>
+        <h4>Number of occurences : {{searchResults.number_of_results}}
+        </h4></div>
+    <div class="wrap-table" ng-show="searchResults.search_results.length">
+
+        <div ng-repeat="page in searchResults.search_results">
+            <div class="table">
+                <h3>Page: <span>{{ page.page_number}}</span></h3>
+                <!-- <h1>{{book.title }}</h1>
+                <h2><i>by</i> {{book.author }}</h2>-->
+                <div class="result">
+               {{page.snippet_text}}
+                </div>
+                <div class="pages">
+            </div>
+            </div>
+        </div>
     <div id="search-results" ng-hide="!searchResults">
         <h2>Search Results</h2>
         <h4>Number of occurences : {{searchResults.number_of_results}}</h4>
         <div ng-repeat="page in searchResults.search_results">
             <h3>Page {{ page.page_number }}</h3><br>
-            <p> {{ page.snippet_text}}" <p><br>
+            <p> " <p><br>
             --------------------------------<br>
         </div>
     </div>
+        </div>
     </center>
 </div>

@@ -8,14 +8,31 @@
             <button id="remove-book" ng-click="removeBook($index)">X</button>
             <button id="search-inside-book-{{book.id}}" ng-click="searchInsideBook(book)">Search Inside</button>
         </div>
-        <button id="add-books" ng-click="addBook()">+</button><br>
+        <button id="add-books" ng-click="addBook()" ng-show="books.length">+</button><br>
     </div>
-
-    <div id="search-book">
-        <input ng-model="searchInput" name="search input" placeholder="ISBN..."/>
-        <button ng-click="fetchBook()" name="search" id="search-button">Search</button>
-        <span class="error" ng-show="submittedError">{{errorDescription}}</span>
-    </div>
+        <div class="col-xs-8 col-xs-offset-2" id="search-book">
+            <div class="input-group">
+                <!--
+                <div class="input-group-btn search-panel">
+                    <!--
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <span id="search_concept">Filter by</span> <span class="caret"></span>
+                  </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#contains">Book</a></li>
+                        <li><a href="#its_equal">Paragraph chunk</a></li>
+                        <li><a href="#greather_than">Page number</a></li>
+                    </ul>
+                </div>-->
+                <input ng-model="searchInput" type="hidden" name="search_param" value="all" id="search_param" placeholder="ISBN...">
+                <input ng-model="searchInput" name="search input" type="text" class="form-control" placeholder="look for book by ISBN">
+            <span class="input-group-btn">
+                <button ng-click="fetchBook()" name="search" id="search-button"class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-search"></span></button><span class="error" ng-show="submittedError">{{errorDescription}}</span>
+            </span>
+            </div>
+        </div>
+        <br>
     <h1>Shelve Books</h1>
     <div id="shelve-books" ng-hide="!shelve_books.length">
         <div ng-repeat="item in shelve_books">
