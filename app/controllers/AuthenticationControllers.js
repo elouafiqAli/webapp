@@ -556,7 +556,6 @@ controllers.controller('searchInside',
 
             var search_request = $kinvey.execute("insearch",{query:_query,id:_identifier});
             search_request.then(function(response){
-
                 if(response.results){
                     console.log('in here '+response.results);
                     $scope.submittedError = false;
@@ -577,7 +576,6 @@ controllers.controller('community',
         library : [],
         searchResults : {},
         initFromName: function(name){
-
         },
         init : function(name){
             var _this= this;
