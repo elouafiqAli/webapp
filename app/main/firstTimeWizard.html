@@ -1,25 +1,54 @@
 <center>
     <div ng-controller="firstTimeWizard">
-    <div ng-controller="addBooks">
-        <div id="adding-books" ng-show="wizard.steps[r.books]">
+    <div ng-controller="addBooks" ng-show="wizard.steps[r.books]">
+        <div class='library' id="book-to-add">
             <div id="welcome-message">
                 <h2>Welcome</h2>
-                <h3>Please Add at least 5 books to your private library</h3>
+                <h3>Please Add at least {{5-books.length}} books to your private library</h3>
             </div>
-            <div id="book-to-add" ng-hide="bookNotFound">
-                <div ng-repeat="book in books">
-                    <strong>{{ book.title }}</strong><br>
-                    ISBN:{{ book.ISBN_13 }}<br>
-                    <img src="{{book.imageLinks.thumbnail}}" />
-                    <button id="remove-book" ng-click="removeBook($index)">X</button>
-                    <button id="search-inside-book-{{book.id}}" ng-click="searchInsideBook(book)">Search Inside</button>
+            <div ng-repeat="book in books">
+                <div class="col-md-3 col-sm-4 col-xs-6">
+                    <a>
+                        <img class="img-responsive"  width='200' height="300"  src="{{book.imageLinks.thumbnail}}"  />
+                    <span>
+                        <button id="remove-book" ng-click="removeBook($index)">x</button><br/>
+                        <p>{{ book.title }}</p>
+                        </br></br><p>ISBN:{{ book.ISBN_13 }}</p>
+                    </span>
+                    </a>
                 </div>
-                <button id="add-books" ng-click="addBook()">+</button><br>
             </div>
-            <div id="search-book">
-                <input ng-model="searchInput" name="search input" placeholder="ISBN..."/>
-                <button ng-click="fetchBook()" name="search" id="search-button">Search</button>
-                <span class="error" ng-show="submittedError">{{errorDescription}}</span>
+        </div>
+        <div class="col-xs-8 col-xs-offset-2">
+            <button id="add-books" ng-click="addBook()" ng-show="books.length" class="btn btn-default" type="button">ADD SEARCHED BOOKS TO YOUR LIBRARY</button><br>
+            <br>
+        </div>
+        <div class="col-xs-8 col-xs-offset-2" id="search-book">
+            <div class="input-group">
+                <input ng-model="searchInput" type="hidden" name="search_param" value="all" id="search_param" placeholder="ISBN...">
+                <input ng-model="searchInput" name="search input" type="text" class="form-control" placeholder="look for book by ISBN">
+            <span class="input-group-btn">
+                <button ng-click="fetchBook()" name="search" id="search-button"class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-search"></span></button><span class="error" ng-show="submittedError">{{errorDescription}}</span>
+            </span>
+            </div>
+        </div>
+        <br><br>
+        <div class="col-xs-8 col-xs-offset-2">
+            <h1 ng-hide="!searchResults.length">Search Results Books</h1>
+        </div>
+        <div class="library" id="shelve-books" ng-hide="!searchResults.length">
+            <div ng-repeat="book in searchResults">
+                <div class="col-md-3 col-sm-4 col-xs-6">
+                    <a>
+                        <img class="img-responsive" width='200' height="300" src="{{ book.imageLinks.thumbnail}}" />
+                            <span>
+                                <button id="add-book" ng-click="addBookToList(book)">+</button><br/>
+                                <p>{{ book.title }}</p>
+                            </span>
+                    </a>
+                </div>
+
             </div>
         </div>
     </div>

@@ -31,8 +31,8 @@ app.config(['$routeProvider','$facebookProvider', function($routeProvider,$faceb
             controller: 'LoginController'
     }).
 	when('/main/first_time', {
-		templateUrl: 'main/addBook.html',
-		controller: 'addBooks'
+		templateUrl: 'main/firstTimeWizard.html',
+		controller: 'firstTimeWizard'
 	}).
     when('/main/community/:community_name', {
             templateUrl: 'main/community.html',
