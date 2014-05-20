@@ -1,0 +1,161 @@
+/*
+* For the brave souls who get this far: You are the chosen ones,
+* the valiant knights of programming who toil away, without rest,
+* fixing our most awful code. To you, true saviors, kings of men,
+* I say this: never gonna give you up, never gonna let you down,
+* never gonna run around and desert you. Never gonna make you cry,
+* never gonna say goodbye. Never gonna tell a lie and hurt you.
+*/
+* {
+  margin: 0;
+  padding: 0; }
+
+@font-face {
+  font-family: 'adam';
+  src: url("fonts/adam-webfont.eot");
+  src: url("fonts/adam-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/adam-webfont.woff") format("woff"), url("fonts/adam-webfont.ttf") format("truetype"), url("fonts/adam-webfont.svg#adamregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+body {
+  background: url("../img/library_big_gauss.jpg") fixed;
+  background-size: cover;
+  padding: 0;
+  margin: 0; }
+
+.wrap {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  position: absolute;
+  margin-top: 12%;
+  top: 0;
+  left: 0;
+  z-index: 99; }
+
+p.form-title {
+  font-family: "adam";
+  font-size: 30px;
+  font-weight: 600;
+  text-align: center;
+  color: #FFFFFF;
+  margin-top: 5%;
+  text-transform: uppercase; }
+
+form {
+  width: 350px;
+  margin: 0 auto; }
+
+form.signup input[type="text"], form.signup input[type="password"] {
+  width: 100%;
+  margin: 0;
+  padding: 5px 10px;
+  background: 0;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 400;
+  border: 0;
+  border-bottom: 1px solid #FFFFFF;
+  outline: 0;
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #FFFFFF;
+  outline: 0; }
+
+form.signup input[type="submit"] {
+  width: 100%;
+  font-size: 17px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: 16px;
+  height: 48px;
+  font-family: "Source Sans Pro", sans-serif;
+  outline: 0;
+  cursor: pointer;
+  letter-spacing: 1px;
+  background-color: #F5821D;
+  border: 0; }
+
+form.signup input[type="submit"]:hover {
+  -webkit-transition: .5s ease;
+  -moz-transition: .5s ease;
+  -o-transition: .5s ease;
+  transition: .5s ease;
+  opacity: .9; }
+
+form.signup .remember-forgot {
+  float: left;
+  width: 100%;
+  margin: 10px 0 0 0; }
+
+form.signup .forgot-pass-content {
+  min-height: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px; }
+
+form.signup label, form.signup a {
+  font-size: 12px;
+  font-weight: 400;
+  color: #FFFFFF; }
+
+form.singup a {
+  transition: color 0.5s ease; }
+
+form.signup a:hover {
+  color: #F5821D; }
+
+.pr-wrap {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  display: none; }
+
+.show-pass-reset {
+  display: block !important; }
+
+.pass-reset {
+  margin: 0 auto;
+  width: 250px;
+  position: relative;
+  margin-top: 22%;
+  z-index: 999;
+  background: #FFFFFF;
+  padding: 20px 15px; }
+
+.pass-reset label {
+  font-size: 12px;
+  font-weight: 400;
+  margin-bottom: 15px; }
+
+.pass-reset input[type="email"] {
+  width: 100%;
+  margin: 5px 0 0 0;
+  padding: 5px 10px;
+  background: 0;
+  border: 0;
+  border-bottom: 1px solid #000000;
+  outline: 0;
+  font-style: italic;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+  color: #000000;
+  outline: 0; }
+
+.pass-reset input[type="submit"] {
+  width: 100%;
+  border: 0;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-top: 10px;
+  outline: 0;
+  cursor: pointer;
+  letter-spacing: 1px; }
+
+.pass-reset input[type="submit"]:hover {
+  transition: background-color 0.5s ease; }

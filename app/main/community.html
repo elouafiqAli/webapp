@@ -1,0 +1,19 @@
+<div id="community-page">
+    <!-- Show users -->
+    <div id="community-friends">
+        <div ng-repeat="member in community.members">
+            <div class="user">
+                <!-- show something about the user -->{{ member.username}}
+            </div>
+        </div>
+    </div>
+    <!-- show available books -->
+    <div id="library-listing">
+        <div ng-repeat="book in community.library">
+            <div class="book">
+                <!-- show something about the user -->{{ book.book.title}}
+            </div>
+        </div>
+    </div>
+    ,
+</div>

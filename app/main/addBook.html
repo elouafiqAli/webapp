@@ -1,0 +1,70 @@
+<div ng-controller="addBooks">
+    <center>
+    <div class='library' id="book-to-add" ng-hide="bookNotFound">
+        <div ng-repeat="book in books">
+            <div class="col-md-3 col-sm-4 col-xs-6">
+                <a>
+                    <img class="img-responsive"  width='200' height="300"  src="{{book.imageLinks.thumbnail}}"  />
+                    <span>
+                        <button id="remove-book" ng-click="removeBook($index)">x</button><br/>
+                        <p>{{ book.title }}</p>
+                        </br></br><p>ISBN:{{ book.ISBN_13 }}</p>
+                    </span>
+                </a>
+             </div>
+            </div>
+           </div>
+        <div class="col-xs-8 col-xs-offset-2">
+            <button id="add-books" ng-click="addBook()" ng-show="books.length" class="btn btn-default" type="button">ADD SEARCHED BOOKS TO YOUR LIBRARY</button><br>
+            <br>
+        </div>
+        <div class="col-xs-8 col-xs-offset-2" id="search-book">
+            <div class="input-group">
+                <!--
+                <div class="input-group-btn search-panel">
+                    <!--
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <span id="search_concept">Filter by</span> <span class="caret"></span>
+                  </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#contains">Book</a></li>
+                        <li><a href="#its_equal">Paragraph chunk</a></li>
+                        <li><a href="#greather_than">Page number</a></li>
+                    </ul>
+                </div>-->
+                <input ng-model="searchInput" type="hidden" name="search_param" value="all" id="search_param" placeholder="ISBN...">
+                <input ng-model="searchInput" name="search input" type="text" class="form-control" placeholder="look for book by ISBN">
+            <span class="input-group-btn">
+                <button ng-click="fetchBook()" name="search" id="search-button"class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-search"></span></button><span class="error" ng-show="submittedError">{{errorDescription}}</span>
+            </span>
+            </div>
+        </div>
+        <br><br>
+        <div class="col-xs-8 col-xs-offset-2">
+        <h1>Shelve Books</h1>
+            </div>
+        <div class="library" id="shelve-books" ng-hide="!shelve_books.length">
+            <div ng-repeat="item in shelve_books">
+                <div class="col-md-3 col-sm-4 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive" width='200' height="300" src="{{ item.book.imageLinks.thumbnail}}" />
+                                <span>
+                                    <button id="search-inside-book" ng-click="searchInsideBook(item.book)">+</button><br/>
+                                    <p>{{ item.book.title }}</p>
+                                </span>
+                </a>
+                </div>
+
+            </div>
+        </div>
+        <!--
+    <div id="shelve-books" ng-hide="!shelve_books.length">
+        <div ng-repeat="item in shelve_books">
+            <strong>{{ item.book.title }}</strong><br>
+            <img src="{{ item.book.imageLinks.thumbnail}}" />
+            <button id="search-inside-book" ng-click="searchInsideBook(item.book)">Search Inside</button><br>
+        </div>
+    </div> -->
+    </center>
+</div>

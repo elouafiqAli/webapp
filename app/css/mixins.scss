@@ -1,0 +1,61 @@
+// boder radius (rectangles).
+@mixin rounded($radius) {
+		-webkit-border-radius: $radius;
+		-moz-border-radius: $radius;
+		border-radius: $radius;
+}
+// for drop/inner shadows.
+@mixin shadow($x, $y, $blur_value, $color) {
+	-webkit-box-shadow: $x $y $blur_value $color;
+	-moz-box-shadow: $x $y $blur_value $color;
+	box-shadow: $x $y $blur_value $color;
+}
+@mixin shadow-inset($x, $y, $blur_value, $color) {
+	-webkit-box-shadow: inset $x $y $blur_value $color;
+	-moz-box-shadow: inset $x $y $blur_value $color;
+	box-shadow: inset $x $y $blur_value $color;
+
+}
+// some nice little transitions.
+@mixin transition {
+	-webkit-transition: .5s ease;
+	-moz-transition: .5s ease;
+	-o-transition: .5s ease;
+	transition: .5s ease;
+}
+// box sizing.
+@mixin box-sizing {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+// gradients.
+@mixin lin-gradient($source, $destination) {
+	background: -moz-linear-gradient($source, $destination);
+	background: o-linear-gradient($source, $destination);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, $source), color-stop(1, $destination));
+	background: -webkit-linear-gradient($source, $destination);
+	background: ms-linear-gradient($source, $destination);
+	background: linear-gradient($source, $destination);
+}
+@mixin horizontalgrd ($source, $destination) {
+	background: -webkit-linear-gradient(left, $source, $destination); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(right, $source, $destination); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(right, $source, $destination); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(to right, $source, $destination); /* Standard syntax */
+}
+// changing placeholder color.
+@mixin placeholder($color) {
+	::-webkit-input-placeholder { /* WebKit browsers */
+    color:    $color;
+		}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    $color;
+	}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    $color;
+	}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    $color;
+	}
+}

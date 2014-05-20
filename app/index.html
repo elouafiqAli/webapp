@@ -1,0 +1,49 @@
+<html ng-app="bobox-webapp">
+<head>
+
+<meta charset="utf-8"/>
+<title>Welcome to Bobox</title>
+
+<script src="bower_components/angular/angular.js"></script>
+<script src="https://da189i1jfloii.cloudfront.net/js/kinvey-angular-1.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom stylesheet -->
+<link href="css/main.css" rel="stylesheet">
+<!-- main font -->
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+<!-- logo font -->
+<link href='http://fonts.googleapis.com/css?family=Bitter:700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <div ng-controller="header">
+    <header class="header" ng-show="visible">
+        <a href="dashboard.html"><button class="logo">B</button></a>
+        <a href="add.html"><div class="glyphicon glyphicon-plus" style="color:#ffffff; margin-left: 78%;"></div></a>
+        <a href="notifications.html"><div class="glyphicon glyphicon-bell" style="color:#ffffff; margin-left: 30px;"></div></a>
+        <!--  <div class="btn-group"><img src="../design/img/pp.png" class="img-circle" alt="Circular Image" data-toggle="dropdown"style="border: 0; width: 30px; margin-left: 30px;"><span class="caret"></span><ul class="dropdown-menu" role="menu">
+
+             <li><a href="../design/profile.html"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+            <li><a href="../design/settings.html"><span class="glyphicon glyphicon-cog"></span> Settings</a>
+            </li>
+            <li><a href="#"><span class="glyphicon glyphicon-off"></span> Log out</div></a></li>
+        </ul>
+        </div>-->
+    </header></div>
+	<div ng-view></div>
+	<script src="app.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angular-moment/angular-moment.js"></script>
+	<script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/ng-facebook/ngFacebook.js"></script>
+	<script src="controllers/AuthenticationControllers.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>

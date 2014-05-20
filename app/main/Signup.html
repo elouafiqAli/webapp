@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="https://da189i1jfloii.cloudfront.net/js/kinvey-angular-1.1.4.min.js"></script>
+    <title>Bobox - Join the movement</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom stylesheet -->
+    <link href="css/login.css" rel="stylesheet">
+    <!-- main font -->
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+
+</head>
+<body ng-app="bobox-webapp">
+
+<div class="container">
+    <div ng-controller="SignUpController">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="pr-wrap">
+
+                    <div class="pass-reset">
+                        <label>
+                            Enter the email you signed up with</label>
+                        <input type="email" placeholder="Email" />
+                        <input type="submit" value="Submit" class="pass-reset-submit btn btn-success btn-sm" />
+                    </div>
+                </div>
+
+                <div class="wrap">
+                    <p class="form-title">Signup and borrow Books from your friends</p>
+                    <p class="form-title"></p>
+                    <form name="registrationForm" class="login">
+                        <input type="text" ng-model="email"  placeholder="Your Full Name" />
+                        <input type="text" ng-model="fullname" placeholder="YourEmail@gmail.com" />
+                        <input type="password" ng-model="password" placeholder="Password" />
+                        <input type="submit" value="Lets Read Books" class="btn btn-success btn-sm" ng-click="signUp()"/>
+
+                        <div class="remember-forgot">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" />
+                                            Remember Me
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 forgot-pass-content">
+                                    <a href="javascription:void(0)" class="forgot-pass">Forgot Password</a>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="submit" value="I have already an account" class="btn btn-success btn-sm" ng-click="goToSignIn()"/>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/script.js"></script>
+        <script src="app.js"></script>
+        <script src="bower_components/moment/moment.js"></script>
+        <script src="bower_components/angular-moment/angular-moment.js"></script>
+        <script src="bower_components/angular-route/angular-route.js"></script>
+        <script src="bower_components/ng-facebook/ngFacebook.js"></script>
+        <script src="controllers/AuthenticationControllers.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/script.js"></script>
+    </div> </div> </div>
+
+</body>
+</html>
