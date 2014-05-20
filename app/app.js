@@ -86,18 +86,23 @@ app.run(['$location', '$kinvey', '$rootScope','$facebook', function($location, $
 function determineBehavior($kinvey, $location, $rootScope) {
 	var activeUser = $kinvey.getActiveUser();
 	console.log("$location.$$url: " + $location.$$url);
+
 	if (activeUser != null) {
 		console.log("activeUser not null determine behavior");
-		/*if ($location.$$url != '/main/addBook') {
-			$location.path('/main/addBook');
-		}*/
-        $location.path($location.$$url);
-	} else {
-		console.log("activeUser null redirecting");
-		if ($location.$$url != '/main/signin') {
-			$location.path('/main/signin');
-		}
-	}
+        console.log(activeUser.first_time);
+        if(activeUser.first_time){
+            $location.path('/main/first_time');
+        }else{
+            $location.path($location.$$url);
+        }
+	} else if(window.location.href.split('/')[3].indexOf('welcome.html') == 0) {
+        
+	}else{
+        console.log("activeUser null redirecting");
+        if ($location.$$url != '/main/signin') {
+            $location.path('/main/signin');
+        }
+    }
 }
 
 app.factory("redriss", function(){

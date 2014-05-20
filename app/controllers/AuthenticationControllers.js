@@ -125,7 +125,7 @@ controllers.controller('SignUpController',
                 console.log("signup success");
                 window.location.href = "../#/main/first_time";
             }
-            function failedSignup(){
+            function failedSignup(error){
                 $scope.submittedError = true;
                 $scope.errorDescription = error.description;
                 console.log("signup error: " + error.description);
