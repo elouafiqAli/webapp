@@ -416,7 +416,6 @@ controllers.controller('communitySubscription',
            var index = _index || this.selected_community;
            var community = this.list_of_communities[index];
            if(secretCode == community.code){
-
                var _comun = {
                    username: this.current_user.username,
                    member: this.current_user,
@@ -427,10 +426,6 @@ controllers.controller('communitySubscription',
                };
                var _this = this;
                var joinRequest= $kinvey.DataStore.save('comuns',_comun,{
-                   /*
-                   relations:{
-                        member: 'user'
-                   },*/
                    success:function(response){
                        _this.myCommunities.push(_this.list_of_communities.splice(index,1)[0]);
                        return true;
