@@ -3,10 +3,18 @@ function handleError(Description){
     $scope.submittedError = true;
     $scope.errorDescription = Description;
 }
+controllers.controller('header',   ['$scope', '$kinvey', "$location","redriss", function($scope, $kinvey, $location,redriss) {
+    window.setInterval(function(){$scope.visible = redriss.get('header_visible');},300);
 
+
+}]);
 controllers.controller('LoginController',
-		['$scope', '$kinvey', "$location", function($scope, $kinvey, $location) {
-			$scope.login = function () {
+
+		['$scope', '$kinvey', "$location","redriss", function($scope, $kinvey, $location,redriss) {
+            console.log("looool");
+            $scope.visible = redriss.set('header_visible',false);
+
+            $scope.login = function () {
                 var isFormInvalid = false;
 
                 //check is form valid
@@ -26,7 +34,7 @@ controllers.controller('LoginController',
                         if (isFormInvalid) {
                             return;
                         }*/
-                /*
+
                 console.log("call login");
                 //Kinvey login starts
                         var promise = $kinvey.User.login({
@@ -37,7 +45,8 @@ controllers.controller('LoginController',
                             function (response) {
                                 //Kinvey login finished with success
                                 $scope.submittedError = false;
-                                $location.path('/main/addBook');
+                                window.location.href='/main/addBook';
+                                $scope.visible = redriss.set('header_visible',true);
                             },
                             function (error) {
                                 //Kinvey login finished with error
@@ -46,7 +55,6 @@ controllers.controller('LoginController',
                                 console.log("Error login " + error.description);//
                             }
                         );
-                        */
 			}
 		    $scope.forgetPassword = function () {
 		        console.log("forgetPassword");

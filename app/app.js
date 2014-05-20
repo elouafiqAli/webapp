@@ -45,7 +45,8 @@ app.config(['$routeProvider','$facebookProvider', function($routeProvider,$faceb
     $facebookProvider.setAppId('600246116738644');
 }]);
 //inject instances (not Providers) into run blocks
-app.run(['$location', '$kinvey', '$rootScope','$facebook', function($location, $kinvey, $rootScope, $facebook) {
+app.run(['$location', '$kinvey', '$rootScope','$facebook','redriss', function($location, $kinvey, $rootScope, $facebook,redriss) {
+    redriss.set('header_visible',true);
     // Load the facebook SDK asynchronously
     (function(){
         // If we've already installed the SDK, we're done
@@ -73,10 +74,12 @@ app.run(['$location', '$kinvey', '$rootScope','$facebook', function($location, $
 	promise.then(function() {
         // Kinvey initialization finished with success
 		console.log("Kinvey init with success");
+        redriss.set('header_visible',true);
 		determineBehavior($kinvey, $location, $rootScope);
 	}, function(errorCallback) {
         // Kinvey initialization finished with error
 		console.log("Kinvey init with error: " + JSON.stringify(errorCallback));
+        redriss.set('header_visible',true);
 		determineBehavior($kinvey, $location, $rootScope);
 	});
 }]);
@@ -96,7 +99,7 @@ function determineBehavior($kinvey, $location, $rootScope) {
             $location.path($location.$$url);
         }
 	} else if(window.location.href.split('/')[3].indexOf('welcome.html') == 0) {
-        
+
 	}else{
         console.log("activeUser null redirecting");
         if ($location.$$url != '/main/signin') {
@@ -109,7 +112,7 @@ app.factory("redriss", function(){
     var keyValueStore = {};
     var _redriss = {};
     _redriss.set = function(key,value){
-        keyValueStore[key]=value;
+        return keyValueStore[key]=value;
     };
     _redriss.get = function(key) {
         return keyValueStore[key];

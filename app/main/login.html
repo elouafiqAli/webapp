@@ -1,30 +1,78 @@
-<div class="block-div" ng-controller="LoginController">
-    <form name="loginForm" novalidate>
-        <h4>Login</h4>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <div class="block-input-label">
-            <label id="login-email-label" ng-class="{'error-style': submittedEmail}" for="login-email">Email:</label>
-            <input id="login-email" type="email" name="email" ng-class="{'error-style': submittedEmail}" ng-model="username"
-                   placeholder="john@example.com"
-                   required/>
-            <span class="login" id="login-span"  ng-show="submittedEmail">A valid email address is required.</span>
-        </div>
-        <div>
-            <label class="password-label" ng-class="{'error-style': submittedPassword}" for="login-password">Password:</label>
-            <input id="login-password" class="password-input" type="password" name="password" ng-model="password" ng-class="{'error-style': submittedPassword}"
-                   placeholder="********" required/>
-            <span class="login"  ng-show="submittedPassword">A password is required.</span>
-        </div>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <div>
-            <button id="login-button" ng-click="login()">
-                Login
-            </button>
-            <span class="error" ng-show="submittedError">{{errorDescription}}</span>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="https://da189i1jfloii.cloudfront.net/js/kinvey-angular-1.1.4.min.js"></script>
+    <title>Bobox - Login</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom stylesheet -->
+    <link href="css/login.css" rel="stylesheet">
+    <!-- main font -->
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+
+</head>
+<body ng-app="bobox-webapp">
+<div class="container">
+    <div ng-controller="LoginController">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pr-wrap">
+                    <div class="pass-reset">
+                        <label>
+                            Enter the email you signed up with</label>
+                        <input type="email" placeholder="Email" />
+                        <input type="submit" value="Submit" class="pass-reset-submit btn btn-success btn-sm" />
+                    </div>
+                </div>
+                <div class="wrap">
+                    <p class="form-title"> Sign in Bobox and enjoy a pleasant moment</p>
+                    <p class="form-title"></p>
+                    <form name="registrationForm" action="#" class="login">
+                        <input id="login-email" name="email" type="text" ng-model="username" placeholder="Your Email" required/>
+                        <input id="login-password" name="password" type="password" ng-model="password" placeholder="*********" required/>
+                        <input id="login-button" type="submit" value="Lets Read Books" class="btn btn-success btn-sm" ng-click="login()"/>
+                        <div class="remember-forgot">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" />
+                                            Remember Me
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 forgot-pass-content">
+                                    <a href="javascription:void(0)" class="forgot-pass">Forgot Password</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-    </form>
-    <div id="forget-password-div">
-        <a ng-click="forgetPassword()">Forgot your password?</a>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/script.js"></script>
+        <script src="app.js"></script>
+        <script src="bower_components/moment/moment.js"></script>
+        <script src="bower_components/angular-moment/angular-moment.js"></script>
+        <script src="bower_components/angular-route/angular-route.js"></script>
+        <script src="bower_components/ng-facebook/ngFacebook.js"></script>
+        <script src="controllers/AuthenticationControllers.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/script.js"></script>
     </div>
-
 </div>
+</div>
+
+</body>
+</html>

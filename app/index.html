@@ -19,7 +19,8 @@
 </head>
 
 <body>
-    <header class="header">
+    <div ng-controller="header">
+    <header class="header" ng-show="visible">
         <a href="dashboard.html"><button class="logo">B</button></a>
         <a href="add.html"><div class="glyphicon glyphicon-plus" style="color:#ffffff; margin-left: 78%;"></div></a>
         <a href="notifications.html"><div class="glyphicon glyphicon-bell" style="color:#ffffff; margin-left: 30px;"></div></a>
@@ -31,7 +32,7 @@
             <li><a href="#"><span class="glyphicon glyphicon-off"></span> Log out</div></a></li>
         </ul>
         </div>-->
-    </header>
+    </header></div>
 	<div ng-view></div>
 	<script src="app.js"></script>
     <script src="bower_components/moment/moment.js"></script>
