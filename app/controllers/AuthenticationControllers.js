@@ -246,7 +246,7 @@ controllers.controller('addBooks',
     $scope.removeBook = function(index){
         $scope.books.splice(index,1);
     }
-    $scope.addBook =  function(callback){
+    $scope.addBook =  function(callback,wizard){
         if($scope.books.length < 5){
 
             handleError("Please enter "+ (5-$scope.books.length) +" additional books");
@@ -290,7 +290,7 @@ controllers.controller('addBooks',
                 $scope.shelve_books.unshift({book: _book});
             }
             $scope.books = [];
-            if(callback){callback();}
+            if(callback){callback(wizard);}
         }
     }
     function onLoad(){
@@ -326,12 +326,12 @@ controllers.controller('firstTimeWizard',
         var _wizard = {
             steps: [true,false],
             index : 0,
-            next : function(call){
-                
-                if( this.index <  this.steps.length-1){
-                    this.steps[this.index]= false;
-                    this.steps[++this.index] = true;
-                    if(call) call();
+            next : function(wizard){
+                var _this = wizard;
+                console.log(this);
+                if( _this.index <  _this.steps.length-1){
+                    _this.steps[_this.index]= false;
+                    _this.steps[++_this.index] = true;
                     return true;
                 }else{
                     return false;
