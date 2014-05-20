@@ -68,10 +68,13 @@ module.exports = function (grunt) {
         },
         connect:{
             server:{
-                hostname:'dev.bobox.ma',
-                port:'8080',
-                base:'./src/app/',
-                open:true
+                options:{
+                    hostname:'dev.bobox.ma',
+                    port:'8080',
+                    base:'app/',
+                    open:true
+                }
+
             }
         }
     });
