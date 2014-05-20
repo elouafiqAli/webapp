@@ -37,7 +37,7 @@
                     <form name="registrationForm" action="#" class="login">
                         <input id="login-email" name="email" type="text" ng-model="username" placeholder="Your Email" required/>
                         <input id="login-password" name="password" type="password" ng-model="password" placeholder="*********" required/>
-                        <input id="login-button" type="submit" value="Lets Read Books" class="btn btn-success btn-sm" ng-click="login()"/>
+                        <input id="login-button" type="submit" value="Lets Ready Books" class="btn btn-success btn-sm" ng-click="login()"/>
                     <div class="remember-forgot">
                         <div class="row">
                             <div class="col-md-6">
@@ -52,8 +52,10 @@
                                 <a href="javascription:void(0)" class="forgot-pass">Forgot Password</a>
                             </div>
                         </div>
-                </div>
-                </form>
+                    </div>
+                    <input type="submit" value="I don't have an account" class="btn btn-success btn-sm" ng-click="goToSignUp()"/>
+
+                    </form>
             </div>
         </div>
     </div>

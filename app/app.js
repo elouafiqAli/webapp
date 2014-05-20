@@ -109,6 +109,7 @@ function determineBehavior($kinvey, $location, $rootScope) {
 }
 
 app.factory("redriss", function(){
+    console.log('initializing redriss');
     var keyValueStore = {};
     var _redriss = {};
     _redriss.set = function(key,value){
@@ -129,10 +130,10 @@ app.factory("sharedBooks", function(){
     var singleBook;
     mySharedBooks.setBook = function(book){
         singleBook = book;
-    }
+    };
     mySharedBooks.getBook = function(){
         return singleBook;
-    }
+    };
     mySharedBooks.addBook = function(book) {
         books.push(book);
     };

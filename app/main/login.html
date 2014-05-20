@@ -34,7 +34,7 @@
                 <div class="wrap">
                     <p class="form-title"> Sign in Bobox and enjoy a pleasant moment</p>
                     <p class="form-title"></p>
-                    <form name="registrationForm" action="#" class="login">
+                    <form name="registrationForm" class="login">
                         <input id="login-email" name="email" type="text" ng-model="username" placeholder="Your Email" required/>
                         <input id="login-password" name="password" type="password" ng-model="password" placeholder="*********" required/>
                         <input id="login-button" type="submit" value="Lets Read Books" class="btn btn-success btn-sm" ng-click="login()"/>
@@ -53,6 +53,8 @@
                                 </div>
                             </div>
                         </div>
+                        <input type="submit" value="I don't have an account yet ?" class="btn btn-success btn-sm" ng-click="goToSignUp()"/>
+
                     </form>
                 </div>
             </div>

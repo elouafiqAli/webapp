@@ -45,7 +45,7 @@ controllers.controller('LoginController',
                             function (response) {
                                 //Kinvey login finished with success
                                 $scope.submittedError = false;
-                                window.location.href='/main/addBook';
+                                $location.path("/main/addBook");
                                 $scope.visible = redriss.set('header_visible',true);
                             },
                             function (error) {
@@ -60,9 +60,10 @@ controllers.controller('LoginController',
 		        console.log("forgetPassword");
 		        $location.path("main/password_reset");
 		    }
-		    $scope.signUp = function () {
+		    $scope.goToSignUp = function () {
 		        console.log("signUp");
-		        $location.path("main/sign_up");
+                redriss.set('header_visible',false);
+		        $location.path("/main/signup");
 		    }
 		}]);
 controllers.controller('ResetPasswordController', 
@@ -87,13 +88,14 @@ controllers.controller('ResetPasswordController',
 
             $scope.logIn = function () {
                 console.log("logIn");
-                $location.path("main/login");
+                $location.path("/main/login");
             }
 		}]);
 controllers.controller('SignUpController', 
-		['$scope', '$kinvey', "$location","redriss", function($scope, $kinvey, $location, $window,redriss) {
+		['$scope', '$kinvey', "$location","redriss", function($scope, $kinvey, $location,redriss) {
+
 			$scope.signUp = function () {
-                $scope.visible = redriss.set('header_visible',false);
+
 				console.log("signup");
                 var isFormInvalid = false;
                /*
@@ -127,12 +129,12 @@ controllers.controller('SignUpController',
 						followSignup,
                     failedSignup
 				);
-			}
+			};
             function followSignup(response){
                 //Kinvey signup finished with success
                 $scope.submittedError = false;
                 console.log("signup success");
-                window.location.href = "../#/main/first_time";
+                $location.path("/main/first_time");
             }
             function failedSignup(error){
                 $scope.submittedError = true;
@@ -140,6 +142,8 @@ controllers.controller('SignUpController',
                 console.log("signup error: " + error.description);
             }
            $scope.goToSignIn = function(){
+               console.log(redriss);
+               redriss.set('header_visible',false);
                $location.path('/main/signin');
            }
 		}]);
