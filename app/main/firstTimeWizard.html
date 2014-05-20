@@ -4,7 +4,7 @@
         <div class='library' id="book-to-add">
             <div id="welcome-message">
                 <h2>Welcome</h2>
-                <h3>Please Add at least {{5-books.length}} books to your private library</h3>
+                <h3>{{errorDescription}}</h3>
             </div>
             <div ng-repeat="book in books">
                 <div class="col-md-3 col-sm-4 col-xs-6">
@@ -20,19 +20,22 @@
             </div>
         </div>
         <div class="col-xs-8 col-xs-offset-2">
-            <button id="add-books" ng-click="addBook()" ng-show="books.length" class="btn btn-default" type="button">ADD SEARCHED BOOKS TO YOUR LIBRARY</button><br>
+            <button id="add-books" ng-click="addBook(wizard.next)" ng-show="books.length" class="btn btn-default" type="button">ADD SEARCHED BOOKS TO YOUR LIBRARY</button><br>
             <br>
         </div>
-        <div class="col-xs-8 col-xs-offset-2" id="search-book">
-            <div class="input-group">
-                <input ng-model="searchInput" type="hidden" name="search_param" value="all" id="search_param" placeholder="ISBN...">
-                <input ng-model="searchInput" name="search input" type="text" class="form-control" placeholder="look for book by ISBN">
-            <span class="input-group-btn">
-                <button ng-click="fetchBook()" name="search" id="search-button"class="btn btn-default" type="button">
-                    <span class="glyphicon glyphicon-search"></span></button><span class="error" ng-show="submittedError">{{errorDescription}}</span>
-            </span>
-            </div>
-        </div>
+        <form class="col-xs-8 col-xs-offset-2" id="search-book">
+
+
+                <div class="input-group">
+                    <input ng-model="searchInput" type="hidden" name="search_param" value="all" id="search_param" placeholder="ISBN...">
+                    <input ng-model="searchInput" name="search input" type="text" class="form-control" placeholder="look for book by title">
+                <span class="input-group-btn">
+                    <input type="submit" ng-click="fetchBook()" name="search" id="search-button"class="btn btn-default" type="button">
+                        <span class="glyphicon glyphicon-search"></span></button><span class="error" ng-show="submittedError">{{errorDescription}}</span>
+                </span>
+                </div>
+
+        </form>
         <br><br>
         <div class="col-xs-8 col-xs-offset-2">
             <h1 ng-hide="!searchResults.length">Search Results Books</h1>

@@ -204,6 +204,7 @@ controllers.controller('addBooks',
         $location.path("main/searchInside/"+book.ISBN_13);
     }
     function handleError(Description){
+        console.log("handeling error "+Description);
         $scope.submittedError = true;
         $scope.errorDescription = Description;
     }
@@ -245,9 +246,12 @@ controllers.controller('addBooks',
     $scope.removeBook = function(index){
         $scope.books.splice(index,1);
     }
-    $scope.addBook =  function(ISBN){
+    $scope.addBook =  function(callback){
+        if($scope.books.length < 5){
 
-        if($scope.books.length > 0){
+            handleError("Please enter "+ (5-$scope.books.length) +" additional books");
+        }else if($scope.books.length > 0){
+            console.log("I don't know how it got here "+$scope.books.length );
             var bookList;
             var shelve_name = "myCollection";
             for(i in $scope.books) { var _book = $scope.books[i];
@@ -286,9 +290,11 @@ controllers.controller('addBooks',
                 $scope.shelve_books.unshift({book: _book});
             }
             $scope.books = [];
+            if(callback){callback();}
         }
     }
     function onLoad(){
+        handleError("please enter at least 5 books to your private library");
         var shelve_query= new $kinvey.Query();
         var user = $kinvey.getActiveUser();
         console.log(user);
@@ -321,6 +327,7 @@ controllers.controller('firstTimeWizard',
             steps: [true,false],
             index : 0,
             next : function(call){
+                
                 if( this.index <  this.steps.length-1){
                     this.steps[this.index]= false;
                     this.steps[++this.index] = true;
