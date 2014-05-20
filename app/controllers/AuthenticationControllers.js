@@ -83,11 +83,11 @@ controllers.controller('ResetPasswordController',
             }
 		}]);
 controllers.controller('SignUpController', 
-		['$scope', '$kinvey', "$location", function($scope, $kinvey, $location) {
+		['$scope', '$kinvey', "$location", function($scope, $kinvey, $location, $window) {
 			$scope.signUp = function () {
 				console.log("signup");
                 var isFormInvalid = false;
-                /*
+               /*
                 //check is form valid
                 if ($scope.registrationForm.email.$error.email || $scope.registrationForm.email.$error.required) {
                     $scope.submittedEmail = true;
@@ -110,24 +110,26 @@ controllers.controller('SignUpController',
                      fullname: $scope.fullname,
 		             username: $scope.email,
 		             password: $scope.password,
-		             email: $scope.email
+		             email: $scope.email,
+                     first_time : true
 		         });
 				console.log("signup promise");
 				promise.then(
-						function () {
-                            //Kinvey signup finished with success
-                            $scope.submittedError = false;
-							console.log("signup success");
-							$location.path("main/first_time");
-						}, 
-						function(error) {
-                            //Kinvey signup finished with error
-                            $scope.submittedError = true;
-                            $scope.errorDescription = error.description;
-							console.log("signup error: " + error.description);
-						}
+						followSignup,
+                    failedSignup
 				);
 			}
+            function followSignup(response){
+                //Kinvey signup finished with success
+                $scope.submittedError = false;
+                console.log("signup success");
+                window.location.href = "../#/main/first_time";
+            }
+            function failedSignup(){
+                $scope.submittedError = true;
+                $scope.errorDescription = error.description;
+                console.log("signup error: " + error.description);
+            }
 		}]);
 controllers.controller('LoggedInController', 
 		['$scope', '$kinvey', '$location', function($scope, $kinvey, $location)  {
@@ -141,7 +143,7 @@ controllers.controller('LoggedInController',
                         //Kinvey logout finished with success
                         console.log("user logout");
                         $kinvey.setActiveUser(null);
-                        $location.path("main/login");
+                        $location.url("../#/main/first_time");
                     },
                     function (error) {
                         //Kinvey logout finished with error
