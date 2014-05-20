@@ -91,8 +91,9 @@ controllers.controller('ResetPasswordController',
             }
 		}]);
 controllers.controller('SignUpController', 
-		['$scope', '$kinvey', "$location", function($scope, $kinvey, $location, $window) {
+		['$scope', '$kinvey', "$location","redriss", function($scope, $kinvey, $location, $window,redriss) {
 			$scope.signUp = function () {
+                $scope.visible = redriss.set('header_visible',false);
 				console.log("signup");
                 var isFormInvalid = false;
                /*
@@ -138,6 +139,9 @@ controllers.controller('SignUpController',
                 $scope.errorDescription = error.description;
                 console.log("signup error: " + error.description);
             }
+           $scope.goToSignIn = function(){
+               $location.path('/main/signin');
+           }
 		}]);
 controllers.controller('LoggedInController', 
 		['$scope', '$kinvey', '$location', function($scope, $kinvey, $location)  {

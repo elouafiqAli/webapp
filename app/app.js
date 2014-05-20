@@ -23,7 +23,7 @@ app.config(['$routeProvider','$facebookProvider', function($routeProvider,$faceb
 		controller: 'ResetPasswordController'
 	}).
 	when('/main/signup', {
-		templateUrl: 'main/Signup.html',
+		templateUrl: 'main/signup.html',
 		controller: 'SignUpController'
 	}).
     when('/main/signin',{
@@ -98,7 +98,7 @@ function determineBehavior($kinvey, $location, $rootScope) {
         }else{
             $location.path($location.$$url);
         }
-	} else if(window.location.href.split('/')[3].indexOf('welcome.html') == 0) {
+	} else if(window.location.href.split('/')[5].indexOf('signup') == 0) {
 
 	}else{
         console.log("activeUser null redirecting");
