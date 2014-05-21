@@ -36,11 +36,15 @@ app.config(['$routeProvider','$facebookProvider', function($routeProvider,$faceb
 	}).
     when('/main/wishlist',{
         templateUrl: 'main/wishlist.html',
-        controller: 'addWishList'
+        controller: 'addBooks'
         }).
     when('/main/community/:community_name', {
             templateUrl: 'main/community.html',
             controller: 'community'
+        }).
+    when('/main/groupselect',{
+            templateUrl: 'main/groupselect.html',
+            controller: 'groupSelect'
         }).
 	otherwise({
 		 //redirectTo: '/main/signin'
