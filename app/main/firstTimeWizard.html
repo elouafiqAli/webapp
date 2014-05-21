@@ -57,43 +57,7 @@
     </div>
 
     <!--
-    <div ng-controller="communitySubscription">
-        <div id="subscribing-to-communities" ng-show="wizard.steps[r.communities]">
-            <div>
-                <h3> Chose the community you belong to </h3>
-                <div id="existing-communities" ng-repeat="community in communities.list_of_communities" class="library">
-                    <div class="col-md-3 col-sm-4 col-xs-6">
-                        <a>
-                            <img class="img-responsive" width='200' height="300" src="{{community.icon}}" ng-click="chose($index)" />
-                             <span>
-                                <button id="add-community" ng-click="chose($index)">+</button><br/>
-                                <p>{{ community.name }}</p>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-                <form>
-                    <h4>Type Code: </h4>
-                    <input ng-model="secretcode" ng-enter="validate()" placeholder="enter secret code.."/>
-                    <div ng-show="community">
-                            <strong>{{ community.name}}</strong><br>
-                            <img src="{{community.icon}}" ng-click="chose($index)"/>
-                            {{community.Description}}
-                    </div>
-                    <button ng-click="validate()" name ="final" id="final-button">add</button>
-                </form>
-                <h3> My communities </h3>
-                <div id="your-communities" ng-repeat="community in communities.myCommunities" class="library">
-                    <div class="col-md-3 col-sm-4 col-xs-6">
-                        <a>
-                            <img class="img-responsive" width='200' height="300" src="{{community.icon}}" ng-click="chose($index)" />
-                             <span><p>{{ community.name }}</p></span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <button ng-click="wizard.next(wizard)" name="next" id="next-button">NEXT</button>
     <button ng-click="wizard.back()" name="back" id="back-button">BACK</button>

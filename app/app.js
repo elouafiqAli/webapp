@@ -44,7 +44,7 @@ app.config(['$routeProvider','$facebookProvider', function($routeProvider,$faceb
         }).
     when('/main/groupselect',{
             templateUrl: 'main/groupselect.html',
-            controller: 'groupSelect'
+            controller: 'communitySubscription'
         }).
 	otherwise({
 		 //redirectTo: '/main/signin'
@@ -97,7 +97,7 @@ app.run(['$location', '$kinvey', '$rootScope','$facebook','redriss', function($l
 function determineBehavior($kinvey, $location, $rootScope) {
 	var activeUser = $kinvey.getActiveUser();
 	console.log("$location.$$url: " + $location.$$url);
-
+    console.log("current user "+activeUser.username+" stage "+activeUser.first_time);
 	if (activeUser != null) {
 		console.log("activeUser not null determine behavior");
         console.log(activeUser.first_time);
@@ -105,6 +105,8 @@ function determineBehavior($kinvey, $location, $rootScope) {
             $location.path('/main/first_time');
         }else if(activeUser.first_time == 2){
             $location.path('/main/wishlist');
+        }else if(activeUser.first_time == 2){
+            $location.path('/main/groupselect');
         }else{
             $location.path($location.$$url);
         }

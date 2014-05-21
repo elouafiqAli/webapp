@@ -331,10 +331,10 @@ controllers.controller('addBooks',
             success: function(response){
                 if(response.length > 0){
                     for(i in response){var object = response[i];
-                        console.log(response[i]);
+                       // console.log(response[i]);
 
                         if(object.book.imageLinks!=undefined){
-                            console.log(object.book.imageLinks != undefined);
+                            //console.log(object.book.imageLinks != undefined);
                            // book.imageLinks.thumbnail=$scope.imageResizer(book.imageLinks.thumbnail);
                             //console.log(book.imageLinks.thumbnail);
                             $scope.shelve_books.push(object);
