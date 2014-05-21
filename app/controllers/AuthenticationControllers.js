@@ -122,7 +122,7 @@ controllers.controller('SignUpController',
 		             username: $scope.email,
 		             password: $scope.password,
 		             email: $scope.email,
-                     first_time : true
+                     first_time : 1
 		         });
 				console.log("signup promise");
 				promise.then(
@@ -208,7 +208,7 @@ controllers.controller('addBooks',
     $scope.shelve = [];
     $scope.shelve_books =[];
 
-    var CHECKINPUT= false;
+    var CHECK_BOOK_EXISTENCE= false;
     $scope.imageResizer = function(imageLink){
         var _image = imageLink.split('zoom=1');
         return _image[0].concat('zoom=2').concat(_image[1]);
@@ -227,7 +227,7 @@ controllers.controller('addBooks',
     $scope.fetchBook = function(){
         //Check Validity of input
         var inputTitle = $scope.searchInput;
-        if(CHECKINPUT){
+        if(CHECK_BOOK_EXISTENCE){
             for(i in $scope.books){var book = $scope.books[i];
                 //book.imageLinks.thumbnail=$scope.imageResizer(book.imageLinks.thumbnail);
                 $scope.books[i] = book;
@@ -250,26 +250,29 @@ controllers.controller('addBooks',
         );
     }
     $scope.addBookToList = function(book){
-        for(i in $scope.books){var _book = $scope.books[i];
-            if(book.ISBN_10 == _book.ISBN_10 || book.ISBN_13 == _book.ISBN_13){
-                handleError("Book already added");
-                return false;
+        if(CHECK_BOOK_EXISTENCE) {
+            for (i in $scope.books) {
+                var _book = $scope.books[i];
+                if (book.ISBN_10 == _book.ISBN_10 || book.ISBN_13 == _book.ISBN_13) {
+                    handleError("Book already added to list");
+                    return false;
+                }
             }
         }
         $scope.books.push(book);
 
-    }
+    };
     $scope.removeBook = function(index){
         $scope.books.splice(index,1);
     }
-    $scope.addBook =  function(callback,wizard){
+    $scope.addBook =  function(callback,wizard,bookshelve){
         if($scope.books.length < 5){
-
+            console.log('doing callback with params '+ wizard);
             handleError("Please enter "+ (5-$scope.books.length) +" additional books");
-        }else if($scope.books.length > 0){
+        }else if($scope.books.length >= 5){
             console.log("I don't know how it got here "+$scope.books.length );
             var bookList;
-            var shelve_name = "myCollection";
+            var shelve_name = bookshelve;
             for(i in $scope.books) { var _book = $scope.books[i];
                 delete _book.$$hashKey; //remove angular ng-repeat added attribute
                 var bookObject = {
@@ -288,7 +291,7 @@ controllers.controller('addBooks',
                      var shelve = _user.shelve || {} ;
                          shelve.books = shelve.books  || [] ;
                          shelve.owner = $kinvey.getActiveUser();
-                         shelve.name = "myCollection" || shelve.name;
+                         shelve.name = bookshelve|| shelve.name;
                          _book.ISBN_13 == undefined ? shelve.books.push(_book.ISBN_10) : shelve.books.push(_book.ISBN_13);
                      _user.shelve = shelve;
                      $kinvey.User.update(_user);
@@ -306,7 +309,15 @@ controllers.controller('addBooks',
                 $scope.shelve_books.unshift({book: _book});
             }
             $scope.books = [];
-            if(callback){callback(wizard);}
+
+            if(callback){
+                // saying that the user has finished the ste[s
+                var user = $kinvey.getActiveUser();
+                console.log(user.username);
+                user.first_time++;
+                $kinvey.User.update(user);
+                callback(wizard);
+            }
         }
     }
     function onLoad(){
@@ -380,7 +391,8 @@ controllers.controller('firstTimeWizard',
         };
         $scope.r = {
             books : 0,
-            communities: 1
+            wishlist:1,
+            communities: 2
         };
         $scope.wizard = _wizard;
 

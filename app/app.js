@@ -34,6 +34,10 @@ app.config(['$routeProvider','$facebookProvider', function($routeProvider,$faceb
 		templateUrl: 'main/firstTimeWizard.html',
 		controller: 'firstTimeWizard'
 	}).
+    when('/main/wishlist',{
+        templateUrl: 'main/wishlist.html',
+        controller: 'addWishList'
+        }).
     when('/main/community/:community_name', {
             templateUrl: 'main/community.html',
             controller: 'community'
@@ -93,8 +97,10 @@ function determineBehavior($kinvey, $location, $rootScope) {
 	if (activeUser != null) {
 		console.log("activeUser not null determine behavior");
         console.log(activeUser.first_time);
-        if(activeUser.first_time){
+        if(activeUser.first_time == 1){
             $location.path('/main/first_time');
+        }else if(activeUser.first_time == 2){
+            $location.path('/main/wishlist');
         }else{
             $location.path($location.$$url);
         }

@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="col-xs-8 col-xs-offset-2">
-            <button id="add-books" ng-click="addBook(wizard.next,wizard)" ng-show="books.length" class="btn btn-default" type="button">ADD SEARCHED BOOKS TO YOUR LIBRARY</button><br>
+            <button id="add-books" ng-click="addBook($location.path,'/main/wishlist','myCollection')" ng-show="books.length" class="btn btn-default" type="button">ADD SELECTED BOOKS TO YOUR LIBRARY</button><br>
             <br>
         </div>
         <form class="col-xs-8 col-xs-offset-2" id="search-book">
@@ -30,7 +30,7 @@
                     <input ng-model="searchInput" type="hidden" name="search_param" value="all" id="search_param" placeholder="ISBN...">
                     <input ng-model="searchInput" name="search input" type="text" class="form-control" placeholder="look for book by title">
                 <span class="input-group-btn">
-                    <input type="submit" ng-click="fetchBook()" name="search" id="search-button"class="btn btn-default" type="button">
+                    <input type="submit" ng-click="fetchBook()" name="search" id="search-button"class="btn btn-default" type="button" value="Search">
                         <span class="glyphicon glyphicon-search"></span><span class="error" ng-show="submittedError">{{errorDescription}}</span>
                 </span>
                 </div>
@@ -38,7 +38,7 @@
         </form>
         <br><br>
         <div class="col-xs-8 col-xs-offset-2">
-            <h1 ng-hide="!searchResults.length">Search Results Books</h1>
+            <h1 ng-hide="!searchResults.length">chose the appropriate book...</h1>
         </div>
         <div class="library" id="shelve-books" ng-hide="!searchResults.length">
             <div ng-repeat="book in searchResults">
@@ -55,6 +55,7 @@
             </div>
         </div>
     </div>
+
     <!--
     <div ng-controller="communitySubscription">
         <div id="subscribing-to-communities" ng-show="wizard.steps[r.communities]">
@@ -93,10 +94,10 @@
             </div>
         </div>
     </div>
-    -->
+
     <button ng-click="wizard.next(wizard)" name="next" id="next-button">NEXT</button>
     <button ng-click="wizard.back()" name="back" id="back-button">BACK</button>
-    <button ng-click="wizard.test()" name="test" id="test-button">TEST</button>
+    <button ng-click="wizard.test()" name="test" id="test-button">TEST</button>-->
 
 </div>
 </center>
