@@ -146,6 +146,121 @@ section p{
             margin-left: 40px;
         }
 
+#library h3{
+    color:#bbbbc0;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.4em;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+#library hr{
+    margin-top: -5px;
+    width: 70%;
+}
+
+#library ul li{
+    list-style:none;
+    display: inline;
+}
+
+#library img{
+    margin-left: 40px;
+    z-index: -99;
+}
+#library ul li a {
+    display: inline-block;
+    position: relative;
+}
+#library ul li a:hover span {
+    opacity: 1;
+    -webkit-transition: .5s ease;
+    -moz-transition: .5s ease;
+    -o-transition: .5s ease;
+    transition: .5s ease;
+}
+#library ul li a span p {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    text-align: center;
+    color: #ffffff;
+    font-size: 22px;
+    text-transform: uppercase;
+    margin-top: 130px;
+}
+#library ul li a span {
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 200px;
+    height: 300px;
+    opacity: 0;
+    background: rgba(245, 130, 29, 0.8);
+    border-radius: 9px;
+    margin-left: 40px;
+}
+/************
+
+************/
+
+#communities h3{
+    color:#bbbbc0;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.4em;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+#communities hr{
+    margin-top: -5px;
+    width: 70%;
+}
+
+#communities ul li{
+    list-style:none;
+    display: inline;
+}
+
+#communities img{
+    margin-left: 40px;
+    z-index: -99;
+}
+#communities ul li a {
+    display: inline-block;
+    position: relative;
+}
+#communities ul li a:hover span {
+    opacity: 1;
+    -webkit-transition: .5s ease;
+    -moz-transition: .5s ease;
+    -o-transition: .5s ease;
+    transition: .5s ease;
+}
+#communities ul li a span p {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    text-align: center;
+    color: #ffffff;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-top: 30px;
+}
+#communities ul li a span {
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 128px;
+    height: 128px;
+    opacity: 0;
+    background: rgba(245, 130, 29, 0.8);
+    border-radius: 9px;
+    margin-left: 10px;
+    left: 25px;
+}
+/********************
+***********************/
 
 #friends h3{
 	color:#bbbbc0;

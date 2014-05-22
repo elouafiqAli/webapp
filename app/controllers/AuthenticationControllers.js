@@ -477,9 +477,12 @@ controllers.controller('communitySubscription',
         }
     };
         $scope.index = -1;
+
     $scope.chose = function(index){
+        console.log(index);
         $scope.index = index;
         $scope.communities.selected_community = index;
+        console.log($scope.communities.list_of_communities[index]);
         $scope.selected_community = $scope.communities.list_of_communities[index];
     }
     $scope.validate = function() {
@@ -487,11 +490,9 @@ controllers.controller('communitySubscription',
         if ($scope.secretcode != $scope.selected_community.code) {
             $scope.status.secret_code.error = true;
             $scope.status.secret_code.description = "invalid secret code";
-            alert($scope.status.secret_code.description);
         } else {
             $scope.status.secret_code.error = false;
             $scope.status.secret_code.description = "Congratulations you just joined the Group";
-            alert($scope.status.secret_code.description);
         }
         var validated = $scope.communities.joinCommunity($scope.selected_community,$scope.index);
         //this

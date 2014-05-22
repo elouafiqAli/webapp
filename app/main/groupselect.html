@@ -16,17 +16,16 @@
 <div ng-controller="communitySubscription">
     <div id="subscribing-to-communities">
         <div>
-            <div id="library">
+            <div id="communities">
                 <div class="row">
                     <h3>Chose a communtiy you belong to</h3>
                     <hr>
                     <ul>
                         <li id="existing-communities" ng-repeat="community in communities.list_of_communities">
-                            <a>
-                                <img src='{{community.icon}}' width="254" height="254"  ng-click="chose($index)" alt="book"/>
+                            <a ng-click="chose($index)">
+                                <img src='{{community.icon}}' width="128" height="128"   alt="book"/>
                                  <span>
                                     <p>{{community.name}}</p>
-                                    <button ng-click="chose($index)">+</button><br/>
                                  </span>
                             </a>
                         </li>
@@ -39,24 +38,27 @@
                 <form>
                     <div>
                         <strong>{{ selected_community.name}}</strong><br>
-                        <img  width="254" height="254" src="{{selected_community.icon}}" ng-click="chose($index)"/>
+                        <img  width="200" height="200" src="{{selected_community.icon}}"/>
                         <p>{{selected_community.Description}}</p>
                     </div>
                     <input ng-model="secretcode" ng-enter="validate()" placeholder="enter secret code.."/>
                     <button ng-click="validate()" name ="final" id="final-button">validate</button>
                 </form>
             </div>
+            <h3> If you can't find a communtity.. </h3>
+            <!--
             <div ng-show="communities.myCommunities.length">
             <h3> My communities </h3>
             <div id="your-communities" ng-repeat="community in communities.myCommunities" class="library">
                 <div class="col-md-3 col-sm-4 col-xs-6">
                     <a>
-                        <img class="img-responsive" width='200' height="300" src="{{community.icon}}" ng-click="chose($index)" />
+                        <img class="img-responsive" width='200' height="200" src="{{community.icon}}" ng-click="chose($index)" />
                         <span><p>{{ community.name }}</p></span>
                     </a>
                 </div>
             </div>
             </div>
+            -->
 
         </div>
     </div>

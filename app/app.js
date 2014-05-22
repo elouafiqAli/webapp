@@ -105,7 +105,7 @@ function determineBehavior($kinvey, $location, $rootScope) {
             $location.path('/main/first_time');
         }else if(activeUser.first_time == 2){
             $location.path('/main/wishlist');
-        }else if(activeUser.first_time == 2){
+        }else if(activeUser.first_time == 3){
             $location.path('/main/groupselect');
         }else{
             $location.path($location.$$url);
