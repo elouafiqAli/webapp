@@ -5,41 +5,21 @@
                 <div class="row">
                     <img src="{{book.imageLinks.thumbnail}}" />
                     <h1><strong>{{ book.title }}</strong></h1><br>
-                    <div class="col-xs-8 col-xs-offset-2">
+                    <form class="col-xs-8 col-xs-offset-2" id="search-book">
                         <div class="input-group">
-                            <div class="input-group-btn search-panel">
-                                <!--
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                    <span id="search_concept">Filter by</span> <span class="caret"></span>
-                              </button> -->
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#contains">Book</a></li>
-                                    <li><a href="#its_equal">Paragraph chunk</a></li>
-                                    <li><a href="#greather_than">Page number</a></li>
-                                </ul>
-                            </div>
                             <input type="hidden" name="search_param" value="all" id="search_param">
                             <input ng-model="searchInput" name="search input" type="text" class="form-control" placeholder="Search inside the book">
-            <span class="input-group-btn">
-                <button ng-click="searchInsideBook()" name="search" id="search-button"class="btn btn-default" type="button">
-                    <span class="glyphicon glyphicon-search"></span></button><span class="error" ng-show="submittedError">{{errorDescription}}</span>
-            </span>
+                             <span class="input-group-btn">
+                                 <input type="submit" ng-click="searchInsideBook()" name="search" id="search-button"class="btn btn-default" type="button" value="Search">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                 </input><span class="error" ng-show="submittedError">{{errorDescription}}</span>
+                                </span>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             </div>
-
-    <!--
-    <div id="search-inside-book">
-        <input ng-model="searchInput" name="search input" placeholder="keyword..."/>
-        <button ng-click="searchInsideBook()" name="search" id="search-button">Search</button>
-        <span class="error" ng-show="submittedError">{{errorDescription}}</span>
-    </div>
-    -->
-
-
-    <div id="nothing" ng-show="searchResults.number_of_results">NOTHING FOUND WITH THIS KEYWORD</div>
+    <div id="nothing" ng-show="searchResults.number_of_results==0">NOTHING FOUND WITH THIS KEYWORD</div>
 
     <div id="search-results" ng-hide="!searchResults">
         <h2>Search Results</h2>
