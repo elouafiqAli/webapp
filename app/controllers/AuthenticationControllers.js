@@ -561,8 +561,19 @@ controllers.controller('createCommunity',
            groupLink:""
         };
         $scope.community = community;
-        $scope.register = function(community){
-
+        $scope.registerCommunity = function(community){
+            console.log(community);
+            community.creator = $kinvey.getActiveUser();
+            $kinvey.DataStore.save('proposals',community,{
+                exclude: ['creator'],
+                relations:{
+                    creator: 'user'
+                }
+            }).then(function(success){
+                //alert('we have created your community with success');
+            },function(error){
+                //alert('naaaa '+error);
+            });
         }
     }]);
 controllers.controller('community',
