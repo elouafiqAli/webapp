@@ -116,6 +116,7 @@ function determineBehavior($kinvey, $location, $rootScope) {
         }else if(activeUser.first_time == 3){
             $location.path('/main/groupselect');
         }else{
+            console.log()
             $location.path($location.$$url);
         }
 	} else if(window.location.href.split('/')[5].indexOf('signup') == 0) {

@@ -330,11 +330,11 @@ form {
 .wrap-table h2 {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 1.4em;
-  color: #BDBDBD;
+  color: #453D3D;
   margin-left: 30px;
 }
 .table {
-  margin-top: 10%;
+  margin-top: 3%;
 }
 .result {
   width: 95%;
@@ -352,7 +352,7 @@ form {
 .pages h3 {
   margin-left: 30px;
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 1.3em;
+  font-size: 1.5em;
   font-weight: 600;
 }
 .pages h3 span {
@@ -381,7 +381,7 @@ form {
 .wrap-table h2 {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 1.4em;
-  color: #BDBDBD;
+  color: #453D3D;
   margin-left: 30px;
   text-align: center;
 }

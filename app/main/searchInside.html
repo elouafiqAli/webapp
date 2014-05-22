@@ -40,34 +40,22 @@
 
 
     <div id="nothing" ng-show="searchResults.number_of_results">NOTHING FOUND WITH THIS KEYWORD</div>
-    <div id="searchinfo" ng-hide="searchResults == null">
-        <h2>Search Results</h2>
-        <h4>Number of occurences : {{searchResults.number_of_results}}
-        </h4></div>
-        <div ng-repeat="page in searchResults.search_results">
-    <div class="wrap-table" ng-show="searchResults.search_results.length">
 
-
-            <div class="table">
-                <h3>Page: <span>{{ page.page_number}}</span></h3>
-                <!-- <h1>{{book.title }}</h1>
-                <h2><i>by</i> {{book.author }}</h2>-->
-                <div class="result">
-               {{page.snippet_text}}
-                </div>
-                <div class="pages">
-            </div>
-            </div>
-        </div>
     <div id="search-results" ng-hide="!searchResults">
         <h2>Search Results</h2>
         <h4>Number of occurences : {{searchResults.number_of_results}}</h4>
-        <div ng-repeat="page in searchResults.search_results">
-            <h3>Page {{ page.page_number }}</h3><br>
-            <p> " <p><br>
-            --------------------------------<br>
+
+            <div class="wrap-table" ng-repeat="page in searchResults.search_results">
+                <div class="table">
+                    <div class="pages">
+                        <h3>Page: <span>{{page.page_number}}</span></h3>
+                    </div>
+                    <h2 class="result"><p>{{page.snippet_text}}</p></h2>
+
+                </div>
+            </div>
         </div>
-    </div>
-        </div>
+
+
     </center>
 </div>
