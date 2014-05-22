@@ -269,11 +269,11 @@ controllers.controller('addBooks',
     $scope.removeBook = function(index){
         $scope.books.splice(index,1);
     }
-    $scope.addBook =  function(callback,wizard,bookshelve){
-        if($scope.books.length < 5){
+    $scope.addBook =  function(callback,wizard,bookshelve,param){
+        if($scope.books.length < 5  && param){
             console.log('doing callback with params '+ wizard);
             handleError("Please enter "+ (5-$scope.books.length) +" additional books");
-        }else if($scope.books.length >= 5){
+        }else{
             console.log("I don't know how it got here "+$scope.books.length );
             var bookList;
             var shelve_name = bookshelve;
