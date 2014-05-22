@@ -50,6 +50,10 @@ app.config(['$routeProvider','$facebookProvider', function($routeProvider,$faceb
             templateUrl: 'main/create_community.html',
             controller: 'createCommunity'
         }).
+    when('/dashboard',{
+            templateUrl: 'main/dashboard.html',
+            controller: 'dashboard'
+        }).
 	otherwise({
 		 //redirectTo: '/main/signin'
 	});

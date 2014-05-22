@@ -8,6 +8,10 @@ controllers.controller('header',   ['$scope', '$kinvey', "$location","redriss", 
 
 
 }]);
+
+controllers.controller('dashboard',   ['$scope', '$kinvey', "$location","redriss", function($scope, $kinvey, $location,redriss) {
+   redriss.set('header_visible',false);
+}]);
 controllers.controller('LoginController',
 
 		['$scope', '$kinvey', "$location","redriss", function($scope, $kinvey, $location,redriss) {
@@ -505,6 +509,10 @@ controllers.controller('communitySubscription',
             console.log('lol');
             $location.path('/main/create_community');
     };
+    $scope.finishWizard =  function(){
+            $location.path('/dashboard');
+    }
+
 
 }]);
 controllers.controller('searchInside',
@@ -583,6 +591,10 @@ controllers.controller('createCommunity',
             },function(error){
                 alert(error);
             });
+
+        }
+        $scope.finishWizard =  function(){
+            $location.path('/dashboard');
         }
     }]);
 controllers.controller('community',
