@@ -500,7 +500,11 @@ controllers.controller('communitySubscription',
         // is the same as this
 
         alert($scope.status.secret_code.description);
-    }
+    };
+    $scope.createCommuntiy = function(){
+            console.log('lol');
+            $location.path('/main/create_community');
+    };
 
 }]);
 controllers.controller('searchInside',
@@ -528,10 +532,8 @@ controllers.controller('searchInside',
         };
 
         $scope.searchInsideBook = function(){
-
             var _query = $scope.searchInput;
             var _identifier = $scope.book.ISBN_13;
-
             var search_request = $kinvey.execute("insearch",{query:_query,id:_identifier});
             search_request.then(function(response){
                 if(response.results){
@@ -545,6 +547,23 @@ controllers.controller('searchInside',
             });
         };
         $scope.fetchBook($routeParams.ISBN);
+    }]);
+controllers.controller('createCommunity',
+    ['$scope', '$kinvey', '$location','redriss','$routeParams', function($scope, $kinvey, $location, redriss,$routeParams) {
+        var community = {
+           name: "",
+           icon: "",
+           description:"",
+           city:"",
+           country:"",
+           expected:"",
+           publicLink:"",
+           groupLink:""
+        };
+        $scope.community = community;
+        $scope.register = function(community){
+
+        }
     }]);
 controllers.controller('community',
     ['$scope', '$kinvey', '$location','redriss','$routeParams', function($scope, $kinvey, $location, redriss,$routeParams) {

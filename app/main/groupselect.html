@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bobox | Profile</title>
-    <link rel="stylesheet" href="css/foundation.css" />
     <link rel="stylesheet" href="css/profile.css" />
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
@@ -45,7 +44,10 @@
                     <button ng-click="validate()" name ="final" id="final-button">validate</button>
                 </form>
             </div>
-            <h3> If you can't find a communtity.. </h3>
+            <br>
+            <h3> If you can't find a communtity.... </h3>
+            <button id="create-community" ng-click="createCommuntiy()" class="btn btn-default" type="button">CREATRE YOUR OWN COMMUNITY</button><br>
+            <br>
             <!--
             <div ng-show="communities.myCommunities.length">
             <h3> My communities </h3>
@@ -65,9 +67,5 @@
 </div>
 </center>
 <script src="js/vendor/jquery.js"></script>
-<script src="js/foundation.min.js"></script>
-<script>
-    $(document).foundation();
-</script>
 </body>
 </html>

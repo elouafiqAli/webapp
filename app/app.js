@@ -46,6 +46,10 @@ app.config(['$routeProvider','$facebookProvider', function($routeProvider,$faceb
             templateUrl: 'main/groupselect.html',
             controller: 'communitySubscription'
         }).
+    when('/main/create_community',{
+            templateUrl: 'main/create_community.html',
+            controller: 'createCommunity'
+        }).
 	otherwise({
 		 //redirectTo: '/main/signin'
 	});
