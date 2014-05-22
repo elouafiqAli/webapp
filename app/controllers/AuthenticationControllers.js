@@ -400,7 +400,7 @@ controllers.controller('firstTimeWizard',
 
 controllers.controller('communitySubscription',
     ['$scope', '$kinvey', "$location",'redriss', function($scope, $kinvey, $location, redriss) {
-
+    $scope.selected_community ={};
     var _communities = {
         selected_community: 0,
         current_user : {},
@@ -420,12 +420,12 @@ controllers.controller('communitySubscription',
 
             var query= new $kinvey.Query();
             query.equalTo('username',_this.current_user.username);
-            var fetchingMyCommunities = $kinvey.DataStore.find("comuns",query);
+            var fetchingMyCommunities = $kinvey.DataStore.find("comuns",query,{relations:{community:'communities'}});
             fetchingMyCommunities.then(function(response){
                 console.log("we got in here at least");
                 for(i in response) {
-                    delete response[i].member;
-                    _this.myCommunities.push(response[i]);
+                    if(response[i].community != null)
+                        _this.myCommunities.push(response[i].community);
                 }
                 _this.watch();
             });
@@ -440,20 +440,22 @@ controllers.controller('communitySubscription',
                 }
             }
         },
-        joinCommunity: function(secretCode,_index){
-           var index = _index || this.selected_community;
-           var community = this.list_of_communities[index];
-           if(secretCode == community.code){
+        joinCommunity: function(community, index){
+
+           var community = community;
+
                var _comun = {
                    username: this.current_user.username,
                    member: this.current_user,
-                   name: community.name,
-                   icon: community.icon,
-                   type: community.type,
-                   description: community.description
+                   community: community
                };
                var _this = this;
                var joinRequest= $kinvey.DataStore.save('comuns',_comun,{
+                   exclude: ['member','community'],
+                   relations:{
+                        member: 'user',
+                        community: 'communities'
+                   },
                    success:function(response){
                        _this.myCommunities.push(_this.list_of_communities.splice(index,1)[0]);
                        return true;
@@ -462,10 +464,6 @@ controllers.controller('communitySubscription',
                    }
                });
                return joinRequest;
-
-           }else{
-               return false;
-           }
         }
     };
     redriss.set('_communities',_communities);
@@ -478,21 +476,28 @@ controllers.controller('communitySubscription',
             description: ''
         }
     };
+        $scope.index = -1;
     $scope.chose = function(index){
+        $scope.index = index;
         $scope.communities.selected_community = index;
+        $scope.selected_community = $scope.communities.list_of_communities[index];
     }
     $scope.validate = function() {
-        var validated = $scope.communities.joinCommunity($scope.secretcode);
-        //this
-        // $scope.status.secret_code.description = (($scope.status.secret_code.error=!validated)? "invalid secret code":"Congratulations you just joined the Group");
-        // is the same as this
-        if (validated != true) {
+
+        if ($scope.secretcode != $scope.selected_community.code) {
             $scope.status.secret_code.error = true;
             $scope.status.secret_code.description = "invalid secret code";
+            alert($scope.status.secret_code.description);
         } else {
             $scope.status.secret_code.error = false;
             $scope.status.secret_code.description = "Congratulations you just joined the Group";
+            alert($scope.status.secret_code.description);
         }
+        var validated = $scope.communities.joinCommunity($scope.selected_community,$scope.index);
+        //this
+        // $scope.status.secret_code.description = (($scope.status.secret_code.error=!validated)? "invalid secret code":"Congratulations you just joined the Group");
+        // is the same as this
+
         alert($scope.status.secret_code.description);
     }
 

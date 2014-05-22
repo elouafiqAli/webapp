@@ -34,17 +34,19 @@
                     </ul>
                 </div>
             </div>
-
-            <form>
-                <h4>Type Code: </h4>
-                <input ng-model="secretcode" ng-enter="validate()" placeholder="enter secret code.."/>
-                <div ng-show="community">
-                    <strong>{{ community.name}}</strong><br>
-                    <img src="{{community.icon}}" ng-click="chose($index)"/>
-                    {{community.Description}}
-                </div>
-                <button ng-click="validate()" name ="final" id="final-button">add</button>
-            </form>
+            <div class="row" ng-show="communities.selected_community">
+                <h3>Type Secret code Join the community</h3>
+                <form>
+                    <div>
+                        <strong>{{ selected_community.name}}</strong><br>
+                        <img  width="254" height="254" src="{{selected_community.icon}}" ng-click="chose($index)"/>
+                        <p>{{selected_community.Description}}</p>
+                    </div>
+                    <input ng-model="secretcode" ng-enter="validate()" placeholder="enter secret code.."/>
+                    <button ng-click="validate()" name ="final" id="final-button">validate</button>
+                </form>
+            </div>
+            <div ng-show="communities.myCommunities.length">
             <h3> My communities </h3>
             <div id="your-communities" ng-repeat="community in communities.myCommunities" class="library">
                 <div class="col-md-3 col-sm-4 col-xs-6">
@@ -53,6 +55,7 @@
                         <span><p>{{ community.name }}</p></span>
                     </a>
                 </div>
+            </div>
             </div>
 
         </div>
