@@ -1,5 +1,5 @@
 <div ng-controller="createCommunity" >
-    <div id="settings">
+    <div id="settings" ng-show="!validated">
         <div class="container">
             <div class="row">
             <div class="col-xs-12 .col-md-8">
@@ -8,7 +8,7 @@
                 <hr/>
                 <div>
                     <div class="name">
-                        <p>Community name</p>
+                        <p>Community name *</p>
                         <input ng-model="community.name" type="name" placeholder="Enter a new name"></input>
                     </div>
                     <div class="name">
@@ -18,15 +18,15 @@
                     <h2> Where are you located mainly</h2>
                     *it would be great if you are living near each other
                     <div class="name">
-                        <p>Country or State</p>
+                        <p>Country or State *</p>
                         <input ng-model="community.country" type="name" placeholder="e.g. California , France"></input>
                     </div>
                     <div class="name">
-                        <p>City</p>
+                        <p>City *</p>
                         <input ng-model="community.city" type="name" placeholder="e.g. Texas, L.A"></input>
                     </div>
                     <div class="name">
-                        <p>Expected number of users</p>
+                        <p>Expected number of community members *</p>
                         <input ng-model="community.expected" type="name" placeholder="e.g. 56, my class, zillions"></input>
                     </div>
                     <h3>If you have some online presence</h3>
@@ -51,5 +51,10 @@
             </div>
         </div>
     </div>
+    </div>
+    <div ng-show="validated" class="container" align="center">
+
+        <h1> Thank you for registering {{community.name}}</h1>
+        <h2> We will notify you by email once its approved :)</h2>
     </div>
 </div>

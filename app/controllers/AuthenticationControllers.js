@@ -560,8 +560,17 @@ controllers.controller('createCommunity',
            publicLink:"",
            groupLink:""
         };
+        $scope.validated = false;
         $scope.community = community;
         $scope.registerCommunity = function(community){
+            var required = ['name','city','country','expected'];
+            for(i in required){var property=required[i];
+                console.log(property);
+                if(community[property].length == 0){
+                    alert('please provide a valid '+ property+' value');
+                    return;
+                }
+            }
             console.log(community);
             community.creator = $kinvey.getActiveUser();
             $kinvey.DataStore.save('proposals',community,{
@@ -570,9 +579,9 @@ controllers.controller('createCommunity',
                     creator: 'user'
                 }
             }).then(function(success){
-                //alert('we have created your community with success');
+               $scope.validated = true;
             },function(error){
-                //alert('naaaa '+error);
+                alert(error);
             });
         }
     }]);
