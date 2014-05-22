@@ -1,11 +1,16 @@
 <center>
     <div ng-controller="dashboard">
         <div ng-controller="addBooks">
+
             <div class='library' id="book-to-add">
                 <div id="welcome-message">
                     <h4>Bringing the ebook experience to your physical books</h4>
                     <h2>Search Inside The Content of your books</h2>
                 </div>
+            </div>
+            <div class="col-xs-8 col-xs-offset-2">
+                <button id="add-books" ng-click="dashboard.goToAddBooks()" class="btn btn-default" type="button">SEARCH INSIDE MORE BOOKS</button><br>
+                <br>
             </div>
             <div class="library" id="shelve-books" ng-hide="!shelve_books.length">
                 <div ng-repeat="item in shelve_books">
@@ -22,7 +27,7 @@
                 </div>
             </div>
             <div class="col-xs-8 col-xs-offset-2">
-                <button id="add-books" ng-click="$location.path('/main/addBook')" ng-show="books.length" class="btn btn-default" type="button">SEARCH INSIDE MORE BOOKS</button><br>
+                <button id="add-books" ng-click="dashboard.goToAddBooks()" class="btn btn-default" type="button">SEARCH INSIDE MORE BOOKS</button><br>
                 <br>
             </div>
         </div>

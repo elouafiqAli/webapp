@@ -11,6 +11,10 @@ controllers.controller('header',   ['$scope', '$kinvey', "$location","redriss", 
 
 controllers.controller('dashboard',   ['$scope', '$kinvey', "$location","redriss", function($scope, $kinvey, $location,redriss) {
    redriss.set('header_visible',false);
+    $scope.dashboard = {};
+    $scope.dashboard.goToAddBooks = function(){
+        $location.path('/main/addBook');
+    }
 }]);
 controllers.controller('LoginController',
 
