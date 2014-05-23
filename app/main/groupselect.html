@@ -45,24 +45,25 @@
                 </form>
             </div>
             <br>
-            <h3> If you can't find a communtity.... </h3>
-            <button id="create-community" ng-click="createCommuntiy()" class="btn btn-default" type="button">CREATRE YOUR OWN COMMUNITY</button><br>
-            <br>
-            <!--
             <div ng-show="communities.myCommunities.length">
-            <h3> My communities </h3>
-            <div id="your-communities" ng-repeat="community in communities.myCommunities" class="library">
-                <div class="col-md-3 col-sm-4 col-xs-6">
-                    <a>
-                        <img class="img-responsive" width='200' height="200" src="{{community.icon}}" ng-click="chose($index)" />
-                        <span><p>{{ community.name }}</p></span>
-                    </a>
+                <h3> My communities </h3>
+                <div id="your-communities" ng-repeat="community in communities.myCommunities" class="library">
+                    <div class="col-md-3 col-sm-4 col-xs-6">
+                        <a>
+                            <img class="img-responsive" width='200' height="200" src="{{community.icon}}" ng-click="chose($index)" />
+                            <span><p>{{ community.name }}</p></span>
+                        </a>
+                    </div>
                 </div>
             </div>
-            </div>
-            -->
+
+
 
         </div>
+        
+        <h3> If you can't find a communtity.... </h3>
+        <button id="create-community" ng-click="createCommuntiy()" class="btn btn-default" type="button">CREATRE YOUR OWN COMMUNITY</button><br>
+        <br>
     </div>
 </div>
 </center>

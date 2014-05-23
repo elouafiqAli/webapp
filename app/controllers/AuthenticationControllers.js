@@ -440,9 +440,7 @@ controllers.controller('communitySubscription',
             var _this = this;
             var promise = $kinvey.DataStore.find("communities",null);
             promise.then(function (response) {
-
                 _this.list_of_communities = response;
-
                 }, function (error) {
 
                 });
@@ -487,6 +485,9 @@ controllers.controller('communitySubscription',
                    },
                    success:function(response){
                        _this.myCommunities.push(_this.list_of_communities.splice(index,1)[0]);
+                       var user = $kinvey.getActiveUser();
+                       user.first_time++;
+                       $kinvey.User.update(user);
                        return true;
                    },error:function(error){
                        return false;
@@ -528,7 +529,7 @@ controllers.controller('communitySubscription',
         // $scope.status.secret_code.description = (($scope.status.secret_code.error=!validated)? "invalid secret code":"Congratulations you just joined the Group");
         // is the same as this
 
-        alert($scope.status.secret_code.description);
+
     };
     $scope.createCommuntiy = function(){
             console.log('lol');
@@ -615,12 +616,16 @@ controllers.controller('createCommunity',
                 }
             }).then(function(success){
                $scope.validated = true;
+                var user = $kinvey.getActiveUser();
+                user.first_time++;
+                $kinvey.User.update(user).then(function(success){$location.path('/dashboard');});
             },function(error){
                 alert(error);
             });
 
         }
         $scope.finishWizard =  function(){
+
             $location.path('/dashboard');
         }
     }]);
