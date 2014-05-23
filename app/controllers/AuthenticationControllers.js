@@ -429,6 +429,7 @@ controllers.controller('firstTimeWizard',
 controllers.controller('communitySubscription',
     ['$scope', '$kinvey', "$location",'redriss', function($scope, $kinvey, $location, redriss) {
         redriss.set('header_visible',true);
+    $scope.finalStep=false;
     $scope.selected_community ={};
     var _communities = {
         selected_community: 0,

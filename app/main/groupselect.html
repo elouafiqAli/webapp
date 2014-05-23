@@ -14,7 +14,7 @@
 <center>
 <div ng-controller="communitySubscription">
     <div id="subscribing-to-communities">
-        <div>
+        <div ng-hide="finalStep">
             <div id="communities">
                 <div class="row">
                     <h3>Chose a communtiy you belong to</h3>
@@ -41,7 +41,7 @@
                         <p>{{selected_community.Description}}</p>
                     </div>
                     <input ng-model="secretcode" ng-enter="validate()" placeholder="enter secret code.."/>
-                    <button ng-click="validate()" name ="final" id="final-button">validate</button>
+                    <button ng-click="validate()" name ="final" id="final-button" class="btn btn-default">validate</button>
                 </form>
             </div>
             <br>
@@ -56,14 +56,21 @@
                     </div>
                 </div>
             </div>
-
-
-
+            <button class="btn btn-default" ng-click="finalStep=true" ng-show="communities.myCommunities.length">Continue</button>
+            <div><h3> If you can't find a communtity.... </h3>
+                <button id="create-community" ng-click="createCommuntiy()" class="btn btn-default" type="button">CREATRE YOUR OWN COMMUNITY</button><br>
+                <br></div>
         </div>
-        
-        <h3> If you can't find a communtity.... </h3>
-        <button id="create-community" ng-click="createCommuntiy()" class="btn btn-default" type="button">CREATRE YOUR OWN COMMUNITY</button><br>
-        <br>
+        <div ng-show="finalStep">
+            <h1> Thank you for enrolling with {{ communities.selected_community.name}}</h1>
+            <h2> We will notify you by email, once you are approved by the Administrators</h2>
+            <h2> you will soon be able to lend and borrow safely your books :) </h2>
+            <br>
+            <div class="desactivate">
+                <button class="btn btn-default" ng-click="finishWizard()">Continue to your account</button>
+            </div>
+        </div>
+
     </div>
 </div>
 </center>
