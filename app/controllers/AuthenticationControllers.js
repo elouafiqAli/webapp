@@ -112,37 +112,50 @@ controllers.controller('SignUpController',
 
 				console.log("signup");
                 var isFormInvalid = false;
-               /*
+console.log($scope.registrationForm);
                 //check is form valid
-                if ($scope.registrationForm.email.$error.email || $scope.registrationForm.email.$error.required) {
+                if($scope.registrationForm.fullname.$valid){
+                    $scope.submittedName = true;
+                    isFormInvalid = true;
+                }else{
+                    isFormInvalid = false;
+                    alert('please enter your fullname');
+                }
+                if ($scope.registrationForm.email.$valid || $scope.registrationForm.email.$error.required) {
                     $scope.submittedEmail = true;
                     isFormInvalid = true;
                 } else {
+                    isFormInvalid = false;
                     $scope.submittedEmail = false;
                 }
-                if ($scope.registrationForm.password.$error.required) {
+                if ($scope.registrationForm.password.$valid) {
                     $scope.submittedPassword = true;
                     isFormInvalid = true;
-                } else {
-                    $scope.submittedPassword = false;
-                }
-                if (isFormInvalid) {
-                    return;
-                }*/
 
-                //Kinvey signup starts
-				var promise = $kinvey.User.signup({
-                     fullname: $scope.fullname,
-		             username: $scope.email,
-		             password: $scope.password,
-		             email: $scope.email,
-                     first_time : 1
-		         });
-				console.log("signup promise");
-				promise.then(
-						followSignup,
-                    failedSignup
-				);
+                } else {
+                    isFormInvalid = false;
+                    $scope.submittedPassword = false;
+                    alert('your password should be at least 6 characters');
+                }
+
+                if (isFormInvalid) {
+                    //Kinvey signup starts
+                    var promise = $kinvey.User.signup({
+                        fullname: $scope.fullname,
+                        username: $scope.email,
+                        password: $scope.password,
+                        email: $scope.email,
+                        first_time : 1
+                    });
+                    console.log("signup promise");
+                    promise.then(
+                        followSignup,
+                        failedSignup
+                    );
+                    return;
+                }
+
+
 			};
             function followSignup(response){
                 //Kinvey signup finished with success
@@ -153,6 +166,7 @@ controllers.controller('SignUpController',
             function failedSignup(error){
                 $scope.submittedError = true;
                 $scope.errorDescription = error.description;
+                alert('error '+error.description);
                 console.log("signup error: " + error.description);
             }
            $scope.goToSignIn = function(){
