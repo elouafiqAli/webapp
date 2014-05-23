@@ -40,7 +40,7 @@
         <div class="col-xs-8 col-xs-offset-2">
             <h2 ng-hide="!searchResults.length">pick the appropriate book...</h2>
         </div>
-        <div class="library" id="shelve-books" ng-hide="!searchResults.length">
+        <div class="library" id="shelve-books" ng-hide="loading">
             <div ng-repeat="book in searchResults">
                 <div class="col-md-3 col-sm-4 col-xs-6">
                     <a>
@@ -54,7 +54,7 @@
 
             </div>
         </div>
-        <div id="loading" ng-hide="searchResults.length">
+        <div id="loading" ng-show="loading">
             <img src="http://unakravets.com/images/loading.gif"/>
         </div>
     </div>

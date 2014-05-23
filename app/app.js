@@ -62,7 +62,7 @@ app.config(['$routeProvider','$facebookProvider', function($routeProvider,$faceb
 }]);
 //inject instances (not Providers) into run blocks
 app.run(['$location', '$kinvey', '$rootScope','$facebook','redriss', function($location, $kinvey, $rootScope, $facebook,redriss) {
-    redriss.set('header_visible',true);
+    //redriss.set('header_visible',true);
     // Load the facebook SDK asynchronously
     (function(){
         // If we've already installed the SDK, we're done

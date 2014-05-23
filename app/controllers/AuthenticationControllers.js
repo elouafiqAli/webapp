@@ -237,7 +237,7 @@ controllers.controller('addBooks',
     $scope.searchInput ='';
     $scope.shelve = [];
     $scope.shelve_books =[];
-
+    $scope.loading = false;
     var CHECK_BOOK_EXISTENCE= false;
     $scope.imageResizer = function(imageLink){
         var _image = imageLink.split('zoom=1');
@@ -255,6 +255,7 @@ controllers.controller('addBooks',
         $scope.errorDescription = Description;
     }
     $scope.fetchBook = function(){
+        $scope.loading = true;
         //Check Validity of input
         var inputTitle = $scope.searchInput;
         if(CHECK_BOOK_EXISTENCE){
@@ -274,8 +275,10 @@ controllers.controller('addBooks',
                 }else{
                     handleError("Couldn't find the book with the title "+inputISBN);
                 }
+                $scope.loading = false;
             },function(error){
                 handleError("Couldn't find the book with the ISBN "+inputISBN);
+                $scope.loading = false;
             }
         );
     }
@@ -550,6 +553,7 @@ controllers.controller('searchInside',
         $scope.submittedError = false;
         $scope.errorDescription = '';
         $scope.searchResults =null;
+        $scope.interrupt = true;
         $scope.fetchBook = function(ISBN){
             //Check Validity of input
             var inputISBN = ISBN;
@@ -568,6 +572,7 @@ controllers.controller('searchInside',
         };
 
         $scope.searchInsideBook = function(){
+            $scope.interrupt=false;
             var _query = $scope.searchInput;
             var _identifier = $scope.book.ISBN_13;
             var search_request = $kinvey.execute("insearch",{query:_query,id:_identifier});
@@ -576,9 +581,11 @@ controllers.controller('searchInside',
                     console.log('in here '+response.results);
                     $scope.submittedError = false;
                     $scope.searchResults =response.results;
+                    $scope.interrupt=true;
                 }else{
                     console.log(response);
                     $scope.searchResults = response;
+                    $scope.interrupt=true;
                 }
             });
         };
