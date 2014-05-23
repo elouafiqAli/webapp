@@ -4,6 +4,7 @@
             <div class='library' id="book-to-add">
                 <div id="welcome-message">
                     <h3>{{errorDescription="please enter at least 5 books to your wishlist"}}</h3>
+                    <h4>* books you wish to borrow</h4>
                 </div>
                 <div ng-repeat="book in books">
                     <div class="col-md-3 col-sm-4 col-xs-6">
@@ -27,7 +28,7 @@
 
                 <div class="input-group">
                     <input ng-model="searchInput" type="hidden" name="search_param" value="all" id="search_param" placeholder="ISBN...">
-                    <input ng-model="searchInput" name="search input" type="text" class="form-control" placeholder="look for book by title">
+                    <input ng-model="searchInput" name="search input" type="text" class="form-control" placeholder="look for books by title, ISBN, keywords, or author">
                 <span class="input-group-btn">
                     <input type="submit" ng-click="fetchBook()" name="search" id="search-button"class="btn btn-default" type="button" value="Search">
                         <span class="glyphicon glyphicon-search"></span><span class="error" ng-show="submittedError">{{errorDescription}}</span>

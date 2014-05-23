@@ -25,7 +25,7 @@
 
         <div class="input-group">
             <input ng-model="searchInput" type="hidden" name="search_param" value="all" id="search_param" placeholder="ISBN...">
-            <input ng-model="searchInput" name="search input" type="text" class="form-control" placeholder="look for book by title">
+            <input ng-model="searchInput" name="search input" type="text" class="form-control" placeholder="look for books by title, ISBN, keywords, or author">
                 <span class="input-group-btn">
                     <input type="submit" ng-click="fetchBook()" name="search" id="search-button"class="btn btn-default" type="button" value="Search">
                         <span class="glyphicon glyphicon-search"></span><span class="error" ng-show="submittedError">{{errorDescription}}</span>

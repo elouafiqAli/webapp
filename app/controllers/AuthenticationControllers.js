@@ -543,7 +543,7 @@ controllers.controller('communitySubscription',
 
 }]);
 controllers.controller('searchInside',
-    ['$scope', '$kinvey', "$location","sharedBooks","$routeParams", function($scope, $kinvey, $location, sharedBooks, $routeParams){
+    ['$scope', '$kinvey', "$location","sharedBooks","$routeParams","redriss", function($scope, $kinvey, $location, sharedBooks, $routeParams,redriss){
         redriss.set('header_visible',true);
         $scope.ISBN = $routeParams.ISBN_13;
         $scope.book = sharedBooks.getBook();

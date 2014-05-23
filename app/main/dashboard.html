@@ -15,7 +15,7 @@
             <div class="library" id="shelve-books" ng-hide="!shelve_books.length">
                 <div ng-repeat="item in shelve_books">
                     <div class="col-md-3 col-sm-4 col-xs-6">
-                        <a href="#">
+                        <a>
                             <img class="img-responsive" width='200' height="300" src="{{ item.book.imageLinks.thumbnail}}" />
                                 <span>
                                     <button id="search-inside-book" ng-click="searchInsideBook(item.book)">search</button><br/>
