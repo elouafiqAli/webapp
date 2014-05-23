@@ -34,10 +34,10 @@
                 <div class="wrap">
                     <p class="form-title"> Sign in Bobox and enjoy a pleasant moment</p>
                     <p class="form-title"></p>
-                    <form name="registrationForm" class="login">
-                        <input id="login-email" name="email" type="text" ng-model="username" placeholder="Your Email" required/>
-                        <input id="login-password" name="password" type="password" ng-model="password" placeholder="*********" required/>
-                        <input id="login-button" type="submit" value="Lets Read Books" class="btn btn-success btn-sm" ng-click="login()"/>
+                    <form name="loginForm" class="login">
+                        <input id="email" name="email" type="email" ng-model="username" placeholder="Your Email" required/>
+                        <input id="password" name="password" type="password" ng-minlength="6" ng-model="password" placeholder="*********" required/>
+                        <input id="button" type="submit" value="Lets Read Books" class="btn btn-success btn-sm" ng-click="login()"/>
                         <div class="remember-forgot">
                             <div class="row">
                                 <div class="col-md-6">

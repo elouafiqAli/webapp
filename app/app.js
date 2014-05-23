@@ -15,7 +15,7 @@ app.config(['$routeProvider','$facebookProvider', function($routeProvider,$faceb
             controller:'addBooks'
         }).
 	when('/main/login', {
-		templateUrl: 'main/login.html',
+		templateUrl: 'main/signin.html',
 		controller: 'LoginController'
 	}).
 	when('/main/password_reset', {
@@ -27,7 +27,7 @@ app.config(['$routeProvider','$facebookProvider', function($routeProvider,$faceb
 		controller: 'SignUpController'
 	}).
     when('/main/signin',{
-            templateUrl: 'main/login.html',
+            templateUrl: 'main/signin.html',
             controller: 'LoginController'
     }).
 	when('/main/first_time', {
@@ -90,12 +90,12 @@ app.run(['$location', '$kinvey', '$rootScope','$facebook','redriss', function($l
 	promise.then(function() {
         // Kinvey initialization finished with success
 		console.log("Kinvey init with success");
-        redriss.set('header_visible',true);
+        //redriss.set('header_visible',true);
 		determineBehavior($kinvey, $location, $rootScope);
 	}, function(errorCallback) {
         // Kinvey initialization finished with error
 		console.log("Kinvey init with error: " + JSON.stringify(errorCallback));
-        redriss.set('header_visible',true);
+        //redriss.set('header_visible',true);
 		determineBehavior($kinvey, $location, $rootScope);
 	});
 }]);
@@ -128,8 +128,8 @@ function determineBehavior($kinvey, $location, $rootScope) {
             $location.path('/main/signin');
         }
     }
-    console.log("$location.$$url: " + $location.$$url);
-    console.log("current user "+activeUser.username+" stage "+activeUser.first_time);
+    //console.log("$location.$$url: " + $location.$$url);
+    //console.log("current user "+activeUser.username+" stage "+activeUser.first_time);
 }
 
 app.factory("redriss", function(){
@@ -137,9 +137,11 @@ app.factory("redriss", function(){
     var keyValueStore = {};
     var _redriss = {};
     _redriss.set = function(key,value){
+        console.log('redriss setting : '+key+ ' --> '+value);
         return keyValueStore[key]=value;
     };
     _redriss.get = function(key) {
+        console.log('redriss getting : '+key+ ' --> '+keyValueStore[key]);
         return keyValueStore[key];
     };
     _redriss.remove= function(key) {
@@ -153,6 +155,7 @@ app.factory("sharedBooks", function(){
     var mySharedBooks = {};
     var singleBook;
     mySharedBooks.setBook = function(book){
+
         singleBook = book;
     };
     mySharedBooks.getBook = function(){

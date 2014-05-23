@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="col-xs-8 col-xs-offset-2">
-            <button id="add-books" ng-click="addBook($location.path,'/main/wishlist','myCollection')" ng-show="books.length" class="btn btn-default" type="button">ADD SELECTED BOOKS TO YOUR LIBRARY</button><br>
+            <button id="add-books" ng-click="addBook($location.path,'/main/wishlist','myCollection',1)" ng-show="books.length" class="btn btn-default" type="button">ADD SELECTED BOOKS TO YOUR LIBRARY</button><br>
             <br>
         </div>
         <form class="col-xs-8 col-xs-offset-2" id="search-book">
@@ -38,7 +38,7 @@
         </form>
         <br><br>
         <div class="col-xs-8 col-xs-offset-2">
-            <h1 ng-hide="!searchResults.length">chose the appropriate book...</h1>
+            <h2 ng-hide="!searchResults.length">pick the appropriate book...</h2>
         </div>
         <div class="library" id="shelve-books" ng-hide="!searchResults.length">
             <div ng-repeat="book in searchResults">

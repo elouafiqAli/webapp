@@ -46,7 +46,7 @@ form {
   width: 350px;
   margin: 0 auto; }
 
-form.login input[type="text"], form.login input[type="password"] {
+form.login input{
   width: 100%;
   margin: 0;
   padding: 5px 10px;

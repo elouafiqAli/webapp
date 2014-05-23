@@ -26,43 +26,49 @@ controllers.controller('LoginController',
                 var isFormInvalid = false;
 
                 //check is form valid
-                        /*
-                        if ($scope.loginForm.email.$error.email || $scope.loginForm.email.$error.required) {
+
+                        if ($scope.loginForm.email.$valid || $scope.loginForm.email.$error.required) {
                             $scope.submittedEmail = true;
                             isFormInvalid = true;
                         } else {
                             $scope.submittedEmail = false;
+                            return;
                         }
-                        if ($scope.loginForm.password.$error.required) {
+                /*
+                        console.log($scope.loginForm.password);
+                        if ($scope.loginForm.password.$valid) {
                             $scope.submittedPassword = true;
                             isFormInvalid = true;
                         } else {
                             $scope.submittedPassword = false;
-                        }
-                        if (isFormInvalid) {
                             return;
                         }*/
+                        if (isFormInvalid) {
+                            var promise = $kinvey.User.login({
+                                username: $scope.username,
+                                password: $scope.password
+                            });
+                            promise.then(
+                                function (response) {
+                                    //Kinvey login finished with success
+                                    $scope.submittedError = false;
+                                    $location.path("/main/dashboard");
+                                    $scope.visible = redriss.set('header_visible',true);
+                                },
+                                function (error) {
+                                    //Kinvey login finished with error
+                                    $scope.submittedError = true;
+                                    $scope.errorDescription = error.description;
+                                    alert('Invalid Email and password combination');
+                                    console.log("Error login " + error.description);//
+                                }
+                            );
+                            return;
+                        }
 
                 console.log("call login");
                 //Kinvey login starts
-                        var promise = $kinvey.User.login({
-                            username: $scope.username,
-                            password: $scope.password
-                        });
-                        promise.then(
-                            function (response) {
-                                //Kinvey login finished with success
-                                $scope.submittedError = false;
-                                $location.path("/main/addBook");
-                                $scope.visible = redriss.set('header_visible',true);
-                            },
-                            function (error) {
-                                //Kinvey login finished with error
-                                $scope.submittedError = true;
-                                $scope.errorDescription = error.description;
-                                console.log("Error login " + error.description);//
-                            }
-                        );
+
 			}
 		    $scope.forgetPassword = function () {
 		        console.log("forgetPassword");
@@ -168,7 +174,7 @@ controllers.controller('LoggedInController',
                         //Kinvey logout finished with success
                         console.log("user logout");
                         $kinvey.setActiveUser(null);
-                        $location.url("../#/main/first_time");
+                        $location.url("/main/first_time");
                     },
                     function (error) {
                         //Kinvey logout finished with error
