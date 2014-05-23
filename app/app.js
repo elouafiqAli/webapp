@@ -124,7 +124,7 @@ function determineBehavior($kinvey, $location, $rootScope) {
         window.location.href = url;
 	}else{
         console.log("activeUser null redirecting");
-        if ($location.$$url != '/main/signin') {
+        if ($location.$$url != '/main/signin' && $location.$$url != '/main/signup') {
             $location.path('/main/signin');
         }
     }

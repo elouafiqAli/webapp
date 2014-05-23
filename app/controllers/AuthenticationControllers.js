@@ -4,7 +4,7 @@ function handleError(Description){
     $scope.errorDescription = Description;
 }
 controllers.controller('header',   ['$scope', '$kinvey', "$location","redriss", function($scope, $kinvey, $location,redriss) {
-    window.setInterval(function(){$scope.visible = redriss.get('header_visible');},300);
+    window.setInterval(function(){$scope.visible = redriss.get('header_visible');},100);
 
 
 }]);
@@ -101,7 +101,7 @@ controllers.controller('ResetPasswordController',
 		}]);
 controllers.controller('SignUpController', 
 		['$scope', '$kinvey', "$location","redriss", function($scope, $kinvey, $location,redriss) {
-
+            redriss.set('header_visible',false);
 			$scope.signUp = function () {
 
 				console.log("signup");
@@ -157,6 +157,7 @@ controllers.controller('SignUpController',
 		}]);
 controllers.controller('LoggedInController', 
 		['$scope', '$kinvey', '$location', function($scope, $kinvey, $location)  {
+            redriss.set('header_visible',true);
             $scope.logout = function () {
                 console.log("logout");
 
@@ -206,7 +207,8 @@ controllers.controller('LoggedInController',
         }]);
 
 controllers.controller('addBooks',
-    ['$scope', '$kinvey', "$location","sharedBooks", function($scope, $kinvey, $location, sharedBooks) {
+    ['$scope', '$kinvey', "$location","sharedBooks","redriss", function($scope, $kinvey, $location, sharedBooks,redriss) {
+        redriss.set('header_visible',true);
     $scope.sharedBooks = sharedBooks;
     $scope.searchBooks = '';
     $scope.searchInput ='';
@@ -358,6 +360,7 @@ controllers.controller('addBooks',
 }]);
 controllers.controller('firstTimeWizard',
     ['$scope', '$kinvey', "$location","redriss", function($scope, $kinvey, $location,redriss) {
+        redriss.set('header_visible',true);
         var _wizard = {
             steps: [true,false],
             index : 0,
@@ -408,6 +411,7 @@ controllers.controller('firstTimeWizard',
 
 controllers.controller('communitySubscription',
     ['$scope', '$kinvey', "$location",'redriss', function($scope, $kinvey, $location, redriss) {
+        redriss.set('header_visible',true);
     $scope.selected_community ={};
     var _communities = {
         selected_community: 0,
@@ -521,6 +525,7 @@ controllers.controller('communitySubscription',
 }]);
 controllers.controller('searchInside',
     ['$scope', '$kinvey', "$location","sharedBooks","$routeParams", function($scope, $kinvey, $location, sharedBooks, $routeParams){
+        redriss.set('header_visible',true);
         $scope.ISBN = $routeParams.ISBN_13;
         $scope.book = sharedBooks.getBook();
         $scope.submittedError = false;
@@ -562,6 +567,7 @@ controllers.controller('searchInside',
     }]);
 controllers.controller('createCommunity',
     ['$scope', '$kinvey', '$location','redriss','$routeParams', function($scope, $kinvey, $location, redriss,$routeParams) {
+        redriss.set('header_visible',true);
         var community = {
            name: "",
            icon: "",
@@ -603,7 +609,7 @@ controllers.controller('createCommunity',
     }]);
 controllers.controller('community',
     ['$scope', '$kinvey', '$location','redriss','$routeParams', function($scope, $kinvey, $location, redriss,$routeParams) {
-
+        redriss.set('header_visible',true);
     var _community = {
         members:[],
         library : [],
