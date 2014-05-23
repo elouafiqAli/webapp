@@ -82,17 +82,23 @@ header .nav {
     transition: .5s ease;
     opacity: 0.8;
     cursor: pointer; }
+  header a {
+    text-decoration: none;
+  }
+  header a:hover {
+    opacity: .8;
+  }
 
 .presentation {
   font-family: "adam";
-  margin-top: 13%; }
+  margin-top: 15%; }
   .presentation h1 {
     text-align: center;
     font-family: "adam";
     color: #ffffff;
     font-size: 2em;
     text-transform: uppercase;
-    margin-bottom: 10px; }
+    }
   .presentation h2 {
     text-align: center;
     font-size: 1.2em;
