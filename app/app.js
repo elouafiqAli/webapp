@@ -55,7 +55,7 @@ app.config(['$routeProvider','$facebookProvider', function($routeProvider,$faceb
             controller: 'addBooks'
         }).
 	otherwise({
-		 //redirectTo: '/main/signin'
+
 	});
 
     $facebookProvider.setAppId('600246116738644');
@@ -104,8 +104,7 @@ app.run(['$location', '$kinvey', '$rootScope','$facebook','redriss', function($l
 //function selects the desired behavior depending on whether the user is logged or not
 function determineBehavior($kinvey, $location, $rootScope) {
 	var activeUser = $kinvey.getActiveUser();
-	console.log("$location.$$url: " + $location.$$url);
-    console.log("current user "+activeUser.username+" stage "+activeUser.first_time);
+
 	if (activeUser != null) {
 		console.log("activeUser not null determine behavior");
         console.log(activeUser.first_time);
@@ -119,14 +118,18 @@ function determineBehavior($kinvey, $location, $rootScope) {
             console.log($location.$$url)
             $location.path($location.$$url);
         }
-	} else if(window.location.href.split('/')[5].indexOf('signup') == 0) {
-
+	} else if(window.location.href.split('/').length < 6) {
+        var u = window.location.href.split('/');
+        url = u[0]+'//'+u[1]+u[2]+'/landing.html';
+        window.location.href = url;
 	}else{
         console.log("activeUser null redirecting");
         if ($location.$$url != '/main/signin') {
             $location.path('/main/signin');
         }
     }
+    console.log("$location.$$url: " + $location.$$url);
+    console.log("current user "+activeUser.username+" stage "+activeUser.first_time);
 }
 
 app.factory("redriss", function(){
