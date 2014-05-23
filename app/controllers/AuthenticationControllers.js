@@ -295,7 +295,7 @@ controllers.controller('addBooks',
     $scope.removeBook = function(index){
         $scope.books.splice(index,1);
     }
-    $scope.addBook =  function(callback,wizard,bookshelve,param){
+    $scope.addBook =  function(wizard,bookshelve,param){
         if($scope.books.length < 5  && param){
             console.log('doing callback with params '+ wizard);
             handleError("Please enter "+ (5-$scope.books.length) +" additional books");
@@ -339,15 +339,12 @@ controllers.controller('addBooks',
                 $scope.shelve_books.unshift({book: _book});
             }
             $scope.books = [];
-
-            if(callback){
-                // saying that the user has finished the ste[s
-                var user = $kinvey.getActiveUser();
-                console.log(user.username);
-                user.first_time++;
-                $kinvey.User.update(user);
-                callback(wizard);
-            }
+            // saying that the user has finished the ste[s
+            console.log('inside  ');
+            var user = $kinvey.getActiveUser();
+            console.log(user.username);
+            user.first_time++;
+            $kinvey.User.update(user).then(function(success){$location.path(wizard);});
         }
     }
     function onLoad(){
