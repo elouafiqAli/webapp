@@ -45,16 +45,23 @@
                 </form>
             </div>
             <br>
+            <div id="communities">
             <div ng-show="communities.myCommunities.length">
                 <h3> My communities </h3>
-                <div id="your-communities" ng-repeat="community in communities.myCommunities" class="library">
-                    <div class="col-md-3 col-sm-4 col-xs-6">
-                        <a>
-                            <img class="img-responsive" width='200' height="200" src="{{community.icon}}" ng-click="chose($index)" />
-                            <span><p>{{ community.name }}</p></span>
-                        </a>
-                    </div>
+                <div class="row">
+                    <hr>
+                    <ul>
+                        <li id="your-communities" ng-repeat="community in communities.myCommunities">
+                            <a>
+                                <img src='{{community.icon}}' width="128" height="128"   alt="book"/>
+                                 <span>
+                                    <p>{{community.name}}</p>
+                                 </span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
+            </div>
             </div>
             <button class="btn btn-default" ng-click="finalStep=true" ng-show="communities.myCommunities.length">Continue</button>
             <div><h3> If you can't find a communtity.... </h3>

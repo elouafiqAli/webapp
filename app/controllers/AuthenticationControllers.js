@@ -487,7 +487,7 @@ controllers.controller('communitySubscription',
                    success:function(response){
                        _this.myCommunities.push(_this.list_of_communities.splice(index,1)[0]);
                        var user = $kinvey.getActiveUser();
-                       user.first_time++;
+                       ++user.first_time;
                        $kinvey.User.update(user);
                        return true;
                    },error:function(error){
