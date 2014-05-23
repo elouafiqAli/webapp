@@ -176,7 +176,7 @@ form {
 /* table with the search results */
 .wrap-table {
   width: 50%;
-  margin-top: 100px;
+  /*margin-top: 100px;*/
   margin-left: auto;
   margin-right: auto;
   height: 350px;
@@ -239,37 +239,48 @@ form {
       font-family: "Source Sans Pro", sans-serif;
       font-size: 1.2em;
       font-weight: 600;
-      color: #D6D6D6; }
+      color: #5C5151; }
     #settings .name input[type=text] {
       border: 0;
-      font-size: 1.2em;
+      font-size: 1.5em;
       font-family: "Source Sans Pro", sans-serif;
       text-align: center;
-      border-bottom: 2px solid #D6D6D6;
+      border-bottom: 2px solid #d6d6d6;
       outline: none;
       padding-bottom: 3px;
-      color: #D6D6D6; }
+      width: 600px;
+      color: #5C5151; }
+    #settings .name input[type=name] {
+        border: 0;
+        font-size: 1.5em;
+        font-family: "Source Sans Pro", sans-serif;
+        text-align: center;
+        border-bottom: 2px solid #d6d6d6;
+        outline: none;
+        padding-bottom: 3px;
+
+        color: #5C5151; }
     #settings .name input[type=password] {
       border: 0;
       font-size: 1.2em;
       font-family: "Source Sans Pro", sans-serif;
       text-align: center;
-      border-bottom: 2px solid #D6D6D6;
+      border-bottom: 2px solid #5C5151;
       outline: none;
       padding-bottom: 3px;
-      color: #D6D6D6; }
+      color: #5C5151; }
     #settings .name ::-webkit-input-placeholder {
       /* WebKit browsers */
-      color: #d4d4d4; }
+      color: #d6d6d6; }
     #settings .name :-moz-placeholder {
       /* Mozilla Firefox 4 to 18 */
-      color: #d4d4d4; }
+      color: #d6d6d6; }
     #settings .name ::-moz-placeholder {
       /* Mozilla Firefox 19+ */
-      color: #d4d4d4; }
+      color: #d6d6d6; }
     #settings .name :-ms-input-placeholder {
       /* Internet Explorer 10+ */
-      color: #d4d4d4; }
+      color: #d6d6d6; }
   #settings .desactivate {
     margin-top: 40px; }
     #settings .desactivate button {
@@ -303,7 +314,7 @@ form {
   /* table with the search results */
 .wrap-table {
   width: 90%;
-  margin-top: 100px;
+    /*margin-top: 100px;*/
   margin-left: auto;
   margin-right: auto;
   height: 350px;
@@ -319,11 +330,11 @@ form {
 .wrap-table h2 {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 1.4em;
-  color: #BDBDBD;
+  color: #453D3D;
   margin-left: 30px;
 }
 .table {
-  margin-top: 10%;
+  margin-top: 3%;
 }
 .result {
   width: 95%;
@@ -341,7 +352,7 @@ form {
 .pages h3 {
   margin-left: 30px;
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 1.3em;
+  font-size: 1.5em;
   font-weight: 600;
 }
 .pages h3 span {
@@ -353,7 +364,7 @@ form {
   /* table with the search results */
 .wrap-table {
   width: 80%;
-  margin-top: 100px;
+  /*margin-top: 100px;*/
   margin-left: auto;
   margin-right: auto;
   height: 350px;

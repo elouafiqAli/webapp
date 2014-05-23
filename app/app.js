@@ -15,7 +15,7 @@ app.config(['$routeProvider','$facebookProvider', function($routeProvider,$faceb
             controller:'addBooks'
         }).
 	when('/main/login', {
-		templateUrl: 'main/login.html',
+		templateUrl: 'main/signin.html',
 		controller: 'LoginController'
 	}).
 	when('/main/password_reset', {
@@ -27,19 +27,35 @@ app.config(['$routeProvider','$facebookProvider', function($routeProvider,$faceb
 		controller: 'SignUpController'
 	}).
     when('/main/signin',{
-            templateUrl: 'main/login.html',
+            templateUrl: 'main/signin.html',
             controller: 'LoginController'
     }).
 	when('/main/first_time', {
 		templateUrl: 'main/firstTimeWizard.html',
 		controller: 'firstTimeWizard'
 	}).
+    when('/main/wishlist',{
+        templateUrl: 'main/wishlist.html',
+        controller: 'addBooks'
+        }).
     when('/main/community/:community_name', {
             templateUrl: 'main/community.html',
             controller: 'community'
         }).
+    when('/main/groupselect',{
+            templateUrl: 'main/groupselect.html',
+            controller: 'communitySubscription'
+        }).
+    when('/main/create_community',{
+            templateUrl: 'main/create_community.html',
+            controller: 'createCommunity'
+        }).
+    when('/dashboard',{
+            templateUrl: 'main/dashboard.html',
+            controller: 'addBooks'
+        }).
 	otherwise({
-		 //redirectTo: '/main/signin'
+
 	});
 
     $facebookProvider.setAppId('600246116738644');
@@ -74,12 +90,12 @@ app.run(['$location', '$kinvey', '$rootScope','$facebook','redriss', function($l
 	promise.then(function() {
         // Kinvey initialization finished with success
 		console.log("Kinvey init with success");
-        redriss.set('header_visible',true);
+        //redriss.set('header_visible',true);
 		determineBehavior($kinvey, $location, $rootScope);
 	}, function(errorCallback) {
         // Kinvey initialization finished with error
 		console.log("Kinvey init with error: " + JSON.stringify(errorCallback));
-        redriss.set('header_visible',true);
+        //redriss.set('header_visible',true);
 		determineBehavior($kinvey, $location, $rootScope);
 	});
 }]);
@@ -88,24 +104,32 @@ app.run(['$location', '$kinvey', '$rootScope','$facebook','redriss', function($l
 //function selects the desired behavior depending on whether the user is logged or not
 function determineBehavior($kinvey, $location, $rootScope) {
 	var activeUser = $kinvey.getActiveUser();
-	console.log("$location.$$url: " + $location.$$url);
 
 	if (activeUser != null) {
 		console.log("activeUser not null determine behavior");
         console.log(activeUser.first_time);
-        if(activeUser.first_time){
+        if(activeUser.first_time == 1){
             $location.path('/main/first_time');
+        }else if(activeUser.first_time == 2){
+            $location.path('/main/wishlist');
+        }else if(activeUser.first_time == 3){
+            $location.path('/main/groupselect');
         }else{
+            console.log($location.$$url)
             $location.path($location.$$url);
         }
-	} else if(window.location.href.split('/')[5].indexOf('signup') == 0) {
-
+	} else if(window.location.href.split('/').length < 6) {
+        var u = window.location.href.split('/');
+        url = u[0]+'//'+u[1]+u[2]+'/landing.html';
+        window.location.href = url;
 	}else{
         console.log("activeUser null redirecting");
-        if ($location.$$url != '/main/signin') {
+        if ($location.$$url != '/main/signin' && $location.$$url != '/main/signup') {
             $location.path('/main/signin');
         }
     }
+    //console.log("$location.$$url: " + $location.$$url);
+    //console.log("current user "+activeUser.username+" stage "+activeUser.first_time);
 }
 
 app.factory("redriss", function(){
@@ -113,9 +137,11 @@ app.factory("redriss", function(){
     var keyValueStore = {};
     var _redriss = {};
     _redriss.set = function(key,value){
+        console.log('redriss setting : '+key+ ' --> '+value);
         return keyValueStore[key]=value;
     };
     _redriss.get = function(key) {
+        console.log('redriss getting : '+key+ ' --> '+keyValueStore[key]);
         return keyValueStore[key];
     };
     _redriss.remove= function(key) {
@@ -129,6 +155,7 @@ app.factory("sharedBooks", function(){
     var mySharedBooks = {};
     var singleBook;
     mySharedBooks.setBook = function(book){
+
         singleBook = book;
     };
     mySharedBooks.getBook = function(){

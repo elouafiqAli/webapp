@@ -51,15 +51,26 @@ module.exports = function (grunt) {
             },
             lib_test: {
                 src: ['lib/**/*.js', 'test/**/*.js']
+            },
+            app:{
+                src:'app/*'
             }
         },
         qunit: {
             files: ['test/**/*.html']
         },
+        exec:{
+            refresh: 'cp -r ~/projects/bobox/webapp/main/app/* ~/deploy/Dropbox/Apps/site44/bobox.site44.com/',
+            deploy: 'cp -r ~/projects/bobox/webapp/main/app/* ~/deploy/Dropbox/Apps/site44/www.bobox.ma/'
+        },
         watch: {
+            app:{
+                files: '<%= jshint.app.src %>',
+                tasks: ['exec:refresh']
+            },
             gruntfile: {
                 files: '<%= jshint.gruntfile.src %>',
-                tasks: ['jshint:gruntfile']
+                tasks: ['jshint:gruntfile','exec:refresh']
             },
             lib_test: {
                 files: '<%= jshint.lib_test.src %>',
@@ -86,8 +97,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-exec');
     // Default task
     grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
-    grunt.registerTask('run',['connect:server','watch']);
+    grunt.registerTask('run',['connect:server','watch:app']);
+    //grunt.registerTask('deploy',['exec:deploy']);
+
 };
 

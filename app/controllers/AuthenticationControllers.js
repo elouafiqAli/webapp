@@ -4,9 +4,17 @@ function handleError(Description){
     $scope.errorDescription = Description;
 }
 controllers.controller('header',   ['$scope', '$kinvey', "$location","redriss", function($scope, $kinvey, $location,redriss) {
-    window.setInterval(function(){$scope.visible = redriss.get('header_visible');},300);
+    window.setInterval(function(){$scope.visible = redriss.get('header_visible');},100);
 
 
+}]);
+
+controllers.controller('dashboard',   ['$scope', '$kinvey', "$location","redriss", function($scope, $kinvey, $location,redriss) {
+   redriss.set('header_visible',false);
+    $scope.dashboard = {};
+    $scope.dashboard.goToAddBooks = function(){
+        $location.path('/main/addBook');
+    }
 }]);
 controllers.controller('LoginController',
 
@@ -18,43 +26,49 @@ controllers.controller('LoginController',
                 var isFormInvalid = false;
 
                 //check is form valid
-                        /*
-                        if ($scope.loginForm.email.$error.email || $scope.loginForm.email.$error.required) {
+
+                        if ($scope.loginForm.email.$valid || $scope.loginForm.email.$error.required) {
                             $scope.submittedEmail = true;
                             isFormInvalid = true;
                         } else {
                             $scope.submittedEmail = false;
+                            return;
                         }
-                        if ($scope.loginForm.password.$error.required) {
+                /*
+                        console.log($scope.loginForm.password);
+                        if ($scope.loginForm.password.$valid) {
                             $scope.submittedPassword = true;
                             isFormInvalid = true;
                         } else {
                             $scope.submittedPassword = false;
-                        }
-                        if (isFormInvalid) {
                             return;
                         }*/
+                        if (isFormInvalid) {
+                            var promise = $kinvey.User.login({
+                                username: $scope.username,
+                                password: $scope.password
+                            });
+                            promise.then(
+                                function (response) {
+                                    //Kinvey login finished with success
+                                    $scope.submittedError = false;
+                                    $location.path("/main/dashboard");
+                                    $scope.visible = redriss.set('header_visible',true);
+                                },
+                                function (error) {
+                                    //Kinvey login finished with error
+                                    $scope.submittedError = true;
+                                    $scope.errorDescription = error.description;
+                                    alert('Invalid Email and password combination');
+                                    console.log("Error login " + error.description);//
+                                }
+                            );
+                            return;
+                        }
 
                 console.log("call login");
                 //Kinvey login starts
-                        var promise = $kinvey.User.login({
-                            username: $scope.username,
-                            password: $scope.password
-                        });
-                        promise.then(
-                            function (response) {
-                                //Kinvey login finished with success
-                                $scope.submittedError = false;
-                                $location.path("/main/addBook");
-                                $scope.visible = redriss.set('header_visible',true);
-                            },
-                            function (error) {
-                                //Kinvey login finished with error
-                                $scope.submittedError = true;
-                                $scope.errorDescription = error.description;
-                                console.log("Error login " + error.description);//
-                            }
-                        );
+
 			}
 		    $scope.forgetPassword = function () {
 		        console.log("forgetPassword");
@@ -93,42 +107,55 @@ controllers.controller('ResetPasswordController',
 		}]);
 controllers.controller('SignUpController', 
 		['$scope', '$kinvey', "$location","redriss", function($scope, $kinvey, $location,redriss) {
-
+            redriss.set('header_visible',false);
 			$scope.signUp = function () {
 
 				console.log("signup");
                 var isFormInvalid = false;
-               /*
+console.log($scope.registrationForm);
                 //check is form valid
-                if ($scope.registrationForm.email.$error.email || $scope.registrationForm.email.$error.required) {
+                if($scope.registrationForm.fullname.$valid){
+                    $scope.submittedName = true;
+                    isFormInvalid = true;
+                }else{
+                    isFormInvalid = false;
+                    alert('please enter your fullname');
+                }
+                if ($scope.registrationForm.email.$valid || $scope.registrationForm.email.$error.required) {
                     $scope.submittedEmail = true;
                     isFormInvalid = true;
                 } else {
+                    isFormInvalid = false;
                     $scope.submittedEmail = false;
                 }
-                if ($scope.registrationForm.password.$error.required) {
+                if ($scope.registrationForm.password.$valid) {
                     $scope.submittedPassword = true;
                     isFormInvalid = true;
-                } else {
-                    $scope.submittedPassword = false;
-                }
-                if (isFormInvalid) {
-                    return;
-                }*/
 
-                //Kinvey signup starts
-				var promise = $kinvey.User.signup({
-                     fullname: $scope.fullname,
-		             username: $scope.email,
-		             password: $scope.password,
-		             email: $scope.email,
-                     first_time : true
-		         });
-				console.log("signup promise");
-				promise.then(
-						followSignup,
-                    failedSignup
-				);
+                } else {
+                    isFormInvalid = false;
+                    $scope.submittedPassword = false;
+                    alert('your password should be at least 6 characters');
+                }
+
+                if (isFormInvalid) {
+                    //Kinvey signup starts
+                    var promise = $kinvey.User.signup({
+                        fullname: $scope.fullname,
+                        username: $scope.email,
+                        password: $scope.password,
+                        email: $scope.email,
+                        first_time : 1
+                    });
+                    console.log("signup promise");
+                    promise.then(
+                        followSignup,
+                        failedSignup
+                    );
+                    return;
+                }
+
+
 			};
             function followSignup(response){
                 //Kinvey signup finished with success
@@ -139,6 +166,7 @@ controllers.controller('SignUpController',
             function failedSignup(error){
                 $scope.submittedError = true;
                 $scope.errorDescription = error.description;
+                alert('error '+error.description);
                 console.log("signup error: " + error.description);
             }
            $scope.goToSignIn = function(){
@@ -149,6 +177,7 @@ controllers.controller('SignUpController',
 		}]);
 controllers.controller('LoggedInController', 
 		['$scope', '$kinvey', '$location', function($scope, $kinvey, $location)  {
+            redriss.set('header_visible',true);
             $scope.logout = function () {
                 console.log("logout");
 
@@ -159,7 +188,7 @@ controllers.controller('LoggedInController',
                         //Kinvey logout finished with success
                         console.log("user logout");
                         $kinvey.setActiveUser(null);
-                        $location.url("../#/main/first_time");
+                        $location.url("/main/first_time");
                     },
                     function (error) {
                         //Kinvey logout finished with error
@@ -198,7 +227,8 @@ controllers.controller('LoggedInController',
         }]);
 
 controllers.controller('addBooks',
-    ['$scope', '$kinvey', "$location","sharedBooks", function($scope, $kinvey, $location, sharedBooks) {
+    ['$scope', '$kinvey', "$location","sharedBooks","redriss", function($scope, $kinvey, $location, sharedBooks,redriss) {
+        redriss.set('header_visible',true);
     $scope.sharedBooks = sharedBooks;
     $scope.searchBooks = '';
     $scope.searchInput ='';
@@ -208,7 +238,7 @@ controllers.controller('addBooks',
     $scope.shelve = [];
     $scope.shelve_books =[];
 
-    var CHECKINPUT= false;
+    var CHECK_BOOK_EXISTENCE= false;
     $scope.imageResizer = function(imageLink){
         var _image = imageLink.split('zoom=1');
         return _image[0].concat('zoom=2').concat(_image[1]);
@@ -227,7 +257,7 @@ controllers.controller('addBooks',
     $scope.fetchBook = function(){
         //Check Validity of input
         var inputTitle = $scope.searchInput;
-        if(CHECKINPUT){
+        if(CHECK_BOOK_EXISTENCE){
             for(i in $scope.books){var book = $scope.books[i];
                 //book.imageLinks.thumbnail=$scope.imageResizer(book.imageLinks.thumbnail);
                 $scope.books[i] = book;
@@ -250,26 +280,29 @@ controllers.controller('addBooks',
         );
     }
     $scope.addBookToList = function(book){
-        for(i in $scope.books){var _book = $scope.books[i];
-            if(book.ISBN_10 == _book.ISBN_10 || book.ISBN_13 == _book.ISBN_13){
-                handleError("Book already added");
-                return false;
+        if(CHECK_BOOK_EXISTENCE) {
+            for (i in $scope.books) {
+                var _book = $scope.books[i];
+                if (book.ISBN_10 == _book.ISBN_10 || book.ISBN_13 == _book.ISBN_13) {
+                    handleError("Book already added to list");
+                    return false;
+                }
             }
         }
         $scope.books.push(book);
 
-    }
+    };
     $scope.removeBook = function(index){
         $scope.books.splice(index,1);
     }
-    $scope.addBook =  function(callback,wizard){
-        if($scope.books.length < 5){
-
+    $scope.addBook =  function(callback,wizard,bookshelve,param){
+        if($scope.books.length < 5  && param){
+            console.log('doing callback with params '+ wizard);
             handleError("Please enter "+ (5-$scope.books.length) +" additional books");
-        }else if($scope.books.length > 0){
+        }else{
             console.log("I don't know how it got here "+$scope.books.length );
             var bookList;
-            var shelve_name = "myCollection";
+            var shelve_name = bookshelve;
             for(i in $scope.books) { var _book = $scope.books[i];
                 delete _book.$$hashKey; //remove angular ng-repeat added attribute
                 var bookObject = {
@@ -288,7 +321,7 @@ controllers.controller('addBooks',
                      var shelve = _user.shelve || {} ;
                          shelve.books = shelve.books  || [] ;
                          shelve.owner = $kinvey.getActiveUser();
-                         shelve.name = "myCollection" || shelve.name;
+                         shelve.name = bookshelve|| shelve.name;
                          _book.ISBN_13 == undefined ? shelve.books.push(_book.ISBN_10) : shelve.books.push(_book.ISBN_13);
                      _user.shelve = shelve;
                      $kinvey.User.update(_user);
@@ -306,7 +339,15 @@ controllers.controller('addBooks',
                 $scope.shelve_books.unshift({book: _book});
             }
             $scope.books = [];
-            if(callback){callback(wizard);}
+
+            if(callback){
+                // saying that the user has finished the ste[s
+                var user = $kinvey.getActiveUser();
+                console.log(user.username);
+                user.first_time++;
+                $kinvey.User.update(user);
+                callback(wizard);
+            }
         }
     }
     function onLoad(){
@@ -320,10 +361,10 @@ controllers.controller('addBooks',
             success: function(response){
                 if(response.length > 0){
                     for(i in response){var object = response[i];
-                        console.log(response[i]);
+                       // console.log(response[i]);
 
                         if(object.book.imageLinks!=undefined){
-                            console.log(object.book.imageLinks != undefined);
+                            //console.log(object.book.imageLinks != undefined);
                            // book.imageLinks.thumbnail=$scope.imageResizer(book.imageLinks.thumbnail);
                             //console.log(book.imageLinks.thumbnail);
                             $scope.shelve_books.push(object);
@@ -339,6 +380,7 @@ controllers.controller('addBooks',
 }]);
 controllers.controller('firstTimeWizard',
     ['$scope', '$kinvey', "$location","redriss", function($scope, $kinvey, $location,redriss) {
+        redriss.set('header_visible',true);
         var _wizard = {
             steps: [true,false],
             index : 0,
@@ -380,7 +422,8 @@ controllers.controller('firstTimeWizard',
         };
         $scope.r = {
             books : 0,
-            communities: 1
+            wishlist:1,
+            communities: 2
         };
         $scope.wizard = _wizard;
 
@@ -388,7 +431,8 @@ controllers.controller('firstTimeWizard',
 
 controllers.controller('communitySubscription',
     ['$scope', '$kinvey', "$location",'redriss', function($scope, $kinvey, $location, redriss) {
-
+        redriss.set('header_visible',true);
+    $scope.selected_community ={};
     var _communities = {
         selected_community: 0,
         current_user : {},
@@ -408,12 +452,12 @@ controllers.controller('communitySubscription',
 
             var query= new $kinvey.Query();
             query.equalTo('username',_this.current_user.username);
-            var fetchingMyCommunities = $kinvey.DataStore.find("comuns",query);
+            var fetchingMyCommunities = $kinvey.DataStore.find("comuns",query,{relations:{community:'communities'}});
             fetchingMyCommunities.then(function(response){
                 console.log("we got in here at least");
                 for(i in response) {
-                    delete response[i].member;
-                    _this.myCommunities.push(response[i]);
+                    if(response[i].community != null)
+                        _this.myCommunities.push(response[i].community);
                 }
                 _this.watch();
             });
@@ -428,20 +472,22 @@ controllers.controller('communitySubscription',
                 }
             }
         },
-        joinCommunity: function(secretCode,_index){
-           var index = _index || this.selected_community;
-           var community = this.list_of_communities[index];
-           if(secretCode == community.code){
+        joinCommunity: function(community, index){
+
+           var community = community;
+
                var _comun = {
                    username: this.current_user.username,
                    member: this.current_user,
-                   name: community.name,
-                   icon: community.icon,
-                   type: community.type,
-                   description: community.description
+                   community: community
                };
                var _this = this;
                var joinRequest= $kinvey.DataStore.save('comuns',_comun,{
+                   exclude: ['member','community'],
+                   relations:{
+                        member: 'user',
+                        community: 'communities'
+                   },
                    success:function(response){
                        _this.myCommunities.push(_this.list_of_communities.splice(index,1)[0]);
                        return true;
@@ -450,10 +496,6 @@ controllers.controller('communitySubscription',
                    }
                });
                return joinRequest;
-
-           }else{
-               return false;
-           }
         }
     };
     redriss.set('_communities',_communities);
@@ -466,27 +508,44 @@ controllers.controller('communitySubscription',
             description: ''
         }
     };
+        $scope.index = -1;
+
     $scope.chose = function(index){
+        console.log(index);
+        $scope.index = index;
         $scope.communities.selected_community = index;
+        console.log($scope.communities.list_of_communities[index]);
+        $scope.selected_community = $scope.communities.list_of_communities[index];
     }
     $scope.validate = function() {
-        var validated = $scope.communities.joinCommunity($scope.secretcode);
-        //this
-        // $scope.status.secret_code.description = (($scope.status.secret_code.error=!validated)? "invalid secret code":"Congratulations you just joined the Group");
-        // is the same as this
-        if (validated != true) {
+
+        if ($scope.secretcode != $scope.selected_community.code) {
             $scope.status.secret_code.error = true;
             $scope.status.secret_code.description = "invalid secret code";
         } else {
             $scope.status.secret_code.error = false;
             $scope.status.secret_code.description = "Congratulations you just joined the Group";
         }
+        var validated = $scope.communities.joinCommunity($scope.selected_community,$scope.index);
+        //this
+        // $scope.status.secret_code.description = (($scope.status.secret_code.error=!validated)? "invalid secret code":"Congratulations you just joined the Group");
+        // is the same as this
+
         alert($scope.status.secret_code.description);
+    };
+    $scope.createCommuntiy = function(){
+            console.log('lol');
+            $location.path('/main/create_community');
+    };
+    $scope.finishWizard =  function(){
+            $location.path('/dashboard');
     }
+
 
 }]);
 controllers.controller('searchInside',
     ['$scope', '$kinvey', "$location","sharedBooks","$routeParams", function($scope, $kinvey, $location, sharedBooks, $routeParams){
+        redriss.set('header_visible',true);
         $scope.ISBN = $routeParams.ISBN_13;
         $scope.book = sharedBooks.getBook();
         $scope.submittedError = false;
@@ -510,10 +569,8 @@ controllers.controller('searchInside',
         };
 
         $scope.searchInsideBook = function(){
-
             var _query = $scope.searchInput;
             var _identifier = $scope.book.ISBN_13;
-
             var search_request = $kinvey.execute("insearch",{query:_query,id:_identifier});
             search_request.then(function(response){
                 if(response.results){
@@ -528,9 +585,51 @@ controllers.controller('searchInside',
         };
         $scope.fetchBook($routeParams.ISBN);
     }]);
+controllers.controller('createCommunity',
+    ['$scope', '$kinvey', '$location','redriss','$routeParams', function($scope, $kinvey, $location, redriss,$routeParams) {
+        redriss.set('header_visible',true);
+        var community = {
+           name: "",
+           icon: "",
+           description:"",
+           city:"",
+           country:"",
+           expected:"",
+           publicLink:"",
+           groupLink:""
+        };
+        $scope.validated = false;
+        $scope.community = community;
+        $scope.registerCommunity = function(community){
+            var required = ['name','city','country','expected'];
+            for(i in required){var property=required[i];
+                console.log(property);
+                if(community[property].length == 0){
+                    alert('please provide a valid '+ property+' value');
+                    return;
+                }
+            }
+            console.log(community);
+            community.creator = $kinvey.getActiveUser();
+            $kinvey.DataStore.save('proposals',community,{
+                exclude: ['creator'],
+                relations:{
+                    creator: 'user'
+                }
+            }).then(function(success){
+               $scope.validated = true;
+            },function(error){
+                alert(error);
+            });
+
+        }
+        $scope.finishWizard =  function(){
+            $location.path('/dashboard');
+        }
+    }]);
 controllers.controller('community',
     ['$scope', '$kinvey', '$location','redriss','$routeParams', function($scope, $kinvey, $location, redriss,$routeParams) {
-
+        redriss.set('header_visible',true);
     var _community = {
         members:[],
         library : [],
