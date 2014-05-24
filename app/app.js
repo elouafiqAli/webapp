@@ -54,8 +54,12 @@ app.config(['$routeProvider','$facebookProvider', function($routeProvider,$faceb
             templateUrl: 'main/dashboard.html',
             controller: 'addBooks'
         }).
+    when('/',{
+            templateUrl: 'main/dashboard.html',
+            controller: 'addBooks'
+        }).
 	otherwise({
-
+        //redirectTo:'/dashboard'
 	});
 
     $facebookProvider.setAppId('600246116738644');
@@ -114,6 +118,8 @@ function determineBehavior($kinvey, $location, $rootScope) {
             $location.path('/main/wishlist');
         }else if(activeUser.first_time == 3){
             $location.path('/main/groupselect');
+        } else if(window.location.href.split('/').length < 6) {
+            $location.path('/dashboard');
         }else{
             console.log($location.$$url)
             $location.path($location.$$url);
@@ -128,8 +134,6 @@ function determineBehavior($kinvey, $location, $rootScope) {
             $location.path('/main/signin');
         }
     }
-    //console.log("$location.$$url: " + $location.$$url);
-    //console.log("current user "+activeUser.username+" stage "+activeUser.first_time);
 }
 
 app.factory("redriss", function(){
