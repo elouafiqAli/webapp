@@ -5,7 +5,12 @@ function handleError(Description){
 }
 controllers.controller('header',   ['$scope', '$kinvey', "$location","redriss", function($scope, $kinvey, $location,redriss) {
     window.setInterval(function(){$scope.visible = redriss.get('header_visible');},100);
+    $scope.logout = function(){
+        console.log('logout');
+        $kinvey.User.logout().then(function(success){ $location.path('/main/signin');});
 
+
+    }
 
 }]);
 
@@ -15,6 +20,7 @@ controllers.controller('dashboard',   ['$scope', '$kinvey', "$location","redriss
     $scope.dashboard.goToAddBooks = function(){
         $location.path('/main/addBook');
     }
+
 }]);
 controllers.controller('LoginController',
 
