@@ -3,7 +3,7 @@
         <div ng-controller="addBooks" ng-show="wizard.steps[r.books]">
             <div class='library' id="book-to-add">
                 <div id="welcome-message">
-                    <h3>{{errorDescription="please enter at least 5 books to your wishlist"}}</h3>
+                    <h3>{{errorDescription="Add some books to your wishlist"}}</h3>
                 </div>
                 <div ng-repeat="book in books">
                     <div class="col-md-3 col-sm-4 col-xs-6">
@@ -36,9 +36,6 @@
 
             </form>
             <br><br>
-            <div class="col-xs-8 col-xs-offset-2">
-                <h1 ng-hide="!searchResults.length">chose the appropriate books ... </h1>
-            </div>
             <div class="library" id="shelve-books" ng-hide="!searchResults.length">
                 <div ng-repeat="book in searchResults">
                     <div class="col-md-3 col-sm-4 col-xs-6">

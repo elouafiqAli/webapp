@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
             <div class="col-xs-12 .col-md-8">
-                <h1>You can exchange books in your community</h1>
+                <h1 style="margin-top: 60px;">You can exchange books in your community</h1>
                 <!-- divider -->
                 <hr/>
                 <div>
@@ -13,13 +13,13 @@
                     </div>
                     <div class="name">
                         <p>Little Description</p>
-                        <input ng-model="community.Description" type="text" placeholder="short 'tweet' description"></input>
+                        <input ng-model="community.Description" type="text" placeholder="Tell us a bit more about your community"></input>
                     </div>
                     <h2> Where are you located mainly</h2>
                     *it would be great if you are living near each other
                     <div class="name">
                         <p>Country or State *</p>
-                        <input ng-model="community.country" type="name" placeholder="e.g. California , France"></input>
+                        <input ng-model="community.country" type="name" placeholder="e.g. California, France"></input>
                     </div>
                     <div class="name">
                         <p>City *</p>
@@ -32,16 +32,16 @@
                     <h3>If you have some online presence</h3>
                     * this is optional, but recommended
                     <div class="name">
-                        <p>Logo</p>
+                        <p>Picture</p>
                         <input ng-model="community.icon" type="text" placeholder="enter the logo URL e.g. http://something/logo.png"></input>
                     </div>
                     <div class="name">
-                        <p>Facebook Group link, Google+ group, or another website group</p>
+                        <p>Facebook page, Twitter account</p>
                         <input ng-model="community.groupLink" type="text" placeholder="http://facebook.com/groups/something"></input>
                     </div>
                     <div class="name">
-                        <p>Website, Facebook page, or webpage</p>
-                        <input ng-model="community.publicLink" type="text" placeholder="short 'tweet' description"></input>
+                        <p>Website</p>
+                        <input ng-model="community.publicLink" type="text" placeholder="Does your community have a website ?"></input>
                     </div>
                     <div class="desactivate">
                         <button ng-click="registerCommunity(community)">Create Group</button>
@@ -55,7 +55,7 @@
     <div ng-show="validated" class="container" align="center">
 
         <h1> Thank you for registering {{community.name}}</h1>
-        <h2> We will notify you by email once its approved :)</h2>
+        <h2> We will notify you by email once its approved.</h2>
 
         <br>
         <div class="desactivate">
