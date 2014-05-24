@@ -3,24 +3,32 @@
 
 <meta charset="utf-8"/>
 <title>Welcome to Bobox</title>
-
 <script src="bower_components/angular/angular.js"></script>
-<script src="https://da189i1jfloii.cloudfront.net/js/kinvey-angular-1.1.4.min.js"></script>
-    <!-- bugsnag error reporting -->
-<script
-        src="//d2wy8f7a9ursnm.cloudfront.net/bugsnag-2.min.js"
-        data-apikey="7658a37436bc59e7a9943648a144ebdb">
+<!-- Exception Hub start -->
+<script type="text/javascript">
+    var ehHost = (("https:" == document.location.protocol) ? "https://ssl" : "http://js");
+    document.write(unescape("%3Cscript src='" + ehHost + ".exceptionhub.com/javascripts/eh.js' type='text/javascript'%3E%3C/script%3E"));
 </script>
-    <script type='text/javascript'>
-        window.__wtw_lucky_site_id = 22311;
+<script>
+    try {
+        ExceptionHub.setup("5e12649e1775173d41a9444b416e3ecc", 1086, 'production');
+    } catch(e) {}
+</script>
+<!-- Exception Hub end -->
 
-        (function() {
-            var wa = document.createElement('script'); wa.type = 'text/javascript'; wa.async = true;
-            wa.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://cdn') + '.luckyorange.com/w.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(wa, s);
-        })();
+<script src="https://da189i1jfloii.cloudfront.net/js/kinvey-angular-1.1.4.min.js"></script>
+    <!-- SessionCam Client Integration v6.0 -->
+    <script type="text/javascript">
+        //<![CDATA[
+        var scRec=document.createElement('SCRIPT');
+        scRec.type='text/javascript';
+        scRec.src="//d2oh4tlt9mrke9.cloudfront.net/Record/js/sessioncam.recorder.js";
+        document.getElementsByTagName('head')[0].appendChild(scRec);
+        //]]>
     </script>
+    <!-- End SessionCam -->
     <!-- Bootstrap -->
+
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom stylesheet -->
 <link href="css/main.css" rel="stylesheet">
@@ -32,11 +40,6 @@
 </head>
 
 <body>
-<!-- ClickTale Top part -->
-<script type="text/javascript">
-    var WRInitTime=(new Date()).getTime();
-</script>
-<!-- ClickTale end of Top part -->
 
     <div ng-controller="header">
     <header class="header" ng-show="visible">
@@ -62,22 +65,16 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/script.js"></script>
 
-<!-- ClickTale Bottom part -->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-<script type='text/javascript'>
-    // The ClickTale Balkan Tracking Code may be programmatically customized using hooks:
-    //
-    //   function ClickTalePreRecordingHook() { /* place your customized code here */  }
-    //
-    // For details about ClickTale hooks, please consult the wiki page http://wiki.clicktale.com/Article/Customizing_code_version_2
+        ga('create', 'UA-46218893-5', 'bobox.ma');
+        ga('send', 'pageview');
 
-    document.write(unescape("%3Cscript%20src='"+
-            (document.location.protocol=='https:'?
-                    "https://cdnssl.clicktale.net/www07/ptc/1f064598-80f7-4fde-b476-42c3b193faf5.js":
-                    "http://cdn.clicktale.net/www07/ptc/1f064598-80f7-4fde-b476-42c3b193faf5.js")+"'%20type='text/javascript'%3E%3C/script%3E"));
-</script>
-
-<!-- ClickTale end of Bottom part -->
+    </script>
 
 </body>
 
