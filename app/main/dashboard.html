@@ -3,10 +3,6 @@
         <div ng-controller="addBooks">
 
             <div class='library' id="book-to-add">
-                <div id="welcome-message">
-                    <h4>Bringing the ebook experience to your physical books</h4>
-                    <h2>Search Inside The Content of your books</h2>
-                </div>
             </div>
             <div class="col-xs-8 col-xs-offset-2">
                 <button id="add-books" ng-click="dashboard.goToAddBooks()" class="btn btn-default" type="button">SEARCH INSIDE MORE BOOKS</button><br>
@@ -18,7 +14,7 @@
                         <a href="#">
                             <img class="img-responsive" width='200' height="300" src="{{ item.book.imageLinks.thumbnail}}" />
                                 <span>
-                                    <button id="search-inside-book" ng-click="searchInsideBook(item.book)">search</button><br/>
+                                    <button id="search-inside-book" ng-click="searchInsideBook(item.book)">+</button><br/>
                                     <p>{{ item.book.title }}</p>
                                 </span>
                         </a>
