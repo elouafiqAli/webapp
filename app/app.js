@@ -59,7 +59,7 @@ app.config(['$routeProvider','$facebookProvider', function($routeProvider,$faceb
             controller: 'addBooks'
         }).
 	otherwise({
-        //redirectTo:'/dashboard'
+        redirectTo:'/dashboard'
 	});
 
     $facebookProvider.setAppId('600246116738644');
