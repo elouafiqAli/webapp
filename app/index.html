@@ -11,7 +11,16 @@
         src="//d2wy8f7a9ursnm.cloudfront.net/bugsnag-2.min.js"
         data-apikey="7658a37436bc59e7a9943648a144ebdb">
 </script>
-<!-- Bootstrap -->
+    <script type='text/javascript'>
+        window.__wtw_lucky_site_id = 22311;
+
+        (function() {
+            var wa = document.createElement('script'); wa.type = 'text/javascript'; wa.async = true;
+            wa.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://cdn') + '.luckyorange.com/w.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(wa, s);
+        })();
+    </script>
+    <!-- Bootstrap -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom stylesheet -->
 <link href="css/main.css" rel="stylesheet">
@@ -23,6 +32,12 @@
 </head>
 
 <body>
+<!-- ClickTale Top part -->
+<script type="text/javascript">
+    var WRInitTime=(new Date()).getTime();
+</script>
+<!-- ClickTale end of Top part -->
+
     <div ng-controller="header">
     <header class="header" ng-show="visible">
         <a href="#/dashboard"><button class="logo">B</button></a>
@@ -46,6 +61,23 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/script.js"></script>
+
+<!-- ClickTale Bottom part -->
+
+<script type='text/javascript'>
+    // The ClickTale Balkan Tracking Code may be programmatically customized using hooks:
+    //
+    //   function ClickTalePreRecordingHook() { /* place your customized code here */  }
+    //
+    // For details about ClickTale hooks, please consult the wiki page http://wiki.clicktale.com/Article/Customizing_code_version_2
+
+    document.write(unescape("%3Cscript%20src='"+
+            (document.location.protocol=='https:'?
+                    "https://cdnssl.clicktale.net/www07/ptc/1f064598-80f7-4fde-b476-42c3b193faf5.js":
+                    "http://cdn.clicktale.net/www07/ptc/1f064598-80f7-4fde-b476-42c3b193faf5.js")+"'%20type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<!-- ClickTale end of Bottom part -->
 
 </body>
 
