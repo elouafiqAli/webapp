@@ -1,4 +1,4 @@
-    <div ng-controller="firstTimeWizard">
+    <div ng-controller="firstTimeWizard" align="center">
 
         <div ng-controller="addBooks" ng-show="wizard.steps[r.books]">
             <div class='library' id="book-to-add">
@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="col-xs-8 col-xs-offset-2">
-                <button id="add-books" ng-click="addBook('/main/groupselect','myCollection',1)" ng-show="books.length" class="btn btn-default" type="button">ADD BOOKS TO YOUR WISHLIST</button><br>
+                <button id="add-books" ng-click="addBook('/main/groupselect','wishlist',1)" ng-show="books.length" class="btn btn-default" type="button">ADD BOOKS TO YOUR WISHLIST</button><br>
                 <br>
             </div>
             <form class="col-xs-8 col-xs-offset-2" id="search-book">
@@ -37,10 +37,11 @@
 
             </form>
             <br><br>
-            <div class="col-xs-8 col-xs-offset-2">
-                <h1 ng-hide="!searchResults.length">chose the appropriate books ... </h1>
-            </div>
+
             <div class="library" id="shelve-books" ng-hide="loading">
+                <div class="col-xs-8 col-xs-offset-2">
+                    <h1 ng-hide="!searchResults.length">pick the appropriate books ... </h1>
+                </div>
                 <div ng-repeat="book in searchResults">
                     <div class="col-md-3 col-sm-4 col-xs-6">
                         <a>
