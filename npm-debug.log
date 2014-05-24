@@ -1,0 +1,431 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', '-g', 'grunt', 'cli' ]
+2 info using npm@1.3.24
+3 info using node@v0.10.25
+4 verbose cache add [ 'grunt', null ]
+5 verbose cache add name=undefined spec="grunt" args=["grunt",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'grunt',
+6 verbose parsed url   path: 'grunt',
+6 verbose parsed url   href: 'grunt' }
+7 verbose cache add [ 'cli', null ]
+8 verbose cache add name=undefined spec="cli" args=["cli",null]
+9 verbose parsed url { protocol: null,
+9 verbose parsed url   slashes: null,
+9 verbose parsed url   auth: null,
+9 verbose parsed url   host: null,
+9 verbose parsed url   port: null,
+9 verbose parsed url   hostname: null,
+9 verbose parsed url   hash: null,
+9 verbose parsed url   search: null,
+9 verbose parsed url   query: null,
+9 verbose parsed url   pathname: 'cli',
+9 verbose parsed url   path: 'cli',
+9 verbose parsed url   href: 'cli' }
+10 silly lockFile 20ff3fd8-grunt grunt
+11 verbose lock grunt /Users/Othmane/.npm/20ff3fd8-grunt.lock
+12 silly lockFile 2bd8e9c9-cli cli
+13 verbose lock cli /Users/Othmane/.npm/2bd8e9c9-cli.lock
+14 silly lockFile 20ff3fd8-grunt grunt
+15 silly lockFile 20ff3fd8-grunt grunt
+16 silly lockFile 2bd8e9c9-cli cli
+17 silly lockFile 2bd8e9c9-cli cli
+18 verbose addNamed [ 'grunt', '' ]
+19 verbose addNamed [ null, '*' ]
+20 silly lockFile 55f1ff24-grunt grunt@
+21 verbose lock grunt@ /Users/Othmane/.npm/55f1ff24-grunt.lock
+22 verbose addNamed [ 'cli', '' ]
+23 verbose addNamed [ null, '*' ]
+24 silly lockFile e0d27b0e-cli cli@
+25 verbose lock cli@ /Users/Othmane/.npm/e0d27b0e-cli.lock
+26 silly addNameRange { name: 'grunt', range: '*', hasData: false }
+27 silly addNameRange { name: 'cli', range: '*', hasData: false }
+28 verbose url raw grunt
+29 verbose url resolving [ 'https://registry.npmjs.org/', './grunt' ]
+30 verbose url resolved https://registry.npmjs.org/grunt
+31 info trying registry request attempt 1 at 17:24:45
+32 verbose etag "73TH0VQ62MYZY8EMJY25WZGQW"
+33 http GET https://registry.npmjs.org/grunt
+34 verbose url raw cli
+35 verbose url resolving [ 'https://registry.npmjs.org/', './cli' ]
+36 verbose url resolved https://registry.npmjs.org/cli
+37 info trying registry request attempt 1 at 17:24:45
+38 verbose etag "42E2ZT4BNJGBD6YFTH5HR1VXW"
+39 http GET https://registry.npmjs.org/cli
+40 http 304 https://registry.npmjs.org/grunt
+41 silly registry.get cb [ 304,
+41 silly registry.get   { date: 'Sat, 24 May 2014 16:24:46 GMT',
+41 silly registry.get     server: 'Apache',
+41 silly registry.get     via: '1.1 varnish',
+41 silly registry.get     'last-modified': 'Sat, 24 May 2014 16:24:46 GMT',
+41 silly registry.get     'cache-control': 'max-age=1',
+41 silly registry.get     etag: '"73TH0VQ62MYZY8EMJY25WZGQW"',
+41 silly registry.get     'x-served-by': 'cache-am72-AMS',
+41 silly registry.get     'x-cache': 'HIT',
+41 silly registry.get     'x-cache-hits': '1',
+41 silly registry.get     'x-timer': 'S1400948686.151154,VS0,VE213',
+41 silly registry.get     vary: 'Accept',
+41 silly registry.get     'content-length': '0',
+41 silly registry.get     'keep-alive': 'timeout=10, max=50',
+41 silly registry.get     connection: 'Keep-Alive' } ]
+42 verbose etag grunt from cache
+43 silly addNameRange number 2 { name: 'grunt', range: '*', hasData: true }
+44 silly addNameRange versions [ 'grunt',
+44 silly addNameRange   [ '0.1.0',
+44 silly addNameRange     '0.1.1',
+44 silly addNameRange     '0.1.2',
+44 silly addNameRange     '0.2.0',
+44 silly addNameRange     '0.2.1',
+44 silly addNameRange     '0.2.2',
+44 silly addNameRange     '0.2.3',
+44 silly addNameRange     '0.2.4',
+44 silly addNameRange     '0.2.5',
+44 silly addNameRange     '0.2.6',
+44 silly addNameRange     '0.2.7',
+44 silly addNameRange     '0.2.8',
+44 silly addNameRange     '0.2.9',
+44 silly addNameRange     '0.2.10',
+44 silly addNameRange     '0.2.11',
+44 silly addNameRange     '0.2.12',
+44 silly addNameRange     '0.2.13',
+44 silly addNameRange     '0.2.14',
+44 silly addNameRange     '0.2.15',
+44 silly addNameRange     '0.3.0',
+44 silly addNameRange     '0.3.1',
+44 silly addNameRange     '0.3.2',
+44 silly addNameRange     '0.3.3',
+44 silly addNameRange     '0.3.4',
+44 silly addNameRange     '0.3.5',
+44 silly addNameRange     '0.3.6',
+44 silly addNameRange     '0.3.7',
+44 silly addNameRange     '0.3.8',
+44 silly addNameRange     '0.3.9',
+44 silly addNameRange     '0.3.10',
+44 silly addNameRange     '0.3.11',
+44 silly addNameRange     '0.3.12',
+44 silly addNameRange     '0.3.13',
+44 silly addNameRange     '0.3.14',
+44 silly addNameRange     '0.3.15',
+44 silly addNameRange     '0.3.16',
+44 silly addNameRange     '0.3.17',
+44 silly addNameRange     '0.4.0',
+44 silly addNameRange     '0.4.1',
+44 silly addNameRange     '0.4.2',
+44 silly addNameRange     '0.4.3',
+44 silly addNameRange     '0.4.4',
+44 silly addNameRange     '0.4.5',
+44 silly addNameRange     '0.3.13-a',
+44 silly addNameRange     '0.4.0-a',
+44 silly addNameRange     '0.4.0-rc1',
+44 silly addNameRange     '0.4.0-rc2',
+44 silly addNameRange     '0.4.0-rc3',
+44 silly addNameRange     '0.4.0-rc4',
+44 silly addNameRange     '0.4.0-rc5',
+44 silly addNameRange     '0.4.0-rc6',
+44 silly addNameRange     '0.4.0-rc7',
+44 silly addNameRange     '0.4.0-rc8' ] ]
+45 verbose addNamed [ 'grunt', '0.4.5' ]
+46 verbose addNamed [ '0.4.5', '0.4.5' ]
+47 silly lockFile 81abf7ad-grunt-0-4-5 grunt@0.4.5
+48 verbose lock grunt@0.4.5 /Users/Othmane/.npm/81abf7ad-grunt-0-4-5.lock
+49 silly lockFile 81abf7ad-grunt-0-4-5 grunt@0.4.5
+50 silly lockFile 81abf7ad-grunt-0-4-5 grunt@0.4.5
+51 silly lockFile 55f1ff24-grunt grunt@
+52 silly lockFile 55f1ff24-grunt grunt@
+53 http 200 https://registry.npmjs.org/cli
+54 silly registry.get cb [ 200,
+54 silly registry.get   { date: 'Sat, 24 May 2014 16:24:46 GMT',
+54 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B)',
+54 silly registry.get     etag: '"BR7EHTJW0XXGQDT67UFZ4HR4T"',
+54 silly registry.get     'content-type': 'application/json',
+54 silly registry.get     via: '1.1 varnish',
+54 silly registry.get     'cache-control': 'max-age=1',
+54 silly registry.get     'content-length': '49492',
+54 silly registry.get     'accept-ranges': 'bytes',
+54 silly registry.get     age: '315',
+54 silly registry.get     'x-served-by': 'cache-v36-ASH, cache-am77-AMS',
+54 silly registry.get     'x-cache': 'HIT, MISS',
+54 silly registry.get     'x-cache-hits': '1, 0',
+54 silly registry.get     'x-timer': 'S1400948686.143883,VS0,VE186',
+54 silly registry.get     vary: 'Accept',
+54 silly registry.get     'keep-alive': 'timeout=10, max=50',
+54 silly registry.get     connection: 'Keep-Alive' } ]
+55 silly addNameRange number 2 { name: 'cli', range: '*', hasData: true }
+56 silly addNameRange versions [ 'cli',
+56 silly addNameRange   [ '0.1.0',
+56 silly addNameRange     '0.1.1',
+56 silly addNameRange     '0.1.3',
+56 silly addNameRange     '0.1.4',
+56 silly addNameRange     '0.1.5',
+56 silly addNameRange     '0.1.6',
+56 silly addNameRange     '0.1.7',
+56 silly addNameRange     '0.1.8',
+56 silly addNameRange     '0.1.9',
+56 silly addNameRange     '0.2.0',
+56 silly addNameRange     '0.2.1-1',
+56 silly addNameRange     '0.2.2-1',
+56 silly addNameRange     '0.2.3-1',
+56 silly addNameRange     '0.2.3-2',
+56 silly addNameRange     '0.2.3-3',
+56 silly addNameRange     '0.2.3-4',
+56 silly addNameRange     '0.2.3-5',
+56 silly addNameRange     '0.2.4-1',
+56 silly addNameRange     '0.2.4-2',
+56 silly addNameRange     '0.2.5',
+56 silly addNameRange     '0.2.6',
+56 silly addNameRange     '0.2.7',
+56 silly addNameRange     '0.2.8',
+56 silly addNameRange     '0.3.0',
+56 silly addNameRange     '0.3.1',
+56 silly addNameRange     '0.3.2',
+56 silly addNameRange     '0.3.3',
+56 silly addNameRange     '0.3.4',
+56 silly addNameRange     '0.3.5',
+56 silly addNameRange     '0.3.6',
+56 silly addNameRange     '0.3.7',
+56 silly addNameRange     '0.3.8',
+56 silly addNameRange     '0.3.9',
+56 silly addNameRange     '0.4.0',
+56 silly addNameRange     '0.4.1',
+56 silly addNameRange     '0.4.2',
+56 silly addNameRange     '0.4.3',
+56 silly addNameRange     '0.4.4',
+56 silly addNameRange     '0.4.4-1',
+56 silly addNameRange     '0.4.4-2',
+56 silly addNameRange     '0.4.5',
+56 silly addNameRange     '0.5.0',
+56 silly addNameRange     '0.6.0',
+56 silly addNameRange     '0.6.2' ] ]
+57 verbose addNamed [ 'cli', '0.6.2' ]
+58 verbose addNamed [ '0.6.2', '0.6.2' ]
+59 silly lockFile b97a2186-cli-0-6-2 cli@0.6.2
+60 verbose lock cli@0.6.2 /Users/Othmane/.npm/b97a2186-cli-0-6-2.lock
+61 silly lockFile c7142b85-stry-npmjs-org-cli-cli-0-6-2-tgz https://registry.npmjs.org/cli/-/cli-0.6.2.tgz
+62 verbose lock https://registry.npmjs.org/cli/-/cli-0.6.2.tgz /Users/Othmane/.npm/c7142b85-stry-npmjs-org-cli-cli-0-6-2-tgz.lock
+63 verbose addRemoteTarball [ 'https://registry.npmjs.org/cli/-/cli-0.6.2.tgz',
+63 verbose addRemoteTarball   '9ee9ee9f2c61b301c42c1471bc110c96efeb2ee0' ]
+64 info retry fetch attempt 1 at 17:24:46
+65 verbose fetch to= /var/folders/_1/kw2r9sm95ksgr11txtq_zq180000gn/T/npm-24792-j18SxPw6/1400948686571-0.08123522833921015/tmp.tgz
+66 http GET https://registry.npmjs.org/cli/-/cli-0.6.2.tgz
+67 http 200 https://registry.npmjs.org/cli/-/cli-0.6.2.tgz
+68 verbose tar unpack /var/folders/_1/kw2r9sm95ksgr11txtq_zq180000gn/T/npm-24792-j18SxPw6/1400948686571-0.08123522833921015/tmp.tgz
+69 silly lockFile 7322f721-6571-0-08123522833921015-package tar:///var/folders/_1/kw2r9sm95ksgr11txtq_zq180000gn/T/npm-24792-j18SxPw6/1400948686571-0.08123522833921015/package
+70 verbose lock tar:///var/folders/_1/kw2r9sm95ksgr11txtq_zq180000gn/T/npm-24792-j18SxPw6/1400948686571-0.08123522833921015/package /Users/Othmane/.npm/7322f721-6571-0-08123522833921015-package.lock
+71 silly lockFile a25dd6f8-6571-0-08123522833921015-tmp-tgz tar:///var/folders/_1/kw2r9sm95ksgr11txtq_zq180000gn/T/npm-24792-j18SxPw6/1400948686571-0.08123522833921015/tmp.tgz
+72 verbose lock tar:///var/folders/_1/kw2r9sm95ksgr11txtq_zq180000gn/T/npm-24792-j18SxPw6/1400948686571-0.08123522833921015/tmp.tgz /Users/Othmane/.npm/a25dd6f8-6571-0-08123522833921015-tmp-tgz.lock
+73 silly gunzTarPerm modes [ '755', '644' ]
+74 silly gunzTarPerm extractEntry package.json
+75 silly gunzTarPerm extractEntry README.md
+76 silly gunzTarPerm extractEntry cli.js
+77 silly gunzTarPerm extractEntry index.js
+78 silly gunzTarPerm extractEntry examples/cat.js
+79 silly gunzTarPerm extractEntry examples/command.js
+80 silly gunzTarPerm extractEntry examples/echo.js
+81 silly gunzTarPerm extractEntry examples/glob.js
+82 silly gunzTarPerm extractEntry examples/long_desc.js
+83 silly gunzTarPerm extractEntry examples/progress.js
+84 silly gunzTarPerm extractEntry examples/sort.js
+85 silly gunzTarPerm extractEntry examples/spinner.js
+86 silly gunzTarPerm extractEntry examples/static.js
+87 silly gunzTarPerm extractEntry examples/static.coffee
+88 silly lockFile 7322f721-6571-0-08123522833921015-package tar:///var/folders/_1/kw2r9sm95ksgr11txtq_zq180000gn/T/npm-24792-j18SxPw6/1400948686571-0.08123522833921015/package
+89 silly lockFile 7322f721-6571-0-08123522833921015-package tar:///var/folders/_1/kw2r9sm95ksgr11txtq_zq180000gn/T/npm-24792-j18SxPw6/1400948686571-0.08123522833921015/package
+90 silly lockFile a25dd6f8-6571-0-08123522833921015-tmp-tgz tar:///var/folders/_1/kw2r9sm95ksgr11txtq_zq180000gn/T/npm-24792-j18SxPw6/1400948686571-0.08123522833921015/tmp.tgz
+91 silly lockFile a25dd6f8-6571-0-08123522833921015-tmp-tgz tar:///var/folders/_1/kw2r9sm95ksgr11txtq_zq180000gn/T/npm-24792-j18SxPw6/1400948686571-0.08123522833921015/tmp.tgz
+92 verbose tar pack [ '/Users/Othmane/.npm/cli/0.6.2/package.tgz',
+92 verbose tar pack   '/var/folders/_1/kw2r9sm95ksgr11txtq_zq180000gn/T/npm-24792-j18SxPw6/1400948686571-0.08123522833921015/package' ]
+93 verbose tarball /Users/Othmane/.npm/cli/0.6.2/package.tgz
+94 verbose folder /var/folders/_1/kw2r9sm95ksgr11txtq_zq180000gn/T/npm-24792-j18SxPw6/1400948686571-0.08123522833921015/package
+95 silly lockFile 7322f721-6571-0-08123522833921015-package tar:///var/folders/_1/kw2r9sm95ksgr11txtq_zq180000gn/T/npm-24792-j18SxPw6/1400948686571-0.08123522833921015/package
+96 verbose lock tar:///var/folders/_1/kw2r9sm95ksgr11txtq_zq180000gn/T/npm-24792-j18SxPw6/1400948686571-0.08123522833921015/package /Users/Othmane/.npm/7322f721-6571-0-08123522833921015-package.lock
+97 silly lockFile 75ab57ce-thmane-npm-cli-0-6-2-package-tgz tar:///Users/Othmane/.npm/cli/0.6.2/package.tgz
+98 verbose lock tar:///Users/Othmane/.npm/cli/0.6.2/package.tgz /Users/Othmane/.npm/75ab57ce-thmane-npm-cli-0-6-2-package-tgz.lock
+99 silly lockFile 7322f721-6571-0-08123522833921015-package tar:///var/folders/_1/kw2r9sm95ksgr11txtq_zq180000gn/T/npm-24792-j18SxPw6/1400948686571-0.08123522833921015/package
+100 silly lockFile 7322f721-6571-0-08123522833921015-package tar:///var/folders/_1/kw2r9sm95ksgr11txtq_zq180000gn/T/npm-24792-j18SxPw6/1400948686571-0.08123522833921015/package
+101 silly lockFile 75ab57ce-thmane-npm-cli-0-6-2-package-tgz tar:///Users/Othmane/.npm/cli/0.6.2/package.tgz
+102 silly lockFile 75ab57ce-thmane-npm-cli-0-6-2-package-tgz tar:///Users/Othmane/.npm/cli/0.6.2/package.tgz
+103 silly lockFile 24b1933c-rs-Othmane-npm-cli-0-6-2-package /Users/Othmane/.npm/cli/0.6.2/package
+104 verbose lock /Users/Othmane/.npm/cli/0.6.2/package /Users/Othmane/.npm/24b1933c-rs-Othmane-npm-cli-0-6-2-package.lock
+105 silly lockFile 24b1933c-rs-Othmane-npm-cli-0-6-2-package /Users/Othmane/.npm/cli/0.6.2/package
+106 silly lockFile 24b1933c-rs-Othmane-npm-cli-0-6-2-package /Users/Othmane/.npm/cli/0.6.2/package
+107 verbose tar unpack /Users/Othmane/.npm/cli/0.6.2/package.tgz
+108 silly lockFile 00b1c0fa-rs-Othmane-npm-cli-0-6-2-package tar:///Users/Othmane/.npm/cli/0.6.2/package
+109 verbose lock tar:///Users/Othmane/.npm/cli/0.6.2/package /Users/Othmane/.npm/00b1c0fa-rs-Othmane-npm-cli-0-6-2-package.lock
+110 silly lockFile 75ab57ce-thmane-npm-cli-0-6-2-package-tgz tar:///Users/Othmane/.npm/cli/0.6.2/package.tgz
+111 verbose lock tar:///Users/Othmane/.npm/cli/0.6.2/package.tgz /Users/Othmane/.npm/75ab57ce-thmane-npm-cli-0-6-2-package-tgz.lock
+112 silly gunzTarPerm modes [ '755', '644' ]
+113 silly gunzTarPerm extractEntry package.json
+114 silly gunzTarPerm extractEntry README.md
+115 silly gunzTarPerm extractEntry cli.js
+116 silly gunzTarPerm extractEntry index.js
+117 silly gunzTarPerm extractEntry examples/cat.js
+118 silly gunzTarPerm extractEntry examples/command.js
+119 silly gunzTarPerm extractEntry examples/echo.js
+120 silly gunzTarPerm extractEntry examples/glob.js
+121 silly gunzTarPerm extractEntry examples/long_desc.js
+122 silly gunzTarPerm extractEntry examples/progress.js
+123 silly gunzTarPerm extractEntry examples/sort.js
+124 silly gunzTarPerm extractEntry examples/spinner.js
+125 silly gunzTarPerm extractEntry examples/static.js
+126 silly gunzTarPerm extractEntry examples/static.coffee
+127 silly lockFile 00b1c0fa-rs-Othmane-npm-cli-0-6-2-package tar:///Users/Othmane/.npm/cli/0.6.2/package
+128 silly lockFile 00b1c0fa-rs-Othmane-npm-cli-0-6-2-package tar:///Users/Othmane/.npm/cli/0.6.2/package
+129 silly lockFile 75ab57ce-thmane-npm-cli-0-6-2-package-tgz tar:///Users/Othmane/.npm/cli/0.6.2/package.tgz
+130 silly lockFile 75ab57ce-thmane-npm-cli-0-6-2-package-tgz tar:///Users/Othmane/.npm/cli/0.6.2/package.tgz
+131 verbose chmod /Users/Othmane/.npm/cli/0.6.2/package.tgz 644
+132 verbose chown /Users/Othmane/.npm/cli/0.6.2/package.tgz [ 501, 20 ]
+133 silly lockFile c7142b85-stry-npmjs-org-cli-cli-0-6-2-tgz https://registry.npmjs.org/cli/-/cli-0.6.2.tgz
+134 silly lockFile c7142b85-stry-npmjs-org-cli-cli-0-6-2-tgz https://registry.npmjs.org/cli/-/cli-0.6.2.tgz
+135 silly lockFile b97a2186-cli-0-6-2 cli@0.6.2
+136 silly lockFile b97a2186-cli-0-6-2 cli@0.6.2
+137 silly lockFile e0d27b0e-cli cli@
+138 silly lockFile e0d27b0e-cli cli@
+139 silly resolved [ { name: 'grunt',
+139 silly resolved     description: 'The JavaScript Task Runner',
+139 silly resolved     version: '0.4.5',
+139 silly resolved     author: { name: '"Cowboy" Ben Alman', url: 'http://benalman.com/' },
+139 silly resolved     homepage: 'http://gruntjs.com/',
+139 silly resolved     repository: { type: 'git', url: 'git://github.com/gruntjs/grunt.git' },
+139 silly resolved     bugs: { url: 'http://github.com/gruntjs/grunt/issues' },
+139 silly resolved     licenses: [ [Object] ],
+139 silly resolved     main: 'lib/grunt',
+139 silly resolved     scripts: { test: 'grunt test' },
+139 silly resolved     engines: { node: '>= 0.8.0' },
+139 silly resolved     keywords:
+139 silly resolved      [ 'task',
+139 silly resolved        'async',
+139 silly resolved        'cli',
+139 silly resolved        'minify',
+139 silly resolved        'uglify',
+139 silly resolved        'build',
+139 silly resolved        'lodash',
+139 silly resolved        'unit',
+139 silly resolved        'test',
+139 silly resolved        'qunit',
+139 silly resolved        'nodeunit',
+139 silly resolved        'server',
+139 silly resolved        'init',
+139 silly resolved        'scaffold',
+139 silly resolved        'make',
+139 silly resolved        'jake',
+139 silly resolved        'tool' ],
+139 silly resolved     dependencies:
+139 silly resolved      { async: '~0.1.22',
+139 silly resolved        'coffee-script': '~1.3.3',
+139 silly resolved        colors: '~0.6.2',
+139 silly resolved        dateformat: '1.0.2-1.2.3',
+139 silly resolved        eventemitter2: '~0.4.13',
+139 silly resolved        'findup-sync': '~0.1.2',
+139 silly resolved        glob: '~3.1.21',
+139 silly resolved        hooker: '~0.2.3',
+139 silly resolved        'iconv-lite': '~0.2.11',
+139 silly resolved        minimatch: '~0.2.12',
+139 silly resolved        nopt: '~1.0.10',
+139 silly resolved        rimraf: '~2.2.8',
+139 silly resolved        lodash: '~0.9.2',
+139 silly resolved        'underscore.string': '~2.2.1',
+139 silly resolved        which: '~1.0.5',
+139 silly resolved        'js-yaml': '~2.0.5',
+139 silly resolved        exit: '~0.1.1',
+139 silly resolved        getobject: '~0.1.0',
+139 silly resolved        'grunt-legacy-util': '~0.2.0',
+139 silly resolved        'grunt-legacy-log': '~0.1.0' },
+139 silly resolved     devDependencies:
+139 silly resolved      { temporary: '~0.0.4',
+139 silly resolved        'grunt-contrib-jshint': '~0.6.4',
+139 silly resolved        'grunt-contrib-nodeunit': '~0.2.0',
+139 silly resolved        'grunt-contrib-watch': '~0.5.3',
+139 silly resolved        difflet: '~0.2.3',
+139 silly resolved        semver: '2.1.0',
+139 silly resolved        shelljs: '~0.2.5' },
+139 silly resolved     readme: '# Grunt: The JavaScript Task Runner\n\n[![Build Status: Linux](https://secure.travis-ci.org/gruntjs/grunt.png?branch=master)](http://travis-ci.org/gruntjs/grunt)\n<a href="https://ci.appveyor.com/project/gruntjs/grunt"><img src="https://ci.appveyor.com/api/projects/status/32r7s2skrgm9ubva/branch/master" alt="Build Status: Windows" height="18" /></a>\n[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)\n\n<img align="right" height="260" src="http://gruntjs.com/img/grunt-logo-no-wordmark.svg">\n\n\n### Documentation\n\nVisit the [gruntjs.com](http://gruntjs.com/) website for all the things.\n\n### Support / Contributing\nBefore you make an issue, please read our [Contributing](http://gruntjs.com/contributing) guide.\n\nYou can find the grunt team in [#grunt on irc.freenode.net](http://webchat.freenode.net/?channels=grunt).\n\n### Release History\nSee the [CHANGELOG](CHANGELOG).\n',
+139 silly resolved     readmeFilename: 'README.md',
+139 silly resolved     _id: 'grunt@0.4.5',
+139 silly resolved     _from: 'grunt@' },
+139 silly resolved   { name: 'cli',
+139 silly resolved     description: 'A tool for rapidly building command line apps',
+139 silly resolved     version: '0.6.2',
+139 silly resolved     homepage: 'http://github.com/chriso/cli',
+139 silly resolved     keywords:
+139 silly resolved      [ 'cli',
+139 silly resolved        'command line',
+139 silly resolved        'opts',
+139 silly resolved        'parseopt',
+139 silly resolved        'opt',
+139 silly resolved        'args',
+139 silly resolved        'console',
+139 silly resolved        'argsparse',
+139 silly resolved        'optparse',
+139 silly resolved        'daemon',
+139 silly resolved        'autocomplete',
+139 silly resolved        'command',
+139 silly resolved        'autocompletion' ],
+139 silly resolved     author: { name: 'Chris O\'Hara', email: 'cohara87@gmail.com' },
+139 silly resolved     main: 'cli.js',
+139 silly resolved     bugs: { url: 'http://github.com/chriso/cli/issues' },
+139 silly resolved     repository: { type: 'git', url: 'http://github.com/chriso/cli.git' },
+139 silly resolved     dependencies: { glob: '>= 3.1.4', exit: '0.1.2' },
+139 silly resolved     contributors: [ [Object] ],
+139 silly resolved     engines: { node: '>=0.2.5' },
+139 silly resolved     licenses: [ [Object] ],
+139 silly resolved     readme: '**cli is a toolkit for rapidly building command line apps - it includes:**\n\n- Full featured opts/args parser\n- Plugin support for adding common options and switches\n- Helper methods for working with input/output and spawning child processes\n- Output colored/styled messages, [progress bars](https://github.com/chriso/cli/blob/master/examples/progress.js) or [spinners](https://github.com/chriso/cli/blob/master/examples/spinner.js)\n- Command [auto-completion](https://github.com/chriso/cli/blob/master/examples/command.js) and [glob support](https://github.com/chriso/cli/blob/master/examples/glob.js)\n\nInstall using `npm install cli` or just bundle [cli.js](https://github.com/chriso/cli/raw/master/cli.js) with your app.\n\n## Example apps\n\n### sort.js\n\n```javascript\n#!/usr/bin/env node\nrequire(\'cli\').withStdinLines(function(lines, newline) {\n    this.output(lines.sort().join(newline));\n});\n```\n\nTry it out\n\n```bash\n$ ./sort.js < input.txt\n```\n\nLet\'s add support for an `-n` switch to use a numeric sort, and a `-r` switch to reverse output - only 5 extra lines of code (!)\n\n```javascript\nvar cli = require(\'cli\'), options = cli.parse();\n\ncli.withStdinLines(function(lines, newline) {\n    lines.sort(!options.n ? null : function(a, b) {\n        return parseInt(a) > parseInt(b);\n    });\n    if (options.r) lines.reverse();\n    this.output(lines.join(newline));\n});\n```\n\n### static.js\n\nLet\'s create a static file server with daemon support to see the opts parser + plugins in use - note: this requires `npm install creationix daemon`\n\n```javascript\nvar cli = require(\'cli\').enable(\'daemon\', \'status\'); //Enable 2 plugins\n\ncli.parse({\n    log:   [\'l\', \'Enable logging\'],\n    port:  [\'p\', \'Listen on this port\', \'number\', 8080],\n    serve: [false, \'Serve static files from PATH\', \'path\', \'./public\']\n});\n\ncli.main(function(args, options) {\n    var server, middleware = [];\n\n    if (options.log) {\n        this.debug(\'Enabling logging\');\n        middleware.push(require(\'creationix/log\')());\n    }\n\n    this.debug(\'Serving files from \' + options.serve);\n    middleware.push(require(\'creationix/static\')(\'/\', options.serve, \'index.html\'));\n\n    server = this.createServer(middleware).listen(options.port);\n\n    this.ok(\'Listening on port \' + options.port);\n});\n```\n\nTo output usage information\n\n```bash\n$ ./static.js --help\n```\n\nTo create a daemon that serves files from */tmp*, run\n\n```bash\n$ ./static.js -ld --serve=/tmp\n```\n\nFor more examples, see [./examples](https://github.com/chriso/cli/tree/master/examples)\n\n## Helper methods\n\ncli has methods that collect stdin (newline is autodetected as \\n or \\r\\n)\n\n```javascript\ncli.withStdin(callback);        //callback receives stdin as a string\ncli.withStdinLines(callback);   //callback receives stdin split into an array of lines (lines, newline)\n```\n\ncli also has a lower level method for working with input line by line (see [./examples/cat.js](https://github.com/chriso/cli/blob/master/examples/cat.js) for an example). \n\n```javascript\ncli.withInput(file, function (line, newline, eof) {\n    if (!eof) {\n        this.output(line + newline);\n    }\n});\n```\n\n*Note: `file` can be omitted if you want to work with stdin*\n\nTo output a progress bar, call\n\n```javascript\ncli.progress(progress); //Where 0 <= progress <= 1\n```\n\nTo spawn a child process, use\n\n```javascript\ncli.exec(cmd, callback); //callback receives the output of the process (split into lines)\n```\n\ncli also comes bundled with kof\'s [node-natives](https://github.com/kof/node-natives) (access with cli.native) and creationix\' [stack](https://github.com/creationix/stack) (access with cli.createServer)\n\n## Plugins\n\nPlugins are a way of adding common opts and can be enabled using \n\n```javascript\ncli.enable(plugin1, [plugin2, ...]);  //To disable, use the equivalent disable() method\n```\n\n**help** - *enabled by default*\n\nAdds `-h,--help` to output auto-generated usage information\n\n**version**\n\nAdds `-v,--version` to output version information for the app. cli will attempt to locate and parse a nearby *package.json*\n\nTo set your own app name and version, use `cli.setApp(app_name, version)`\n\n**status**\n\nAdds options to show/hide the stylized status messages that are output to the console when using one of these methods\n\n```javascript\ncli.debug(msg);  //Only shown when using --debug\ncli.error(msg);\ncli.fatal(msg);  //Exits the process after outputting msg\ncli.info(msg);\ncli.ok(msg);\n```\n\n`-k,--no-color` will omit ANSI color escapes from the output\n\n**glob**  - *requires* `npm install glob`\n\nEnables glob matching of arguments\n\n**daemon**  - *requires* `npm install daemon`\n\nAdds `-d,--daemon ARG` for daemonizing the process and controlling the resulting daemon\n\n`ARG` can be either start (default), stop, restart, pid (outputs the daemon\'s pid if it\'s running), or log (output the daemon\'s stdout+stderr)\n\n**timeout**\n\nAdds `-t,--timeout N` to exit the process after N seconds with an error\n\n**catchall**\n\nAdds `-c,--catch` to catch and output uncaughtExceptions and resume execution\n\n*Note: Plugins are automatically disabled if an option or switch of the same name is already defined*\n\n## LICENSE\n\n(MIT license)\n\nCopyright (c) 2010 Chris O\'Hara <cohara87@gmail.com>\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n"Software"), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND\nNONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE\nLIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION\nOF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION\nWITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n',
+139 silly resolved     readmeFilename: 'README.md',
+139 silly resolved     _id: 'cli@0.6.2',
+139 silly resolved     dist: { shasum: '9ee9ee9f2c61b301c42c1471bc110c96efeb2ee0' },
+139 silly resolved     _from: 'cli@',
+139 silly resolved     _resolved: 'https://registry.npmjs.org/cli/-/cli-0.6.2.tgz' } ]
+140 info install grunt@0.4.5 into /usr/local/lib
+141 info install cli@0.6.2 into /usr/local/lib
+142 info installOne grunt@0.4.5
+143 info installOne cli@0.6.2
+144 info /usr/local/lib/node_modules/grunt unbuild
+145 info /usr/local/lib/node_modules/cli unbuild
+146 verbose tar unpack /Users/Othmane/.npm/grunt/0.4.5/package.tgz
+147 silly lockFile d04b7634-usr-local-lib-node-modules-grunt tar:///usr/local/lib/node_modules/grunt
+148 verbose lock tar:///usr/local/lib/node_modules/grunt /Users/Othmane/.npm/d04b7634-usr-local-lib-node-modules-grunt.lock
+149 silly lockFile c91f1040-mane-npm-grunt-0-4-5-package-tgz tar:///Users/Othmane/.npm/grunt/0.4.5/package.tgz
+150 verbose lock tar:///Users/Othmane/.npm/grunt/0.4.5/package.tgz /Users/Othmane/.npm/c91f1040-mane-npm-grunt-0-4-5-package-tgz.lock
+151 verbose tar unpack /Users/Othmane/.npm/cli/0.6.2/package.tgz
+152 silly lockFile a7123f8e-r-usr-local-lib-node-modules-cli tar:///usr/local/lib/node_modules/cli
+153 verbose lock tar:///usr/local/lib/node_modules/cli /Users/Othmane/.npm/a7123f8e-r-usr-local-lib-node-modules-cli.lock
+154 silly lockFile 75ab57ce-thmane-npm-cli-0-6-2-package-tgz tar:///Users/Othmane/.npm/cli/0.6.2/package.tgz
+155 verbose lock tar:///Users/Othmane/.npm/cli/0.6.2/package.tgz /Users/Othmane/.npm/75ab57ce-thmane-npm-cli-0-6-2-package-tgz.lock
+156 silly gunzTarPerm modes [ '755', '644' ]
+157 silly gunzTarPerm modes [ '755', '644' ]
+158 error Error: EACCES, mkdir '/usr/local/lib/node_modules/grunt'
+158 error  { [Error: EACCES, mkdir '/usr/local/lib/node_modules/grunt']
+158 error   errno: 3,
+158 error   code: 'EACCES',
+158 error   path: '/usr/local/lib/node_modules/grunt',
+158 error   fstream_type: 'Directory',
+158 error   fstream_path: '/usr/local/lib/node_modules/grunt',
+158 error   fstream_class: 'DirWriter',
+158 error   fstream_stack:
+158 error    [ '/usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
+158 error      '/usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:37:53',
+158 error      'Object.oncomplete (fs.js:107:15)' ] }
+159 error Please try running this command again as root/Administrator.
+160 error System Darwin 13.1.0
+161 error command "node" "/usr/local/bin/npm" "install" "-g" "grunt" "cli"
+162 error cwd /Users/Othmane/Desktop/boboxFinal/webapp
+163 error node -v v0.10.25
+164 error npm -v 1.3.24
+165 error path /usr/local/lib/node_modules/grunt
+166 error fstream_path /usr/local/lib/node_modules/grunt
+167 error fstream_type Directory
+168 error fstream_class DirWriter
+169 error code EACCES
+170 error errno 3
+171 error stack Error: EACCES, mkdir '/usr/local/lib/node_modules/grunt'
+172 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
+172 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:37:53
+172 error fstream_stack Object.oncomplete (fs.js:107:15)
+173 verbose exit [ 3, true ]

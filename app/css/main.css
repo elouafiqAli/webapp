@@ -13,6 +13,7 @@
   padding: 0; }
 
 /* Setting up Adam, a custom font used for headings. */
+
 @font-face {
   font-family: 'adam';
   src: url("fonts/adam-webfont.eot");
@@ -24,6 +25,7 @@
 body {
   font-family: 'Source Sans Pro', sans-serif;
 }
+
 header {
   background-color: #353d45;
   width: 100%;
