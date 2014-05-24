@@ -3,7 +3,7 @@
         <div >
             <div >
                 <div class="row">
-                    <img src="{{book.imageLinks.thumbnail}}" />
+                    <img style="margin-top: 50px;"src="{{book.imageLinks.thumbnail}}" />
                     <h1><strong>{{ book.title }}</strong></h1><br>
                     <form class="col-xs-8 col-xs-offset-2" id="search-book">
                         <div class="input-group">
@@ -11,7 +11,6 @@
                             <input ng-model="searchInput" name="search input" type="text" class="form-control" placeholder="Search inside the book">
                              <span class="input-group-btn">
                                  <input type="submit" ng-click="searchInsideBook()" name="search" id="search-button"class="btn btn-default" type="button" value="Search">
-                                        <span class="glyphicon glyphicon-search"></span>
                                  </input><span class="error" ng-show="submittedError">{{errorDescription}}</span>
                                 </span>
                         </div>
@@ -26,7 +25,7 @@
         <h4>Number of occurences : {{searchResults.number_of_results}}</h4>
 
             <div class="wrap-table" ng-repeat="page in searchResults.search_results">
-                <div class="table">
+                <div class="table" style="margin-bottom: 50px;">
                     <div class="pages">
                         <h3>Page: <span>{{page.page_number}}</span></h3>
                     </div>
